@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ixapgsybktl8"]
+
+[ext_resource type="Script" uid="uid://b7fltvx28mgik" path="res://scenes/entities/units/basic_unit.gd" id="1_bmxq0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_byndi"]
+size = Vector2(64, 64)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k1lsw"]
+
+[node name="BasicUnit" type="CharacterBody2D" unique_id=696815683]
+input_pickable = true
+script = ExtResource("1_bmxq0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983267166]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_byndi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2071754530]
+position = Vector2(0, -32)
+scale = Vector2(64, 64)
+texture = SubResource("PlaceholderTexture2D_k1lsw")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
