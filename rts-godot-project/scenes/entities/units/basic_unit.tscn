@@ -6,18 +6,22 @@
 size = Vector2(64, 64)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k1lsw"]
+size = Vector2(64, 64)
 
-[node name="BasicUnit" type="CharacterBody2D" unique_id=696815683]
+[node name="BasicUnit" type="CharacterBody2D" unique_id=696815683 groups=["Unit"]]
 input_pickable = true
 script = ExtResource("1_bmxq0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983267166]
-position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_byndi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2071754530]
-position = Vector2(0, -32)
-scale = Vector2(64, 64)
 texture = SubResource("PlaceholderTexture2D_k1lsw")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=332114777]
+path_desired_distance = 32.0
+target_desired_distance = 20.0
+avoidance_enabled = true
+radius = 32.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

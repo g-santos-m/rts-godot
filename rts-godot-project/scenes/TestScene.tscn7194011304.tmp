@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://2quaagvd3ehi"]
+
+[ext_resource type="Script" uid="uid://yfcskmy28y31" path="res://scenes/test_scene.gd" id="1_2gju5"]
+[ext_resource type="PackedScene" uid="uid://ixapgsybktl8" path="res://scenes/entities/units/basic_unit.tscn" id="2_rlkm5"]
+
+[node name="TestScene" type="Node2D" unique_id=584569153]
+script = ExtResource("1_2gju5")
+
+[node name="BasicUnit" parent="." unique_id=696815683 instance=ExtResource("2_rlkm5")]
+position = Vector2(182, 209)
+
+[node name="BasicUnit2" parent="." unique_id=563621425 instance=ExtResource("2_rlkm5")]
+position = Vector2(507, 480)
+
+[node name="BasicUnit3" parent="." unique_id=607101916 instance=ExtResource("2_rlkm5")]
+position = Vector2(541, 192)
