@@ -12,7 +12,7 @@ var select_mode : bool = false:
 	set(value):
 		select_mode = value
 		if value:
-			selection_rect = Rect2(Vector2(-8,-8), Vector2(16,16))
+			selection_rect = Rect2(Vector2(-33,-33), Vector2(65,65))
 			selection_width = 1
 		else:
 			selection_rect = Rect2(0,0,0,0)

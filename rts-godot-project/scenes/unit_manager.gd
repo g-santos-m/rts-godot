@@ -46,6 +46,7 @@ func check_unit():
 func get_formation(tile_pos):
 	var formation = []  
 	var unit_count = unit_selected.size()
+	
 	var formation_size = ceil(sqrt(unit_count))
  
 	var index = 0
@@ -58,11 +59,13 @@ func get_formation(tile_pos):
 				break
  
 	return formation
+
  
 func move_to_position(layer : TileMapLayer, tile_pos):
 	var formation = get_formation(tile_pos)
 	for i in range(unit_selected.size()):
-		unit_selected[i].move_to( layer.map_to_local(formation[i]) )
+		unit_selected[i].global_position = layer.map_to_local(formation[i])
+		#unit_selected[i].move_to( layer.map_to_local(formation[i]) )
  
 func select_in(group):
 	for unit in get_tree().get_nodes_in_group("Unit"):
