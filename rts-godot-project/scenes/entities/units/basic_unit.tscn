@@ -23,6 +23,7 @@ path_desired_distance = 16.0
 target_desired_distance = 16.0
 path_max_distance = 32.0
 avoidance_enabled = true
-radius = 32.0
+radius = 35.0
+max_speed = 1000.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
