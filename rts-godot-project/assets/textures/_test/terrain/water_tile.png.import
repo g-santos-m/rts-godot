@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fhyaoaxrru0q"
-path="res://.godot/imported/icon.svg-e7b4ea91f81c03488fa1977bf2cc8165.ctex"
+uid="uid://dtfepesyn5ovx"
+path="res://.godot/imported/water_tile.png-294c1692d6865e74856e3fd62beb062a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/godot-neovim/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-e7b4ea91f81c03488fa1977bf2cc8165.ctex"]
+source_file="res://assets/textures/_test/terrain/water_tile.png"
+dest_files=["res://.godot/imported/water_tile.png-294c1692d6865e74856e3fd62beb062a.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
