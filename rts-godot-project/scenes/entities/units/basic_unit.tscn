@@ -9,6 +9,7 @@ size = Vector2(64, 64)
 size = Vector2(64, 64)
 
 [node name="BasicUnit" type="CharacterBody2D" unique_id=696815683 groups=["Unit"]]
+collision_mask = 0
 input_pickable = true
 script = ExtResource("1_bmxq0")
 
@@ -19,9 +20,9 @@ shape = SubResource("RectangleShape2D_bmxq0")
 texture = SubResource("PlaceholderTexture2D_k1lsw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=332114777]
-path_desired_distance = 1.0
-target_desired_distance = 1.0
-path_max_distance = 10.0
+path_desired_distance = 16.0
+target_desired_distance = 16.0
+path_max_distance = 32.0
 avoidance_enabled = true
 radius = 32.0
 

@@ -48,12 +48,13 @@ func get_formation(tile_pos):
 	var unit_count = unit_selected.size()
 	
 	var formation_size = ceil(sqrt(unit_count))
+	var unit_spacing = 4
  
 	var index = 0
 	for x in range(-formation_size / 2, formation_size / 2 + 1):
 		for y in range(-formation_size / 2, formation_size / 2 + 1):
 			if index < unit_count:
-				formation.append(tile_pos + Vector2i(x, y))
+				formation.append(tile_pos + Vector2i(x, y) * unit_spacing)
 				index += 1
 			else:
 				break
@@ -64,8 +65,8 @@ func get_formation(tile_pos):
 func move_to_position(layer : TileMapLayer, tile_pos):
 	var formation = get_formation(tile_pos)
 	for i in range(unit_selected.size()):
-		unit_selected[i].global_position = layer.map_to_local(formation[i])
-		#unit_selected[i].move_to( layer.map_to_local(formation[i]) )
+		#unit_selected[i].global_position = layer.map_to_local(formation[i])
+		unit_selected[i].move_to( layer.map_to_local(formation[i]) )
  
 func select_in(group):
 	for unit in get_tree().get_nodes_in_group("Unit"):
