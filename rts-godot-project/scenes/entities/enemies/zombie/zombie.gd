@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 # Unit stats
-const unit_speed := 80.0
-const attack_damage := 10.0
+const UNIT_SPEED := 200.0
+const ATTACK_DAMAGE := 10.0
 
 # Unit state
 var current_target: CollisionObject2D = null
@@ -11,8 +11,10 @@ var current_target: CollisionObject2D = null
 signal target_attacked(target, damage)
 
 @onready var nav_agent := $NavigationAgent2D
+@onready var printer := Printer.new(name)
 
 func _ready() -> void:
+    printer.cprint("has spawned at ", global_position)
     _set_closest_building()
 
 func _process(delta: float) -> void:
@@ -30,14 +32,15 @@ func _process(delta: float) -> void:
     # Si ya ha llegado al objetivo, para y ataca.
     if nav_agent.is_navigation_finished():
         velocity = Vector2.ZERO
-        target_attacked.emit(current_target, attack_damage)
+        target_attacked.emit(current_target, ATTACK_DAMAGE)
+        printer.cprint("attacked ", current_target)
         move_and_slide()
         return
 
     # Calcula la siguiente posición.
     var next_position = nav_agent.get_next_path_position()
     var direction = (next_position - global_position).normalized()
-    velocity = direction * unit_speed
+    velocity = direction * UNIT_SPEED
     move_and_slide()
 
 # Busca el edificio más cercano.
@@ -56,3 +59,5 @@ func _set_closest_building() -> void:
 
     # Asigna el edificio más cercano como objetivo.
     current_target = closest_building
+    if current_target:
+        printer.cprint("is targeting ", current_target.name, " at ", current_target.global_position)
