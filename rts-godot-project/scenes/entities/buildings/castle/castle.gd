@@ -1,10 +1,10 @@
 extends StaticBody2D
 
 # Unit stats
-const max_health := 10.0
+const MAX_HEALTH := 10.0
 
 # Unit state
-var current_health := max_health
+var current_health := MAX_HEALTH
 
 func _ready() -> void:
     pass
