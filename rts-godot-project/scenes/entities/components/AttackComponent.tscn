@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dn72hx05oapx5"]
+
+[ext_resource type="Script" uid="uid://bmrrp5526ii4e" path="res://scenes/entities/components/attack_component.gd" id="1_vqpd0"]
+
+[node name="AttackComponent" type="Node2D" unique_id=1099593692]
+script = ExtResource("1_vqpd0")
+
+[node name="Timer" type="Timer" parent="." unique_id=980211957]

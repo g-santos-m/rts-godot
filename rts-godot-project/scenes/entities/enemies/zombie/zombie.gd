@@ -1,19 +1,21 @@
 extends CharacterBody2D
 
-# Unit stats
+# Estadísticas
 const UNIT_SPEED := 200.0
-const ATTACK_DAMAGE := 10.0
+const ATTACK_DAMAGE := 4.0
+const ATTACK_RATE := 1.0      # Segundos entre ataques
 
-# Unit state
+# Estado
 var current_target: CollisionObject2D = null
 
-# Signals
-signal target_attacked(target, damage)
-
 @onready var nav_agent := $NavigationAgent2D
+@onready var attack_com := $AttackComponent
+
 @onready var printer := Printer.new(name)
 
 func _ready() -> void:
+    attack_com.setup(name, ATTACK_DAMAGE, ATTACK_RATE)
+
     printer.cprint("has spawned at ", global_position)
     _set_closest_building()
 
@@ -32,8 +34,7 @@ func _process(delta: float) -> void:
     # Si ya ha llegado al objetivo, para y ataca.
     if nav_agent.is_navigation_finished():
         velocity = Vector2.ZERO
-        target_attacked.emit(current_target, ATTACK_DAMAGE)
-        printer.cprint("attacked ", current_target)
+        attack_com.attack_target(current_target)
         move_and_slide()
         return
 
