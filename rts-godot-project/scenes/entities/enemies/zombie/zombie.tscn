@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bepgjptdgri8g"]
 
 [ext_resource type="Script" uid="uid://irhe4i7tuhju" path="res://scenes/entities/enemies/zombie/zombie.gd" id="1_o7d34"]
+[ext_resource type="PackedScene" uid="uid://dn72hx05oapx5" path="res://scenes/entities/components/AttackComponent.tscn" id="2_d6vqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o7d34"]
 size = Vector2(64, 64)
@@ -14,9 +15,11 @@ shape = SubResource("RectangleShape2D_o7d34")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=505472018]
 path_desired_distance = 10.0
-target_desired_distance = 64.0
+target_desired_distance = 66.0
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=2070017393]
 color = Color(1, 0, 0, 1)
 polygon = PackedVector2Array(1.5258789e-05, -64, -31.999985, 0, 31.999985, 0)
 uv = PackedVector2Array(-149, -77, -216, 24, -92, 24)
+
+[node name="AttackComponent" parent="." unique_id=1099593692 instance=ExtResource("2_d6vqm")]
