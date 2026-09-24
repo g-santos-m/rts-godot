@@ -11,7 +11,9 @@ radius = 20.880613
 [sub_resource type="CircleShape2D" id="CircleShape2D_k1lsw"]
 radius = 48.83646
 
-[node name="UnidadTest" type="CharacterBody2D" unique_id=1996506914]
+[node name="UnidadTest" type="CharacterBody2D" unique_id=1996506914 groups=["units"]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_hw2x6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=877613637]
@@ -21,6 +23,8 @@ texture = SubResource("PlaceholderTexture2D_k1lsw")
 shape = SubResource("CircleShape2D_byndi")
 
 [node name="Detect" type="Area2D" parent="." unique_id=1330454122]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect" unique_id=306485596]
 shape = SubResource("CircleShape2D_k1lsw")
