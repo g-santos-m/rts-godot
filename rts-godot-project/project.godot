@@ -21,7 +21,7 @@ UnitManager="*uid://y38ru8c1mqn5"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [editor_plugins]
