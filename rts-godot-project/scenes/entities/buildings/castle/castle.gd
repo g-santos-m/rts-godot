@@ -1,21 +1,24 @@
 extends StaticBody2D
 
-# Unit stats
+# Estadísticas
 const MAX_HEALTH := 10.0
 
-# Unit state
+static var id := 1
+
+# Estado
 var current_health := MAX_HEALTH
 
-@onready var printer := Printer.new(name)
+@onready var _printer := Printer.new(name)
 
 func _ready() -> void:
-	printer.cprint("has spawned at ", global_position)
+    id += 1
+    _printer.cprint("has spawned at ", global_position)
 
 func take_damage(damage: float) -> void:
-	current_health -= damage
-	if current_health < 0:
-		current_health = 0
-	printer.cprint("has taken ", damage, " damage. Current health is ", current_health, "/", MAX_HEALTH)
-	if current_health == 0:
-		printer.cprint("has been destroyed")
-		queue_free()
+    current_health -= damage
+    if current_health < 0:
+        current_health = 0
+    _printer.cprint("has taken ", damage, " damage. Current health is ", current_health, "/", MAX_HEALTH)
+    if current_health == 0:
+        _printer.cprint("has been destroyed")
+        queue_free()
