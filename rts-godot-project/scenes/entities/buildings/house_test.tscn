@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bvnnvuv4j5vck"]
+
+[ext_resource type="Script" uid="uid://bn7g4hs4fp22r" path="res://scenes/entities/buildings/house_test.gd" id="1_j3el0"]
+[ext_resource type="PackedScene" uid="uid://ctp3dyf4t5d0m" path="res://scenes/entities/buildings/building_test.tscn" id="2_08px0"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4jrll"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2rs07"]
+size = Vector2(128, 128)
+
+[node name="HouseTest" type="Sprite2D" unique_id=187026502]
+texture = SubResource("PlaceholderTexture2D_4jrll")
+script = ExtResource("1_j3el0")
+
+[node name="BuildingTest" parent="." unique_id=803767306 node_paths=PackedStringArray("parent_building") instance=ExtResource("2_08px0")]
+parent_building = NodePath("..")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1689612709]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1532397386]
+shape = SubResource("RectangleShape2D_2rs07")
+disabled = true
