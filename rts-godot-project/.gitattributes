@@ -1,2 +1,17 @@
-# Normalize EOL for all files that Git considers text files.
+# Normalizar todos los archivos de texto para usar siempre LF en el repositorio
 * text=auto eol=lf
+
+# Scripts y escenas de Godot
+*.gd text eol=lf
+*.tscn text eol=lf
+*.tres text eol=lf
+*.godot text merge=union eol=lf
+
+# Recursos binarios (no tocar bajo ninguna circunstancia)
+*.png binary
+*.jpg binary
+*.webp binary
+*.wav binary
+*.ogg binary
+*.ttf binary
+*.otf binary

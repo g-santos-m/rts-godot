@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 # Estadísticas
-const UNIT_SPEED := 200.0
-const ATTACK_DAMAGE := 4.0
-const ATTACK_RATE := 1.0      # Segundos entre ataques
+const UNIT_SPEED = 200.0
+const ATTACK_DAMAGE = 4.0
+const ATTACK_RATE = 1.0      # Segundos entre ataques
 
 static var id := 1
 
@@ -11,13 +11,13 @@ static var id := 1
 var _current_target: CollisionObject2D
 
 @onready var _nav_agent := $NavigationAgent2D
-@onready var _attack_com := $AttackComponent
+@onready var _attack_comp := $AttackComponent
 
 @onready var _printer := Printer.new(name)
 
 func _ready() -> void:
     id += 1
-    _attack_com.setup(name, ATTACK_DAMAGE, ATTACK_RATE)
+    _attack_comp.setup(name, ATTACK_DAMAGE, ATTACK_RATE)
     _printer.cprint("has spawned at ", global_position)
     _set_closest_building()
 
@@ -36,13 +36,14 @@ func _process(delta: float) -> void:
     # Si ya ha llegado al objetivo, para y ataca.
     if _nav_agent.is_navigation_finished():
         velocity = Vector2.ZERO
-        _attack_com.attack_target(_current_target)
+        _attack_comp.attack_target(_current_target)
         move_and_slide()
         return
 
     # Calcula la siguiente posición.
     var next_position = _nav_agent.get_next_path_position()
-    var direction = (next_position - global_position).normalized()
+    var direction: Vector2 = (next_position - global_position).normalized()
+    $Sprite2D.flip_h = direction.x < 0
     velocity = direction * UNIT_SPEED
     move_and_slide()
 

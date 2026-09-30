@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bepgjptdgri8g"]
 
 [ext_resource type="Script" uid="uid://irhe4i7tuhju" path="res://scenes/entities/enemies/zombie/zombie.gd" id="1_o7d34"]
-[ext_resource type="PackedScene" uid="uid://dn72hx05oapx5" path="res://scenes/entities/components/AttackComponent.tscn" id="2_d6vqm"]
+[ext_resource type="PackedScene" uid="uid://dn72hx05oapx5" path="res://scenes/entities/components/attack_component.tscn" id="2_d6vqm"]
 [ext_resource type="Texture2D" uid="uid://dgqbmosjaxilr" path="res://assets/textures/entities/enemies/zombie0000.png" id="2_rmkjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o7d34"]
