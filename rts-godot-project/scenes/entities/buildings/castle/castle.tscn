@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://cvq7k483siahs"]
 
 [ext_resource type="Script" uid="uid://b4xgary4ibmwp" path="res://scenes/entities/buildings/castle/castle.gd" id="1_58gdu"]
-[ext_resource type="Texture2D" uid="uid://ce2bytfuffq6f" path="res://assets/textures/_test/terrain/hq_tile.png" id="1_ptja1"]
+[ext_resource type="Texture2D" uid="uid://dcd7xkwpw6pqe" path="res://assets/textures/entities/buildings/castle.png" id="2_58gdu"]
+[ext_resource type="PackedScene" uid="uid://cfqtyidaoicm7" path="res://scenes/entities/components/health_component.tscn" id="3_banmx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqses"]
-size = Vector2(64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vrixv"]
-atlas = ExtResource("1_ptja1")
+size = Vector2(128, 128)
 
 [node name="Castle" type="StaticBody2D" unique_id=363965524]
 script = ExtResource("1_58gdu")
@@ -16,4 +14,7 @@ script = ExtResource("1_58gdu")
 shape = SubResource("RectangleShape2D_xqses")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1907619970]
-texture = SubResource("AtlasTexture_vrixv")
+texture = ExtResource("2_58gdu")
+
+[node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("3_banmx")]
+position = Vector2(-11, -78)
