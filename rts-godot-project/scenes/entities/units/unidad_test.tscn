@@ -12,8 +12,8 @@ radius = 20.880613
 radius = 48.83646
 
 [node name="UnidadTest" type="CharacterBody2D" unique_id=1996506914 groups=["units"]]
-collision_layer = 2
-collision_mask = 3
+collision_layer = 6
+collision_mask = 7
 script = ExtResource("1_hw2x6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=877613637]
