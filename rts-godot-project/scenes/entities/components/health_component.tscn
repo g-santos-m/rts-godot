@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cfqtyidaoicm7"]
+
+[ext_resource type="Script" uid="uid://dwb61j8mkcaqb" path="res://scenes/entities/components/health_component.gd" id="1_rahqb"]
+
+[node name="HealthComponent" type="Node2D" unique_id=1745330916]
+script = ExtResource("1_rahqb")
+
+[node name="RedBackground" type="Polygon2D" parent="." unique_id=1988232853]
+position = Vector2(-1, -4)
+color = Color(0.9999997, 0.26244318, 0.17641643, 1)
+polygon = PackedVector2Array(1, 1, 21, 1, 21, 7, 1, 7)
+
+[node name="GreenBar" type="Polygon2D" parent="." unique_id=287653990]
+position = Vector2(-1, -4)
+color = Color(0.19505805, 0.71170646, 0, 1)
+polygon = PackedVector2Array(1, 1, 14, 1, 14, 7, 1, 7)
