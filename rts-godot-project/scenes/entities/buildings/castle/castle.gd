@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 # Estadísticas
-const MAX_HEALTH := 10.0
+const MAX_HEALTH := 20.0
 
 static var id := 1
 

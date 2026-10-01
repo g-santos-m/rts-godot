@@ -10,11 +10,11 @@ size = Vector2(128, 128)
 [node name="Castle" type="StaticBody2D" unique_id=363965524]
 script = ExtResource("1_58gdu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=749159625]
-shape = SubResource("RectangleShape2D_xqses")
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1907619970]
 texture = ExtResource("2_58gdu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=749159625]
+shape = SubResource("RectangleShape2D_xqses")
 
 [node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("3_banmx")]
 position = Vector2(-11, -78)
