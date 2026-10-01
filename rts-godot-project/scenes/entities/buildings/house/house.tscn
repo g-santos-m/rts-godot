@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ihxc1n1ieu2t"]
+
+[ext_resource type="Texture2D" uid="uid://day4ix61nvb5m" path="res://assets/textures/entities/buildings/house.png" id="1_4fal1"]
+[ext_resource type="Script" uid="uid://bnnvb1vv6t7h0" path="res://scenes/entities/buildings/house/house.gd" id="1_4y8o3"]
+[ext_resource type="PackedScene" uid="uid://cfqtyidaoicm7" path="res://scenes/entities/components/health_component.tscn" id="2_4y8o3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqses"]
+size = Vector2(64, 64)
+
+[node name="House" type="StaticBody2D" unique_id=582328485]
+script = ExtResource("1_4y8o3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1683101310]
+texture = ExtResource("1_4fal1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1118896185]
+shape = SubResource("RectangleShape2D_xqses")
+
+[node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("2_4y8o3")]
+position = Vector2(-10, -42)
