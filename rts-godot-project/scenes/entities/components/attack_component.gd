@@ -1,7 +1,6 @@
 extends Node
 
 # Estadísticas
-var _entity_name: String
 var _attack_damage: float
 var _attack_rate: float     # Seguntos entre ataques
 
@@ -12,14 +11,13 @@ var _on_cooldown = false
 @onready var _printer: Printer
 
 func setup(
-    entity_name: String,
     attack_damage: float,
-    attack_rate: float
+    attack_rate: float,
+    printer: Printer,
 ) -> void:
-    _entity_name = entity_name
     _attack_damage = attack_damage
     _attack_rate = attack_rate
-    _printer = Printer.new(entity_name)
+    _printer = printer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,10 +26,10 @@ func _ready() -> void:
 
 func attack_target(target: CollisionObject2D) -> void:
     if not _on_cooldown:
+        _printer.cprint("deals ", _attack_damage, " damage to ", target.name)
         target.take_damage(_attack_damage)
         _on_cooldown = true
         _timer.start(_attack_rate)
-        _printer.cprint("deals ", _attack_damage, " damage to ", target.name)
 
 func _on_timer_timeout() -> void:
     _on_cooldown = false
