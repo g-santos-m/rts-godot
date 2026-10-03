@@ -14,7 +14,7 @@ func _ready() -> void:
     # Hay que llamar a paint_bar() al principio para que la barra de vida tome
     # tamaño correcto y poder posicionarla adecuadamente después.
     _health_comp.paint_bar()
-    # Posiciona la barra centrada horizontalmente y 10 píxeles sobre la hitbox
+    # Posiciona la barra centrada horizontalmente y 10 píxeles sobre la CollisionShape2D
     # de la entidad.
     _health_comp.position = Vector2(
         -(_health_comp.get_child(0).polygon[1].x / 2),

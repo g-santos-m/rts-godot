@@ -8,16 +8,21 @@ const ATTACK_RATE = 1.0      # Segundos entre ataques
 static var id := 1
 
 # Estado
-var _current_target: CollisionObject2D
+var _current_target: PhysicsBody2D
+var _is_target_in_range := false
 
 @onready var _nav_agent := $NavigationAgent2D
 @onready var _attack_comp := $AttackComponent
+@onready var _range_comp := $RangeComponent
 
 @onready var _printer := Printer.new(name)
 
 func _ready() -> void:
     id += 1
-    _attack_comp.setup(name, ATTACK_DAMAGE, ATTACK_RATE)
+    _attack_comp.setup(ATTACK_DAMAGE, ATTACK_RATE, _printer)
+    _range_comp.setup(_printer)
+    _range_comp.body_in_range.connect(_on_body_in_range)
+
     _printer.cprint("has spawned at ", global_position)
     _set_closest_building()
 
@@ -33,8 +38,8 @@ func _process(delta: float) -> void:
     # Pasa la posición del objetivo a NavigationAgent2D.
     _nav_agent.target_position = _current_target.global_position
 
-    # Si ya ha llegado al objetivo, para y ataca.
-    if _nav_agent.is_navigation_finished():
+    # Si el objetivo esta en rango, para y ataca.
+    if _is_target_in_range == true:
         velocity = Vector2.ZERO
         _attack_comp.attack_target(_current_target)
         move_and_slide()
@@ -49,6 +54,8 @@ func _process(delta: float) -> void:
 
 # Busca el edificio más cercano.
 func _set_closest_building() -> void:
+    _is_target_in_range = false
+
     # Recoge la lista de edificios activos en el mapa.
     var buildings := get_tree().get_first_node_in_group("buildings").get_children()
 
@@ -65,3 +72,7 @@ func _set_closest_building() -> void:
     _current_target = closest_building
     if _current_target:
         _printer.cprint("is targeting ", _current_target.name, " at ", _current_target.global_position)
+
+func _on_body_in_range(body: PhysicsBody2D) -> void:
+    if body == _current_target:
+        _is_target_in_range = true

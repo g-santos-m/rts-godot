@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dyjc7xlgqf668"]
+
+[ext_resource type="Script" uid="uid://e0h3qm76xje2" path="res://scenes/entities/components/range_component.gd" id="1_nh64l"]
+
+[node name="RangeComponent" type="Area2D" unique_id=1357743773]
+collision_layer = 0
+collision_mask = 7
+script = ExtResource("1_nh64l")
