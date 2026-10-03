@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bf0jql2brb34d" path="res://scenes/ui/hud/hud.gd" id="1_as3gr"]
 [ext_resource type="Texture2D" uid="uid://dcd7xkwpw6pqe" path="res://assets/textures/entities/buildings/castle.png" id="2_as3gr"]
 [ext_resource type="Texture2D" uid="uid://day4ix61nvb5m" path="res://assets/textures/entities/buildings/house.png" id="3_2wu1p"]
-[ext_resource type="Texture2D" uid="uid://bagl8fl7jst7w" path="res://assets/textures/entities/enemies/zombie.png" id="4_ax4tw"]
+[ext_resource type="Texture2D" uid="uid://b2r8h5uum6d2u" path="res://assets/textures/entities/enemies/zombie0.png" id="4_ax4tw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uxs1"]
 bg_color = Color(0.047058824, 0.047058824, 0.047058824, 0.35686275)
