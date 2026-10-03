@@ -29,6 +29,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     # Actualiza el objetivo actual. Si no hay objetivo válido, se para.
     if _current_target == null or not is_instance_valid(_current_target):
+        # Resetea el estado de ataque.
+        _is_target_in_range = false
+        $AnimatedSprite2D.stop()
         _set_closest_building()
     if _current_target == null:
         velocity = Vector2.ZERO
@@ -41,6 +44,7 @@ func _process(delta: float) -> void:
     # Si el objetivo esta en rango, para y ataca.
     if _is_target_in_range == true:
         velocity = Vector2.ZERO
+        $AnimatedSprite2D.play("attack")
         _attack_comp.attack_target(_current_target)
         move_and_slide()
         return
@@ -48,13 +52,12 @@ func _process(delta: float) -> void:
     # Calcula la siguiente posición.
     var next_position = _nav_agent.get_next_path_position()
     var direction: Vector2 = (next_position - global_position).normalized()
-    $Sprite2D.flip_h = direction.x < 0
+    $AnimatedSprite2D.flip_h = direction.x < 0
     velocity = direction * UNIT_SPEED
     move_and_slide()
 
 # Busca el edificio más cercano.
 func _set_closest_building() -> void:
-    _is_target_in_range = false
 
     # Recoge la lista de edificios activos en el mapa.
     var buildings := get_tree().get_first_node_in_group("buildings").get_children()
