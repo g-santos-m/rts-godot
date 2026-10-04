@@ -4,7 +4,7 @@ var castle_scene := preload("res://scenes/entities/buildings/castle/castle.tscn"
 var house_scene := preload("res://scenes/entities/buildings/house/house.tscn")
 var zombie_scene := preload("res://scenes/entities/enemies/zombie/zombie.tscn")
 
-@onready var hud := $Hud
+@onready var hud := $TestHud
 @onready var entities := $Entities
 @onready var printer := Printer.new(name)
 

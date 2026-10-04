@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+signal destroyed
+
 # Estadísticas
 const MAX_HEALTH := 20.0
 
@@ -28,4 +30,5 @@ func take_damage(damage: float) -> void:
 
 func _on_destroyed() -> void:
     _printer.cprint("has been destroyed")
+    destroyed.emit()
     queue_free()

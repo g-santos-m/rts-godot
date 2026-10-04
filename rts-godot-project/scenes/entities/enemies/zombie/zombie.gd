@@ -26,7 +26,7 @@ func _ready() -> void:
     _printer.cprint("has spawned at ", global_position)
     _set_closest_building()
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
     # Actualiza el objetivo actual. Si no hay objetivo válido, se para.
     if _current_target == null or not is_instance_valid(_current_target):
         # Resetea el estado de ataque.
