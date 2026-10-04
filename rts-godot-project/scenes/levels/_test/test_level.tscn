@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://cbv2fub6u6ukl"]
 
-[ext_resource type="Script" uid="uid://vok6k4a1mnqt" path="res://scenes/levels/level_1/level_1.gd" id="1_x3ahk"]
+[ext_resource type="Script" uid="uid://vok6k4a1mnqt" path="res://scenes/levels/_test/test_level.gd" id="1_x3ahk"]
 [ext_resource type="Texture2D" uid="uid://uj643yhvmg8n" path="res://assets/textures/_test/terrain/ground_tile.png" id="2_fngju"]
 [ext_resource type="Texture2D" uid="uid://dtfepesyn5ovx" path="res://assets/textures/_test/terrain/water_tile.png" id="2_spwf2"]
-[ext_resource type="PackedScene" uid="uid://dl0u8meqcch6i" path="res://scenes/ui/hud/hud.tscn" id="5_7uxs1"]
+[ext_resource type="PackedScene" uid="uid://dl0u8meqcch6i" path="res://scenes/ui/hud/_test/test_hud.tscn" id="5_7uxs1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_spwf2"]
 
@@ -32,7 +32,7 @@ navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_5o1mp")
 sources/0 = SubResource("TileSetAtlasSource_7uxs1")
 
-[node name="Level1" type="Node" unique_id=915789876]
+[node name="TestLevel" type="Node" unique_id=915789876]
 script = ExtResource("1_x3ahk")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1632572855]
@@ -45,4 +45,4 @@ tile_set = SubResource("TileSet_5o1mp")
 
 [node name="Enemies" type="Node" parent="Entities" unique_id=71795941 groups=["enemies"]]
 
-[node name="Hud" parent="." unique_id=1233428465 instance=ExtResource("5_7uxs1")]
+[node name="TestHud" parent="." unique_id=1233428465 instance=ExtResource("5_7uxs1")]
