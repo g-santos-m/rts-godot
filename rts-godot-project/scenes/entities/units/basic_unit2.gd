@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
+static var id := 1
 
+@onready var _printer := Printer.new(name)
 @export var speed = 300
 var av = Vector2.ZERO
 var avoid_weight = 0.1
@@ -9,6 +11,11 @@ var selected = false:
 	set = set_selected
 var target = null:
 	set = set_target
+
+func _ready() -> void:
+	id += 1
+	_printer.cprint("has spawned at ", global_position)
+
 
 func set_selected(value):
 	selected = value

@@ -33,14 +33,7 @@ func _unhandled_input(event):
 				item.collider.selected = true
 	if event is InputEventMouseMotion and dragging:
 		queue_redraw()
-		
-		
 
-func _input(event):
-	if event.is_action_pressed("add_building") && !has_building:
-		var building = building_scene.instantiate()
-		has_building = true
-		add_child(building)
 
 func _draw():
 	if dragging:

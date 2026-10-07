@@ -45,4 +45,6 @@ tile_set = SubResource("TileSet_5o1mp")
 
 [node name="Enemies" type="Node" parent="Entities" unique_id=71795941 groups=["enemies"]]
 
+[node name="Units" type="Node" parent="Entities" unique_id=1512672896 groups=["Units"]]
+
 [node name="TestHud" parent="." unique_id=1233428465 instance=ExtResource("5_7uxs1")]
