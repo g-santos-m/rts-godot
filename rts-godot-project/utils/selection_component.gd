@@ -1,3 +1,4 @@
+class_name SelectionComponent
 extends Node2D
 
 var dragging = false

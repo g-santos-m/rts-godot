@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://crljii3nq61ci"]
 
 [ext_resource type="Texture2D" uid="uid://uj643yhvmg8n" path="res://assets/textures/_test/terrain/ground_tile.png" id="1_jad68"]
-[ext_resource type="Script" uid="uid://md1p2ho87brs" path="res://scenes/test_scene_2.gd" id="1_lktkq"]
+[ext_resource type="Script" uid="uid://md1p2ho87brs" path="res://utils/selection_component.gd" id="1_lktkq"]
 [ext_resource type="PackedScene" uid="uid://dd18wmronyiuj" path="res://scenes/entities/units/basic_unit2.tscn" id="3_iteso"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wptc6"]
