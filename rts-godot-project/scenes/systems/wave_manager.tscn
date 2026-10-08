@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cw2n3cyv1i5fm"]
+
+[ext_resource type="Script" uid="uid://cc3jaovimo73d" path="res://scenes/systems/wave_manager.gd" id="1_2w2cj"]
+
+[node name="WaveManager" type="Node" unique_id=311805089]
+script = ExtResource("1_2w2cj")
+
+[node name="WaveTimer" type="Timer" parent="." unique_id=898356457]
+
+[node name="CountEnemiesTimer" type="Timer" parent="." unique_id=138469711]

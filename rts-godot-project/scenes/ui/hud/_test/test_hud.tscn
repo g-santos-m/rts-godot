@@ -63,3 +63,11 @@ layout_mode = 2
 text = "Zombie"
 icon = ExtResource("4_i0hui")
 expand_icon = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer" unique_id=1094963451]
+layout_mode = 2
+
+[node name="ClearEnemiesButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/VBoxContainer3" unique_id=2077010142]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+text = "Clear enemies"
