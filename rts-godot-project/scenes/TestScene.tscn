@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://yfcskmy28y31" path="res://scenes/test_scene.gd" id="1_2gju5"]
 [ext_resource type="Texture2D" uid="uid://uj643yhvmg8n" path="res://assets/textures/_test/terrain/ground_tile.png" id="2_n77mx"]
 [ext_resource type="PackedScene" uid="uid://ixapgsybktl8" path="res://scenes/entities/units/basic_unit.tscn" id="2_rlkm5"]
-[ext_resource type="PackedScene" uid="uid://dd18wmronyiuj" path="res://scenes/entities/units/unidad_test.tscn" id="4_nb1wl"]
+[ext_resource type="PackedScene" uid="uid://dd18wmronyiuj" path="res://scenes/entities/units/basic_unit2.tscn" id="4_nb1wl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nb1wl"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
