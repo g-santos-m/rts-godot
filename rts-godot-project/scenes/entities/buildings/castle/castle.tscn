@@ -21,3 +21,12 @@ shape = SubResource("RectangleShape2D_xqses")
 
 [node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("3_banmx")]
 position = Vector2(-11, -78)
+
+[node name="SpawnPosition" type="Node2D" parent="." unique_id=1079897338]
+position = Vector2(0, 96)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=323984462]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
