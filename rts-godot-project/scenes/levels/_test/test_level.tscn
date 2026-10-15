@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://vok6k4a1mnqt" path="res://scenes/levels/_test/test_level.gd" id="1_x3ahk"]
 [ext_resource type="Texture2D" uid="uid://uj643yhvmg8n" path="res://assets/textures/_test/terrain/ground_tile.png" id="2_fngju"]
 [ext_resource type="Texture2D" uid="uid://dtfepesyn5ovx" path="res://assets/textures/_test/terrain/water_tile.png" id="2_spwf2"]
+[ext_resource type="PackedScene" uid="uid://cw2n3cyv1i5fm" path="res://scenes/systems/wave_manager.tscn" id="5_3bb0s"]
 [ext_resource type="PackedScene" uid="uid://dl0u8meqcch6i" path="res://scenes/ui/hud/_test/test_hud.tscn" id="5_7uxs1"]
+[ext_resource type="PackedScene" uid="uid://be5rpgg1tnvq8" path="res://scenes/entities/environment/enemy_spawner.tscn" id="5_u7wn6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_spwf2"]
 
@@ -48,3 +50,11 @@ tile_set = SubResource("TileSet_5o1mp")
 [node name="Units" type="Node" parent="Entities" unique_id=1512672896 groups=["Units"]]
 
 [node name="TestHud" parent="." unique_id=1233428465 instance=ExtResource("5_7uxs1")]
+
+[node name="WaveManager" parent="." unique_id=311805089 instance=ExtResource("5_3bb0s")]
+time_between_waves = 1
+
+[node name="EnemySpawner1" parent="WaveManager" unique_id=1230395010 instance=ExtResource("5_u7wn6")]
+position = Vector2(154, 93)
+enemy_type = "Zombie"
+enemies_per_wave = Array[int]([1, 2, 3])

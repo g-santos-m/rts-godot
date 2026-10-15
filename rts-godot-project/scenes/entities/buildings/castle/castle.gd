@@ -39,7 +39,7 @@ func _on_destroyed() -> void:
 	_printer.cprint("has been destroyed")
 	destroyed.emit()
 	queue_free()
-	
+
 #Spawn
 func _on_spawn_timer_timeout():
 	var new_unit = loaded_unit.instantiate()

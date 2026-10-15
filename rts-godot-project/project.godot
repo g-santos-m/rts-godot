@@ -29,6 +29,11 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/godot-neovim/plugin.cfg")
 
+[global_group]
+
+enemy_spawners=""
+wave_manager=""
+
 [input]
 
 set_target={
