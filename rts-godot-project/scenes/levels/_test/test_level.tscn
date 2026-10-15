@@ -57,4 +57,4 @@ time_between_waves = 1
 [node name="EnemySpawner1" parent="WaveManager" unique_id=1230395010 instance=ExtResource("5_u7wn6")]
 position = Vector2(154, 93)
 enemy_type = "Zombie"
-enemies_per_wave = Array[int]([2, 2, 2])
+enemies_per_wave = Array[int]([1, 2, 3])

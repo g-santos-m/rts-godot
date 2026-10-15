@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://day4ix61nvb5m" path="res://assets/textures/entities/buildings/house.png" id="3_gwhth"]
 [ext_resource type="Texture2D" uid="uid://b2r8h5uum6d2u" path="res://assets/textures/entities/enemies/zombie0.png" id="4_i0hui"]
 [ext_resource type="Texture2D" uid="uid://q4x6lrjm4u8g" path="res://assets/textures/entities/units/peon.png" id="5_wr7of"]
+[ext_resource type="PackedScene" uid="uid://d2vr1eqiq0y4p" path="res://scenes/ui/hud/components/wave_info.tscn" id="6_02khm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uxs1"]
 bg_color = Color(0.047058824, 0.047058824, 0.047058824, 0.35686275)
@@ -19,10 +20,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1310094239]
 layout_mode = 2
@@ -80,3 +81,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 text = "Clear enemies"
+
+[node name="WaveInfo" parent="MarginContainer" unique_id=1033762958 instance=ExtResource("6_02khm")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
