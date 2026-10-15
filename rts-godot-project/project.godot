@@ -29,6 +29,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/godot-neovim/plugin.cfg")
 
+[global_group]
+
+resource_manager=""
+
 [input]
 
 set_target={

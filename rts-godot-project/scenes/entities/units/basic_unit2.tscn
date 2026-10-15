@@ -4,29 +4,31 @@
 [ext_resource type="Texture2D" uid="uid://q4x6lrjm4u8g" path="res://assets/textures/entities/units/peon.png" id="2_cxbi8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_loskt"]
-radius = 8.0
-height = 44.0
+radius = 20.0
+height = 50.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k1lsw"]
-radius = 36.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3mdr4"]
+radius = 23.0
+height = 54.0
 
 [node name="UnidadTest" type="CharacterBody2D" unique_id=1996506914 groups=["units"]]
 collision_layer = 3
 collision_mask = 7
 script = ExtResource("1_hw2x6")
+speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=877613637]
 position = Vector2(0, -32)
 texture = ExtResource("2_cxbi8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1674712769]
-position = Vector2(0, -24)
+position = Vector2(5, -25)
 shape = SubResource("CapsuleShape2D_loskt")
 
-[node name="Detect" type="Area2D" parent="." unique_id=1330454122]
+[node name="RangeComponent" type="Area2D" parent="." unique_id=1330454122]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect" unique_id=306485596]
-position = Vector2(0, -24)
-shape = SubResource("CircleShape2D_k1lsw")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeComponent" unique_id=306485596]
+position = Vector2(5, -25)
+shape = SubResource("CapsuleShape2D_3mdr4")

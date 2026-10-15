@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cumclswbm0umu"]
+
+[ext_resource type="Script" uid="uid://bbpnfvaqeg446" path="res://scenes/systems/resource_manager.gd" id="1_3mdr4"]
+
+[node name="ResourceManager" type="Node" unique_id=578601721 groups=["resource_manager"]]
+script = ExtResource("1_3mdr4")
