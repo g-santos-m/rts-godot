@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b24cpb7d7wno8" path="res://scenes/entities/units/basic_unit2.gd" id="1_hw2x6"]
 [ext_resource type="Texture2D" uid="uid://q4x6lrjm4u8g" path="res://assets/textures/entities/units/peon.png" id="2_cxbi8"]
+[ext_resource type="PackedScene" uid="uid://dyjc7xlgqf668" path="res://scenes/entities/components/range_component.tscn" id="3_ex58t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_loskt"]
 radius = 20.0
 height = 50.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3mdr4"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1lsw"]
 radius = 23.0
 height = 54.0
 
@@ -15,7 +16,6 @@ height = 54.0
 collision_layer = 3
 collision_mask = 7
 script = ExtResource("1_hw2x6")
-speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=877613637]
 position = Vector2(0, -32)
@@ -25,10 +25,9 @@ texture = ExtResource("2_cxbi8")
 position = Vector2(5, -25)
 shape = SubResource("CapsuleShape2D_loskt")
 
-[node name="RangeComponent" type="Area2D" parent="." unique_id=1330454122]
-collision_layer = 2
-collision_mask = 2
+[node name="RangeComponent" parent="." unique_id=1357743773 instance=ExtResource("3_ex58t")]
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeComponent" unique_id=306485596]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeComponent" unique_id=1320484570]
 position = Vector2(5, -25)
-shape = SubResource("CapsuleShape2D_3mdr4")
+shape = SubResource("CapsuleShape2D_k1lsw")

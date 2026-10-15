@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dtfepesyn5ovx" path="res://assets/textures/_test/terrain/water_tile.png" id="2_spwf2"]
 [ext_resource type="PackedScene" uid="uid://dl0u8meqcch6i" path="res://scenes/ui/hud/_test/test_hud.tscn" id="5_7uxs1"]
 [ext_resource type="PackedScene" uid="uid://dypudfrhn4rq7" path="res://scenes/entities/buildings/tree.tscn" id="5_u7wn6"]
+[ext_resource type="PackedScene" uid="uid://cumclswbm0umu" path="res://scenes/systems/resource_manager.tscn" id="6_3bb0s"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_spwf2"]
 
@@ -52,3 +53,5 @@ tile_set = SubResource("TileSet_5o1mp")
 
 [node name="StaticBody2D" parent="." unique_id=1343974448 instance=ExtResource("5_u7wn6")]
 position = Vector2(725, 319)
+
+[node name="ResourceManager" parent="." unique_id=578601721 instance=ExtResource("6_3bb0s")]
