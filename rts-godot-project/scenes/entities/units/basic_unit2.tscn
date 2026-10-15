@@ -11,7 +11,6 @@ height = 44.0
 radius = 36.0
 
 [node name="UnidadTest" type="CharacterBody2D" unique_id=1996506914 groups=["units"]]
-collision_layer = 3
 collision_mask = 7
 script = ExtResource("1_hw2x6")
 
