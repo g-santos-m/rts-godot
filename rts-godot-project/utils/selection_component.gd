@@ -27,7 +27,7 @@ func _unhandled_input(event):
 			var space = get_world_2d().direct_space_state
 			var q = PhysicsShapeQueryParameters2D.new()
 			q.shape = select_rect
-			q.collision_mask = 2
+			q.collision_mask = 1
 			q.transform = Transform2D(0, (drag_end + drag_start)/2)
 			selected = space.intersect_shape(q)
 			for item in selected:
