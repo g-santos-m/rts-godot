@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal destroyed
+
 # Estadísticas
 const UNIT_SPEED = 200.0
 const ATTACK_DAMAGE = 4.0
@@ -86,4 +88,5 @@ func _on_body_in_range(body: PhysicsBody2D) -> void:
 
 func _on_destroyed() -> void:
 	_printer.cprint("has been destroyed")
+	destroyed.emit()
 	queue_free()

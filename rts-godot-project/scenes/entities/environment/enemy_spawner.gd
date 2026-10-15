@@ -1,8 +1,10 @@
 extends Node2D
 
+signal enemy_destroyed
+
 # Configuración de enemigos
 @export_enum("Zombie") var enemy_type: String
-@export var enemies_per_wave = [0, 0, 0]
+@export var enemies_per_wave: Array[int] = [0, 0, 0]
 ## Seconds per enemy spawned.
 @export var spawning_rate = 1.0
 
@@ -39,4 +41,8 @@ func _spawn_enemy() -> void:
 	var enemy: CharacterBody2D = _enemy_scene.instantiate()
 	enemy.global_position = global_position
 	enemy.name = enemy_type.to_lower() + "_" + str(enemy.id)
+	enemy.destroyed.connect(_on_enemy_destroyed)
 	get_tree().get_first_node_in_group("enemies").add_child(enemy)
+
+func _on_enemy_destroyed() -> void:
+	enemy_destroyed.emit()
