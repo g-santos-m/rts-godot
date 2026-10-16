@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://14a2gabprok1"]
+
+[ext_resource type="Texture2D" uid="uid://ufakvhmwmysl" path="res://assets/textures/entities/resources/gold.png" id="1_2lygo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xr0lx"]
+size = Vector2(99, 104)
+
+[node name="Gold" type="StaticBody2D" unique_id=1219665164]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1408423299]
+position = Vector2(0.5, -50)
+shape = SubResource("RectangleShape2D_xr0lx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=387072874]
+position = Vector2(0, -60)
+texture = ExtResource("1_2lygo")
