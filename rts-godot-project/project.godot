@@ -32,6 +32,8 @@ enabled=PackedStringArray("res://addons/godot-neovim/plugin.cfg")
 [global_group]
 
 resource_manager=""
+enemy_spawners=""
+wave_manager=""
 
 [input]
 

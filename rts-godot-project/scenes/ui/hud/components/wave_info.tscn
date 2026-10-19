@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://d2vr1eqiq0y4p"]
+
+[ext_resource type="Script" uid="uid://u6t5wim5gfr" path="res://scenes/ui/hud/components/wave_info.gd" id="1_1vet8"]
+
+[node name="WaveInfo" type="PanelContainer" unique_id=1222134407]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = -33.0
+offset_right = 171.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1vet8")
+
+[node name="Padding" type="MarginContainer" parent="." unique_id=1033762958]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LayoutHBox" type="HBoxContainer" parent="Padding" unique_id=1486574022]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="WaveNumberVBox" type="VBoxContainer" parent="Padding/LayoutHBox" unique_id=1589278076]
+layout_mode = 2
+
+[node name="WaveNumberLabel" type="Label" parent="Padding/LayoutHBox/WaveNumberVBox" unique_id=127731174]
+layout_mode = 2
+text = "Wave"
+horizontal_alignment = 1
+
+[node name="WaveNumber" type="Label" parent="Padding/LayoutHBox/WaveNumberVBox" unique_id=723714372]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="NextWaveTimerVBox" type="VBoxContainer" parent="Padding/LayoutHBox" unique_id=1562673389]
+layout_mode = 2
+
+[node name="NextWaveTimerLabel" type="Label" parent="Padding/LayoutHBox/NextWaveTimerVBox" unique_id=1718230140]
+layout_mode = 2
+text = "Next wave in"
+horizontal_alignment = 1
+
+[node name="NextWaveTimer" type="Label" parent="Padding/LayoutHBox/NextWaveTimerVBox" unique_id=1938674382]
+layout_mode = 2
+text = "3:00"
+horizontal_alignment = 1
+
+[node name="EnemyNumberVBox" type="VBoxContainer" parent="Padding/LayoutHBox" unique_id=840214462]
+layout_mode = 2
+
+[node name="EnemyNumberLabel" type="Label" parent="Padding/LayoutHBox/EnemyNumberVBox" unique_id=1327514339]
+layout_mode = 2
+text = "Enemies in this wave"
+horizontal_alignment = 1
+
+[node name="EnemyNumber" type="Label" parent="Padding/LayoutHBox/EnemyNumberVBox" unique_id=175589593]
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1

@@ -5,8 +5,9 @@ var house_scene := preload("res://scenes/entities/buildings/house/house.tscn")
 var zombie_scene := preload("res://scenes/entities/enemies/zombie/zombie.tscn")
 var basic_unit_scene := preload("res://scenes/entities/units/basic_unit2.tscn")
 
-@onready var hud := $TestHud
 @onready var entities := $Entities
+@onready var hud := $TestHud
+@onready var wave_manager := $WaveManager
 @onready var printer := Printer.new(name)
 
 var _placing_unit_name: String
@@ -14,6 +15,8 @@ var _placing_unit_name: String
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hud.spawn_unit.connect(_on_spawn_unit)
+	hud.clear_enemies.connect(_on_clear_enemies)
+	wave_manager.last_wave_ended.connect(_on_last_wave_ended)
 	var selectionComponent = SelectionComponent.new()
 	add_child(selectionComponent)
 
@@ -60,3 +63,12 @@ func _spawn_basic_unit(position: Vector2) -> void:
 	basic_unit.global_position = position
 	basic_unit.name = "basic_unit%d" % basic_unit.id
 	entities.get_child(2).add_child(basic_unit)
+
+# TODO
+func _on_last_wave_ended() -> void:
+	pass
+
+func _on_clear_enemies() -> void:
+	var enemies = $Entities/Enemies.get_children()
+	for enemy in enemies:
+		enemy._on_destroyed()

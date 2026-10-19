@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://0wy3iro50q1h" path="res://assets/textures/entities/enemies/zombie1.png" id="4_dtf8o"]
 [ext_resource type="Texture2D" uid="uid://blgevjea6as2l" path="res://assets/textures/entities/enemies/zombie2.png" id="5_ikfq4"]
 [ext_resource type="Texture2D" uid="uid://cs0rjejfr4y3j" path="res://assets/textures/entities/enemies/zombie3.png" id="6_1c1rj"]
+[ext_resource type="PackedScene" uid="uid://cfqtyidaoicm7" path="res://scenes/entities/components/health_component.tscn" id="8_k4u2l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xqses"]
 animations = [{
@@ -62,3 +63,5 @@ collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeComponent" unique_id=732615573]
 position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_xqses")
+
+[node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("8_k4u2l")]

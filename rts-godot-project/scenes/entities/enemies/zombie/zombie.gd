@@ -1,9 +1,12 @@
 extends CharacterBody2D
 
+signal destroyed
+
 # Estadísticas
 const UNIT_SPEED = 200.0
 const ATTACK_DAMAGE = 4.0
 const ATTACK_RATE = 1.0      # Segundos entre ataques
+const MAX_HEALTH = 10.0
 
 static var id := 1
 
@@ -14,6 +17,7 @@ var _is_target_in_range := false
 @onready var _nav_agent := $NavigationAgent2D
 @onready var _attack_comp := $AttackComponent
 @onready var _range_comp := $RangeComponent
+@onready var _health_comp := $HealthComponent
 
 @onready var _printer := Printer.new(name)
 
@@ -22,6 +26,8 @@ func _ready() -> void:
 	_attack_comp.setup(ATTACK_DAMAGE, ATTACK_RATE, _printer)
 	_range_comp.setup(_printer)
 	_range_comp.body_in_range.connect(_on_body_in_range)
+	_health_comp.setup(MAX_HEALTH, _printer)
+	_health_comp.destroyed.connect(_on_destroyed)
 
 	_printer.cprint("has spawned at ", global_position)
 	_set_closest_building()
@@ -79,3 +85,8 @@ func _set_closest_building() -> void:
 func _on_body_in_range(body: PhysicsBody2D) -> void:
 	if body == _current_target:
 		_is_target_in_range = true
+
+func _on_destroyed() -> void:
+	_printer.cprint("has been destroyed")
+	destroyed.emit()
+	queue_free()
