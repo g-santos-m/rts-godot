@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://ixapgsybktl8"]
+
+[sub_resource type="GDScript" id="GDScript_vrpyd"]
+script/source = "extends CharacterBody2D
+ 
+@onready var nav_agent = $NavigationAgent2D
+#@onready var animation_player = $AnimationPlayer
+ 
+var speed = 300
+ 
+var selection_rect : Rect2
+var selection_width : int
+ 
+var select_mode : bool = false:
+	set(value):
+		select_mode = value
+		if value:
+			selection_rect = Rect2(Vector2(-33,-33), Vector2(65,65))
+			selection_width = 1
+		else:
+			selection_rect = Rect2(0,0,0,0)
+			selection_width = 0
+		queue_redraw()
+ 
+func _ready():
+	name = \"Unit\"
+ 
+func _draw():
+	draw_rect(selection_rect,Color.GREEN, false, selection_width)
+ 
+func _physics_process(delta):
+	if nav_agent.is_navigation_finished():
+		#if animation_player.current_animation != \"idle\":
+			#animation_player.play(\"idle\")
+		return
+ 
+	#animation(delta)
+	var next_position = nav_agent.get_next_path_position()
+	var direction = (next_position - global_position).normalized()
+	velocity = direction * speed
+	move_and_slide()
+ 
+func select():
+	select_mode = true
+ 
+func deselect():
+	select_mode = false
+ 
+ 
+func _on_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton:
+		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			select_mode = true
+			for unit in UnitManager.unit_selected:
+				if unit != self:
+					unit.deselect()
+			UnitManager.unit_selected = [self]
+ 
+func move_to(target_position):
+	nav_agent.target_position = target_position
+	#animation_player.play(\"run\")
+ 
+func animation(_delta):
+	if velocity.length() > 0:
+		if velocity.x < 0:
+			$Sprite2D.flip_h = true
+		elif velocity.x > 0:
+			$Sprite2D.flip_h = false
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmxq0"]
+size = Vector2(64, 64)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k1lsw"]
+size = Vector2(64, 64)
+
+[node name="BasicUnit" type="CharacterBody2D" unique_id=696815683 groups=["Unit"]]
+input_pickable = true
+script = SubResource("GDScript_vrpyd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983267166]
+shape = SubResource("RectangleShape2D_bmxq0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2071754530]
+texture = SubResource("PlaceholderTexture2D_k1lsw")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=332114777]
+path_desired_distance = 16.0
+target_desired_distance = 16.0
+path_max_distance = 32.0
+avoidance_enabled = true
+radius = 35.0
+max_speed = 1000.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

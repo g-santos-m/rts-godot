@@ -2,18 +2,16 @@ extends CharacterBody2D
 
 static var id := 1
 
-@onready var nav_agent = $NavigationAgent2D
+@onready var _nav_agent = $NavigationAgent2D
 var _resource_manager : Node
 @onready var _range_comp := $RangeComponent
 @onready var _printer := Printer.new(name)
 @export var speed = 300
 var av = Vector2.ZERO
 var avoid_weight = 0.1
-var target_radius = 50
 var selected = false:
 	set = set_selected
-var target = null:
-	set = set_target
+var target = null
 
 func _ready() -> void:
 	id += 1
@@ -38,9 +36,10 @@ func set_selected(value):
 	else:
 		$Sprite2D.self_modulate = Color.WHITE;
 
-func set_target(value):
-	target = value
-
+func set_target():
+	if selected:
+		_nav_agent.target_position = get_global_mouse_position()
+		target = get_global_mouse_position()
 
 #func avoid():
 #	var result = Vector2.ZERO
@@ -52,24 +51,56 @@ func set_target(value):
 #	return result.normalized()
 
 #func _input(event):
-#	if event.is_action_pressed("set_target"):
-#		target = get_global_mouse_position()
+#	if selected:
+#		if event.is_action_pressed("set_target"):
+#			target = get_global_mouse_position()
+#		nav_agent.target_position = target
 
-func _physics_process(delta) -> void:
-	if nav_agent.is_navigation_finished():
+#####func _physics_process(delta) -> void:
+#####	if _nav_agent.is_navigation_finished():
+#####		return
+#####	velocity = Vector2.ZERO
+#####	if target != null:
+#####		var next_position = _nav_agent.get_next_path_position()
+#####		var direction: Vector2 = (next_position - global_position).normalized()
+######		velocity = position.direction_to(target)
+#####		velocity = direction * speed
+#####		move_and_slide()
+#####		
+func _input(event: InputEvent) -> void:
+	if selected and event.is_action_pressed("set_target"):
+		_nav_agent.target_position = get_global_mouse_position()
+		
+func _physics_process(_delta) -> void:
+	# Si ya llegó al final de la ruta (o no tiene una), se detiene y no hace nada más
+	if _nav_agent.is_navigation_finished():
+		velocity = Vector2.ZERO
 		return
-	velocity = Vector2.ZERO
-	if target != null:
-		velocity = position.direction_to(target)
-		if position.distance_to(target) < target_radius:
-			target = null
-	#av = avoid()
-	velocity = (velocity + av * avoid_weight).normalized() * speed
-	move_and_collide(velocity * delta)
-	#if velocity != Vector2.ZERO:
-	#	$AnimationPlayer.play("running")
-	#else:
-	#	$AnimationPlater.play("idle")
+		
+	# Calcula el siguiente punto en el mapa de navegación
+	var next_position = _nav_agent.get_next_path_position()
+	
+	# Obtiene la dirección hacia ese punto
+	var direction = global_position.direction_to(next_position)
+	
+	# Aplica la velocidad y mueve al personaje
+	velocity = direction * speed
+	move_and_slide()
+	
+
+#	velocity = Vector2.ZERO
+#	if target != null:
+#		velocity = position.direction_to(target)
+#		if position.distance_to(target) < target_radius:
+#			target = null
+#	#av = avoid()
+#	velocity = (velocity + av * avoid_weight).normalized() * speed
+#	move_and_collide(velocity * delta)
+#	#if velocity != Vector2.ZERO:
+#	#	$AnimationPlayer.play("running")
+#	#else:
+#	#	$AnimationPlater.play("idle")
+
 
 
 ###extends CharacterBody2D
