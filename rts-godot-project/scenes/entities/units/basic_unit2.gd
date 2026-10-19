@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 static var id := 1
 
+@onready var nav_agent = $NavigationAgent2D
 var _resource_manager : Node
 @onready var _range_comp := $RangeComponent
 @onready var _printer := Printer.new(name)
@@ -55,6 +56,8 @@ func set_target(value):
 #		target = get_global_mouse_position()
 
 func _physics_process(delta) -> void:
+	if nav_agent.is_navigation_finished():
+		return
 	velocity = Vector2.ZERO
 	if target != null:
 		velocity = position.direction_to(target)
