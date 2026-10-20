@@ -33,3 +33,6 @@ shape = SubResource("CapsuleShape2D_k1lsw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1470258585]
 target_desired_distance = 32.0
+
+[node name="ResourceTimer" type="Timer" parent="." unique_id=771064161]
+wait_time = 5.0
