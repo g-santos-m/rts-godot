@@ -4,6 +4,7 @@ var castle_scene := preload("res://scenes/entities/buildings/castle/castle.tscn"
 var house_scene := preload("res://scenes/entities/buildings/house/house.tscn")
 var zombie_scene := preload("res://scenes/entities/enemies/zombie/zombie.tscn")
 var basic_unit_scene := preload("res://scenes/entities/units/basic_unit2.tscn")
+var fat_zombie_scene := preload("res://scenes/entities/enemies/zombie/fat-zombie.tscn")
 
 @onready var entities := $Entities
 @onready var hud := $TestHud
@@ -35,6 +36,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				_spawn_zombie(event.global_position)
 			"basic_unit":
 				_spawn_basic_unit(event.global_position)
+			"fat_zombie":
+				_spawn_fat_zombie(event.global_position)
 		_placing_unit_name = ""
 
 func _on_spawn_unit(unit_name: String) -> void:
@@ -63,6 +66,12 @@ func _spawn_basic_unit(position: Vector2) -> void:
 	basic_unit.global_position = position
 	basic_unit.name = "basic_unit%d" % basic_unit.id
 	entities.get_child(2).add_child(basic_unit)
+
+func _spawn_fat_zombie(position: Vector2) -> void:
+	var fat_zombie: Node2D = fat_zombie_scene.instantiate()
+	fat_zombie.global_position = position
+	fat_zombie.name = "fat_zombie_%d" % fat_zombie.id
+	entities.get_child(1).add_child(fat_zombie)
 
 # TODO
 func _on_last_wave_ended() -> void:

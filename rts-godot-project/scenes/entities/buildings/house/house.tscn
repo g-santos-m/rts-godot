@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cfqtyidaoicm7" path="res://scenes/entities/components/health_component.tscn" id="2_4y8o3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqses"]
-size = Vector2(64, 62)
+size = Vector2(60, 58)
 
 [node name="House" type="StaticBody2D" unique_id=582328485]
 collision_layer = 4

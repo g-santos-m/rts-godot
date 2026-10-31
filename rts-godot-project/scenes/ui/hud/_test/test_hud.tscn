@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b2r8h5uum6d2u" path="res://assets/textures/entities/enemies/zombie0.png" id="4_i0hui"]
 [ext_resource type="Texture2D" uid="uid://q4x6lrjm4u8g" path="res://assets/textures/entities/units/peon.png" id="5_wr7of"]
 [ext_resource type="PackedScene" uid="uid://d2vr1eqiq0y4p" path="res://scenes/ui/hud/components/wave_info.tscn" id="6_02khm"]
+[ext_resource type="Texture2D" uid="uid://byephscsxbhxy" path="res://assets/textures/entities/enemies/fat-zombie0.png" id="6_iqy6y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uxs1"]
 bg_color = Color(0.047058824, 0.047058824, 0.047058824, 0.35686275)
@@ -81,6 +82,12 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 text = "Clear enemies"
+
+[node name="FatZombieButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/VBoxContainer3" unique_id=1852528767]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+text = "Fat Zombie"
+icon = ExtResource("6_iqy6y")
 
 [node name="WaveInfo" parent="MarginContainer" unique_id=1033762958 instance=ExtResource("6_02khm")]
 layout_mode = 2

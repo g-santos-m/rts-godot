@@ -13,13 +13,13 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("5_ikfq4")
+}, {
+"duration": 1.0,
 "texture": ExtResource("3_k4u2l")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_dtf8o")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ikfq4")
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_1c1rj")
@@ -30,12 +30,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3d0nf"]
-radius = 22.0
-height = 60.0
+radius = 21.0
+height = 58.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xqses"]
-radius = 24.0
-height = 64.0
+radius = 23.0
+height = 62.0
 
 [node name="Zombie" type="CharacterBody2D" unique_id=917598100]
 collision_layer = 2
@@ -46,6 +46,8 @@ script = ExtResource("1_o7d34")
 position = Vector2(0, -28)
 sprite_frames = SubResource("SpriteFrames_xqses")
 animation = &"attack"
+frame = 3
+frame_progress = 0.76666945
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1798760610]
 position = Vector2(0, -23)

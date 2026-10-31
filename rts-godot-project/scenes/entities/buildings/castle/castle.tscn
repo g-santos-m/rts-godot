@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cfqtyidaoicm7" path="res://scenes/entities/components/health_component.tscn" id="3_banmx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqses"]
-size = Vector2(129, 125)
+size = Vector2(125, 121)
 
 [node name="Castle" type="StaticBody2D" unique_id=363965524]
 collision_layer = 4
