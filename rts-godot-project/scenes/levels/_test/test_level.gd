@@ -2,9 +2,9 @@ extends Node
 
 var castle_scene := preload("res://scenes/entities/buildings/castle/castle.tscn")
 var house_scene := preload("res://scenes/entities/buildings/house/house.tscn")
-var zombie_scene := preload("res://scenes/entities/enemies/zombie/zombie.tscn")
+var zombie_scene := preload("res://scenes/entities/enemies/zombie.tscn")
 var basic_unit_scene := preload("res://scenes/entities/units/basic_unit2.tscn")
-var fat_zombie_scene := preload("res://scenes/entities/enemies/zombie/fat-zombie.tscn")
+var fat_zombie_scene := preload("res://scenes/entities/enemies/fat_zombie.tscn")
 
 @onready var entities := $Entities
 @onready var hud := $TestHud
@@ -58,7 +58,6 @@ func _spawn_house(position: Vector2) -> void:
 func _spawn_zombie(position: Vector2) -> void:
 	var zombie: Node2D = zombie_scene.instantiate()
 	zombie.global_position = position
-	zombie.name = "zombie_%d" % zombie.id
 	entities.get_child(1).add_child(zombie)
 
 func _spawn_basic_unit(position: Vector2) -> void:
@@ -70,7 +69,6 @@ func _spawn_basic_unit(position: Vector2) -> void:
 func _spawn_fat_zombie(position: Vector2) -> void:
 	var fat_zombie: Node2D = fat_zombie_scene.instantiate()
 	fat_zombie.global_position = position
-	fat_zombie.name = "fat_zombie_%d" % fat_zombie.id
 	entities.get_child(1).add_child(fat_zombie)
 
 # TODO

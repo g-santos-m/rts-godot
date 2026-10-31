@@ -2,31 +2,36 @@ extends CharacterBody2D
 
 signal destroyed
 
-# Estadísticas
-const UNIT_SPEED = 200.0
-const ATTACK_DAMAGE = 4.0
-const ATTACK_RATE = 1.0      # Segundos entre ataques
-const MAX_HEALTH = 10.0
+@export var stats: BaseEnemyStats
 
-static var id := 1
+static var _next_ids_by_type := {
+	"Zombie": 1,
+	"FatZombie": 1,
+}
 
-# Estado
+var id: int
 var _current_target: PhysicsBody2D
 var _is_target_in_range := false
 
+@onready var _animated_sprite := $AnimatedSprite2D
 @onready var _nav_agent := $NavigationAgent2D
 @onready var _attack_comp := $AttackComponent
 @onready var _range_comp := $RangeComponent
 @onready var _health_comp := $HealthComponent
+@onready var _printer: Printer
 
-@onready var _printer := Printer.new(name)
 
 func _ready() -> void:
-	id += 1
-	_attack_comp.setup(ATTACK_DAMAGE, ATTACK_RATE, _printer)
+	id = _next_ids_by_type[stats.enemy_type]
+	_next_ids_by_type[stats.enemy_type] += 1
+	name = "%s_%s" % [stats.enemy_type, id]
+	_printer = Printer.new(name)
+
+	# Componentes
+	_attack_comp.setup(stats.attack_damage, stats.attack_rate, _printer)
 	_range_comp.setup(_printer)
 	_range_comp.body_in_range.connect(_on_body_in_range)
-	_health_comp.setup(MAX_HEALTH, _printer)
+	_health_comp.setup(stats.max_health, _printer)
 	_health_comp.destroyed.connect(_on_destroyed)
 
 	_printer.cprint("has spawned at ", global_position)
@@ -37,7 +42,7 @@ func _physics_process(delta: float) -> void:
 	if _current_target == null or not is_instance_valid(_current_target):
 		# Resetea el estado de ataque.
 		_is_target_in_range = false
-		$AnimatedSprite2D.stop()
+		_animated_sprite.stop()
 		_set_closest_building()
 	if _current_target == null:
 		velocity = Vector2.ZERO
@@ -50,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	# Si el objetivo esta en rango, para y ataca.
 	if _is_target_in_range == true:
 		velocity = Vector2.ZERO
-		$AnimatedSprite2D.play("attack")
+		_animated_sprite.play("attack")
 		_attack_comp.attack_target(_current_target)
 		move_and_slide()
 		return
@@ -59,7 +64,7 @@ func _physics_process(delta: float) -> void:
 	var next_position = _nav_agent.get_next_path_position()
 	var direction: Vector2 = (next_position - global_position).normalized()
 	$AnimatedSprite2D.flip_h = direction.x < 0
-	velocity = direction * UNIT_SPEED
+	velocity = direction * stats.unit_speed
 	move_and_slide()
 
 # Busca el edificio más cercano.
