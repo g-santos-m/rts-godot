@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b2qex581p6w8c"]
+
+[ext_resource type="PackedScene" uid="uid://dpcvaar3sdux3" path="res://scenes/entities/enemies/base_enemy.tscn" id="1_q33wv"]
+[ext_resource type="Resource" uid="uid://irdqaghspquy" path="res://scenes/entities/enemies/zombie_stats.tres" id="2_7mxgu"]
+
+[node name="Zombie" unique_id=917598100 instance=ExtResource("1_q33wv")]
+stats = ExtResource("2_7mxgu")

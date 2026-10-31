@@ -23,7 +23,7 @@ func _ready() -> void:
 func _set_enemy_scene() -> void:
 	match enemy_type:
 		"Zombie":
-			_enemy_scene = preload("res://scenes/entities/enemies/zombie/zombie.tscn")
+			_enemy_scene = preload("res://scenes/entities/enemies/zombie.tscn")
 
 func begin_wave(wave_number: int) -> void:
 	_wave_number = wave_number
