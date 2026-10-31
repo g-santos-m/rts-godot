@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d2vr1eqiq0y4p"]
 
-[ext_resource type="Script" uid="uid://u6t5wim5gfr" path="res://scenes/ui/hud/components/wave_info.gd" id="1_1vet8"]
+[ext_resource type="Script" uid="uid://u6t5wim5gfr" path="res://scenes/ui/hud/components/organisms/wave_info.gd" id="1_1vet8"]
 
 [node name="WaveInfo" type="PanelContainer" unique_id=1222134407]
 anchors_preset = 8

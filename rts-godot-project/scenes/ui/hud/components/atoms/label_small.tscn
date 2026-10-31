@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bie1vdd5mwxl0"]
+
+[ext_resource type="Script" uid="uid://c684ryh1je8fi" path="res://scenes/ui/hud/components/atoms/label_small.gd" id="1_2a0bb"]
+
+[node name="LabelSmall" type="MarginContainer" unique_id=1861715996]
+offset_right = 81.0
+offset_bottom = 34.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+script = ExtResource("1_2a0bb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=145335240]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b][font_size=18][color=#eee]Label"
+fit_content = true
+autowrap_mode = 0

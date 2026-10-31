@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://de38muyefobw8"]
+
+[ext_resource type="PackedScene" uid="uid://bie1vdd5mwxl0" path="res://scenes/ui/hud/components/atoms/label_small.tscn" id="1_ju0gn"]
+[ext_resource type="Texture2D" uid="uid://dg7ri3m2xuj3y" path="res://assets/textures/entities/units/worker0.png" id="2_jfy57"]
+[ext_resource type="PackedScene" uid="uid://gxkjdt0wt3oo" path="res://scenes/ui/hud/components/atoms/label_icon.tscn" id="3_4pgek"]
+
+[node name="BuildButton" type="Button" unique_id=714388669]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=885154368]
+layout_mode = 0
+theme_override_constants/separation = 2
+
+[node name="LabelSmall" parent="VBoxContainer" unique_id=1861715996 instance=ExtResource("1_ju0gn")]
+layout_mode = 2
+text = "Unit"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=371344382]
+layout_mode = 2
+texture = ExtResource("2_jfy57")
+stretch_mode = 3
+
+[node name="LabelIcon" parent="VBoxContainer" unique_id=332724784 instance=ExtResource("3_4pgek")]
+layout_mode = 2
+
+[node name="LabelIcon2" parent="VBoxContainer" unique_id=2144798721 instance=ExtResource("3_4pgek")]
+layout_mode = 2
