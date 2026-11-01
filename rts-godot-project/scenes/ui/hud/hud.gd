@@ -1,15 +1,15 @@
 extends CanvasLayer
 
-signal spawn_unit(unit_name: String)
+signal spawn_entity(entity_name: String)
 
-@onready var house_button := $MarginContainer/PanelContainer/HBoxContainer/VBoxContainer/HouseButton
+@onready var _build_panel := $BuildPanel
 
 func _ready() -> void:
-	house_button.pressed.connect(_on_house_button_pressed)
+	_build_panel.spawn_entity.connect(_on_build_panel_spawn_entity)
 
 func show_game_over() -> void:
 	var game_over_msg = preload("res://scenes/ui/hud/components/atoms/game_over.tscn").instantiate()
 	add_child(game_over_msg)
 
-func _on_house_button_pressed() -> void:
-	spawn_unit.emit("house")
+func _on_build_panel_spawn_entity(entity_name: String) -> void:
+	spawn_entity.emit(entity_name)

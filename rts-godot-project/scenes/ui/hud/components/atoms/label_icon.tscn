@@ -24,6 +24,7 @@ expand_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer" unique_id=2092864340]
 layout_mode = 2
+mouse_filter = 1
 bbcode_enabled = true
 text = "[b][font_size=14][color=#eee]Label"
 fit_content = true

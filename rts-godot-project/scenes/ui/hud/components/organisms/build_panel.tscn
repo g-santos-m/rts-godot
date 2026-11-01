@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dim42iava0dkf"]
 
 [ext_resource type="PackedScene" uid="uid://de38muyefobw8" path="res://scenes/ui/hud/components/molecules/build_button.tscn" id="1_3wjke"]
+[ext_resource type="Script" uid="uid://cgo4muf0fb5mp" path="res://scenes/ui/hud/components/organisms/build_panel.gd" id="1_txob7"]
 [ext_resource type="Texture2D" uid="uid://day4ix61nvb5m" path="res://assets/textures/entities/buildings/house.png" id="2_x6ke7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrixv"]
@@ -21,9 +22,17 @@ corner_radius_bottom_left = 4
 shadow_size = 4
 
 [node name="BuildPanel" type="PanelContainer" unique_id=244630244]
-offset_right = 307.0
-offset_bottom = 340.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -307.0
+offset_top = -340.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vrixv")
+script = ExtResource("1_txob7")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1579881017]
 layout_mode = 2
@@ -57,7 +66,7 @@ label_text = "Wall"
 gold_cost = 25
 wood_cost = 50
 
-[node name="Tower" parent="GridContainer" unique_id=122490061 instance=ExtResource("1_3wjke")]
+[node name="TowerButton" parent="GridContainer" unique_id=122490061 instance=ExtResource("1_3wjke")]
 layout_mode = 2
 label_text = "Tower"
 gold_cost = 200

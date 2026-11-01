@@ -20,9 +20,9 @@ corner_radius_bottom_left = 24
 shadow_size = 4
 
 [node name="ResourceIndicator" type="PanelContainer" unique_id=1648934901]
-custom_minimum_size = Vector2(256, 48)
-offset_right = 168.0
-offset_bottom = 48.0
+custom_minimum_size = Vector2(240, 44)
+offset_right = 240.0
+offset_bottom = 44.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_46ade")
 script = ExtResource("1_rip72")
 icon = ExtResource("1_n1de2")

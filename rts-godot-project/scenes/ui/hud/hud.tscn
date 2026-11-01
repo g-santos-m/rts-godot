@@ -1,43 +1,13 @@
 [gd_scene format=3 uid="uid://cb72v5am380oy"]
 
 [ext_resource type="Script" uid="uid://cxvsemerbb70" path="res://scenes/ui/hud/hud.gd" id="1_as3gr"]
-[ext_resource type="Texture2D" uid="uid://day4ix61nvb5m" path="res://assets/textures/entities/buildings/house.png" id="3_2wu1p"]
+[ext_resource type="PackedScene" uid="uid://ciyc06aac8k4u" path="res://scenes/ui/hud/components/organisms/top_bar.tscn" id="2_as3gr"]
+[ext_resource type="PackedScene" uid="uid://dim42iava0dkf" path="res://scenes/ui/hud/components/organisms/build_panel.tscn" id="3_ax4tw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uxs1"]
-bg_color = Color(0.047058824, 0.047058824, 0.047058824, 0.35686275)
-
-[node name="Hud" type="CanvasLayer" unique_id=1233428465]
-follow_viewport_enabled = true
+[node name="Hud" type="CanvasLayer" unique_id=292531970]
 script = ExtResource("1_as3gr")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=615350632]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+[node name="TopBar" parent="." unique_id=97617913 instance=ExtResource("2_as3gr")]
+offset_bottom = 200.0
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1310094239]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_7uxs1")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer" unique_id=604597818]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer" unique_id=115975713]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="HouseButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=1446836385]
-custom_minimum_size = Vector2(200, 80)
-custom_maximum_size = Vector2(200, 80)
-layout_mode = 2
-text = "House"
-icon = ExtResource("3_2wu1p")
-expand_icon = true
+[node name="BuildPanel" parent="." unique_id=244630244 instance=ExtResource("3_ax4tw")]

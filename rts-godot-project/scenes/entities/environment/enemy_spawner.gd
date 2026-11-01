@@ -3,7 +3,7 @@ extends Node2D
 signal enemy_destroyed
 
 # Configuración de enemigos
-@export_enum("Zombie") var enemy_type: String
+@export_enum("Zombie", "FatZombie") var enemy_type: String
 @export var enemies_per_wave: Array[int] = [0, 0, 0]
 ## Seconds per enemy spawned.
 @export var spawning_rate = 1.0
@@ -24,6 +24,8 @@ func _set_enemy_scene() -> void:
 	match enemy_type:
 		"Zombie":
 			_enemy_scene = preload("res://scenes/entities/enemies/zombie.tscn")
+		"FatZombie":
+			_enemy_scene = preload("res://scenes/entities/enemies/fat_zombie.tscn")
 
 func begin_wave(wave_number: int) -> void:
 	_wave_number = wave_number

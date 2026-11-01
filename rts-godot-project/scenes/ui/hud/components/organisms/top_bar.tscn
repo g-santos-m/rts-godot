@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://ciyc06aac8k4u"]
+
+[ext_resource type="PackedScene" uid="uid://uwy3k0jg5wmo" path="res://scenes/ui/hud/components/molecules/top_bar_icons.tscn" id="1_ic75j"]
+[ext_resource type="PackedScene" uid="uid://d2vr1eqiq0y4p" path="res://scenes/ui/hud/components/molecules/wave_info.tscn" id="2_yitrm"]
+[ext_resource type="PackedScene" uid="uid://c52057usofgy7" path="res://scenes/ui/hud/components/molecules/resource_panel.tscn" id="3_f3w30"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouqu7"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.8901961, 0.74509805, 0.47843137, 0.8509804)
+
+[node name="TopBar" type="PanelContainer" unique_id=97617913]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ouqu7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=591691874]
+layout_mode = 2
+alignment = 1
+
+[node name="TopBarIcons" parent="HBoxContainer" unique_id=864569739 instance=ExtResource("1_ic75j")]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[node name="WaveInfo" parent="HBoxContainer" unique_id=1222134407 instance=ExtResource("2_yitrm")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="ResourcePanel" parent="HBoxContainer" unique_id=1319394354 instance=ExtResource("3_f3w30")]
+layout_mode = 2
+size_flags_horizontal = 10

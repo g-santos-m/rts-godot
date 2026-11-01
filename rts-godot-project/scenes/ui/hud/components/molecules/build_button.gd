@@ -1,4 +1,5 @@
 @tool
+class_name BuildButton
 extends Button
 
 @export var label_text: String = "Unit":
@@ -18,15 +19,18 @@ extends Button
 		wood_cost = new_value
 		_update_view()
 
-@onready var _entity_name_label = $VBoxContainer/EntityNameLabel
-@onready var _entity_icon = $VBoxContainer/EntityIcon
-@onready var _gold_label = $VBoxContainer/GoldCostLabel
-@onready var _wood_label = $VBoxContainer/WoodCostLabel
+@onready var _entity_name_label: LabelSmall = $VBoxContainer/EntityNameLabel
+@onready var _entity_icon: TextureRect = $VBoxContainer/EntityIcon
+@onready var _gold_label: LabelIcon = $VBoxContainer/GoldCostLabel
+@onready var _wood_label: LabelIcon = $VBoxContainer/WoodCostLabel
 
 func _ready() -> void:
 	_update_view()
 
 func _update_view() -> void:
+	if not is_node_ready():
+		return
+
 	_entity_name_label.text = label_text
 	_entity_icon.texture = button_icon
 	_gold_label.text = str(gold_cost)

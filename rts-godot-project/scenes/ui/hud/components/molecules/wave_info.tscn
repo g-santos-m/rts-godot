@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d2vr1eqiq0y4p"]
 
-[ext_resource type="Script" uid="uid://u6t5wim5gfr" path="res://scenes/ui/hud/components/organisms/wave_info.gd" id="1_1vet8"]
+[ext_resource type="Script" uid="uid://u6t5wim5gfr" path="res://scenes/ui/hud/components/molecules/wave_info.gd" id="1_1vet8"]
 [ext_resource type="PackedScene" uid="uid://bcexw4l7i1qg8" path="res://scenes/ui/hud/components/atoms/label_big.tscn" id="2_7vm8q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txob7"]

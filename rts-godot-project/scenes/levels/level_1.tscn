@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://c10eg4n8nniym" path="res://scenes/levels/level_1.gd" id="1_ksju7"]
 [ext_resource type="Texture2D" uid="uid://uj643yhvmg8n" path="res://assets/textures/_test/terrain/ground_tile.png" id="2_nsrm0"]
 [ext_resource type="Texture2D" uid="uid://dtfepesyn5ovx" path="res://assets/textures/_test/terrain/water_tile.png" id="3_x42e6"]
-[ext_resource type="PackedScene" uid="uid://bepgjptdgri8g" path="res://scenes/entities/enemies/zombie.tscn" id="4_6761a"]
+[ext_resource type="PackedScene" uid="uid://b2qex581p6w8c" path="res://scenes/entities/enemies/zombie.tscn" id="4_6761a"]
 [ext_resource type="PackedScene" uid="uid://cvq7k483siahs" path="res://scenes/entities/buildings/castle/castle.tscn" id="4_sk5k4"]
 [ext_resource type="PackedScene" uid="uid://cb72v5am380oy" path="res://scenes/ui/hud/hud.tscn" id="4_x42e6"]
+[ext_resource type="PackedScene" uid="uid://cw2n3cyv1i5fm" path="res://scenes/systems/wave_manager.tscn" id="7_s8va5"]
+[ext_resource type="PackedScene" uid="uid://be5rpgg1tnvq8" path="res://scenes/entities/environment/enemy_spawner.tscn" id="8_dga24"]
+[ext_resource type="PackedScene" uid="uid://cumclswbm0umu" path="res://scenes/systems/resource_manager.tscn" id="9_dga24"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6761a"]
 vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
@@ -49,4 +52,17 @@ position = Vector2(985, 306)
 [node name="Zombie" parent="Entities/Enemies" unique_id=917598100 instance=ExtResource("4_6761a")]
 position = Vector2(92, 366)
 
+[node name="Units" type="Node" parent="Entities" unique_id=937759409 groups=["units"]]
+
+[node name="Resources" type="Node" parent="Entities" unique_id=980201689]
+
 [node name="Hud" parent="." unique_id=1233428465 instance=ExtResource("4_x42e6")]
+
+[node name="WaveManager" parent="." unique_id=311805089 instance=ExtResource("7_s8va5")]
+
+[node name="EnemySpawner1" parent="WaveManager" unique_id=1594341160 instance=ExtResource("8_dga24")]
+position = Vector2(32, 253)
+enemy_type = "Zombie"
+enemies_per_wave = Array[int]([2, 4, 6])
+
+[node name="ResourceManager" parent="." unique_id=578601721 instance=ExtResource("9_dga24")]

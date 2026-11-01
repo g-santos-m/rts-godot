@@ -13,4 +13,7 @@ func _ready() -> void:
 	_update_text()
 
 func _update_text() -> void:
-	_rich_text_label.text = "[b][font_size=22][color=#eee]" + text
+	if not is_node_ready():
+		return
+
+	_rich_text_label.text = "[b][font_size=20][color=#eee]" + text

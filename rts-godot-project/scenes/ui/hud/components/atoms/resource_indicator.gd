@@ -17,5 +17,8 @@ func _ready() -> void:
 	_update_view()
 
 func _update_view() -> void:
+	if not is_node_ready():
+		return
+
 	_icon_texture.texture = icon
 	_count_label.text = count
