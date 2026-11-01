@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var castle_scene := preload("res://scenes/entities/buildings/castle/castle.tscn")
 var house_scene := preload("res://scenes/entities/buildings/house/house.tscn")

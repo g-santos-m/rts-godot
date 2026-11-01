@@ -23,7 +23,7 @@ animations = [{
 "texture": ExtResource("5_x46ud")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"attack",
 "speed": 8.0
 }]
 
@@ -40,7 +40,6 @@ stats = ExtResource("2_wi2in")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=198998156]
 sprite_frames = SubResource("SpriteFrames_xqses")
-animation = &"default"
 frame = 0
 frame_progress = 0.0
 
