@@ -1,4 +1,5 @@
 @tool
+class_name LabelSmall
 extends MarginContainer
 
 @export var text: String = "Label":

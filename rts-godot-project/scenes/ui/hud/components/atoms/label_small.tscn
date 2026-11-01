@@ -17,3 +17,4 @@ bbcode_enabled = true
 text = "[b][font_size=18][color=#eee]Label"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 1

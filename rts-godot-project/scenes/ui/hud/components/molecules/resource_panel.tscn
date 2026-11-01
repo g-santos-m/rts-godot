@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c52057usofgy7"]
+
+[ext_resource type="Script" uid="uid://baia16w7h7ii1" path="res://scenes/ui/hud/components/molecules/resource_panel.gd" id="1_xhxs2"]
+[ext_resource type="PackedScene" uid="uid://cgrnt20vtyo4o" path="res://scenes/ui/hud/components/atoms/resource_indicator.tscn" id="2_avvl1"]
+[ext_resource type="Texture2D" uid="uid://dg7ri3m2xuj3y" path="res://assets/textures/entities/units/worker0.png" id="3_avvl1"]
+[ext_resource type="Texture2D" uid="uid://du4xcbmp1row0" path="res://assets/textures/ui/hud/wood-icon.png" id="4_co7fx"]
+
+[node name="ResourcePanel" type="VBoxContainer" unique_id=1319394354]
+theme_override_constants/separation = 8
+script = ExtResource("1_xhxs2")
+
+[node name="PopulationIndicator" parent="." unique_id=1648934901 instance=ExtResource("2_avvl1")]
+layout_mode = 2
+count = "12/25"
+icon = ExtResource("3_avvl1")
+
+[node name="GoldIndicator" parent="." unique_id=686703253 instance=ExtResource("2_avvl1")]
+layout_mode = 2
+
+[node name="WoodIndicator" parent="." unique_id=407568011 instance=ExtResource("2_avvl1")]
+layout_mode = 2
+count = "3000"
+icon = ExtResource("4_co7fx")

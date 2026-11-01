@@ -1,11 +1,11 @@
-extends Control
+extends PanelContainer
 
 var _wave_manager: Node
 var _next_wave_timer: Timer
 
-@onready var _wave_number_label := $Padding/LayoutHBox/WaveNumberVBox/WaveNumber
-@onready var _next_wave_timer_label := $Padding/LayoutHBox/NextWaveTimerVBox/NextWaveTimer
-@onready var _enemy_number_label := $Padding/LayoutHBox/EnemyNumberVBox/EnemyNumber
+@onready var _wave_number_label := $GridContainer/WaveNumber
+@onready var _next_wave_timer_label := $GridContainer/NextWaveTimer
+@onready var _enemy_number_label := $GridContainer/EnemyNumber
 
 func _ready() -> void:
 	_wave_manager = get_tree().get_first_node_in_group("wave_manager")

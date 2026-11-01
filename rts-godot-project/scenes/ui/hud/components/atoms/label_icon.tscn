@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://gxkjdt0wt3oo"]
 
+[ext_resource type="Script" uid="uid://ppyfmcrnj4kh" path="res://scenes/ui/hud/components/atoms/label_icon.gd" id="1_0bpqp"]
 [ext_resource type="Texture2D" uid="uid://fbso2e62e5oi" path="res://assets/textures/ui/hud/gold-icon.png" id="1_ch7le"]
 
 [node name="LabelIcon" type="MarginContainer" unique_id=332724784]
@@ -9,17 +10,19 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 4
+script = ExtResource("1_0bpqp")
+icon = ExtResource("1_ch7le")
 
-[node name="HFlowContainer" type="HBoxContainer" parent="." unique_id=2046416742]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1323904987]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="TextureRect" type="TextureRect" parent="HFlowContainer" unique_id=2129323427]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=2129323427]
 layout_mode = 2
 texture = ExtResource("1_ch7le")
 expand_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HFlowContainer" unique_id=2092864340]
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer" unique_id=2092864340]
 layout_mode = 2
 bbcode_enabled = true
 text = "[b][font_size=14][color=#eee]Label"
