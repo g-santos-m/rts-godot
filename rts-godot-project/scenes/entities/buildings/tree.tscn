@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dypudfrhn4rq7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_byndi"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1lsw"]
+size = Vector2(36, 36)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1343974448 groups=["wood_resource"]]
+collision_layer = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1601922902]
+texture = SubResource("PlaceholderTexture2D_byndi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=261468021]
+shape = SubResource("RectangleShape2D_k1lsw")

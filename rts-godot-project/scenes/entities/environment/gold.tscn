@@ -6,7 +6,7 @@
 size = Vector2(99, 104)
 
 [node name="Gold" type="StaticBody2D" unique_id=1219665164]
-collision_layer = 4
+collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1408423299]
