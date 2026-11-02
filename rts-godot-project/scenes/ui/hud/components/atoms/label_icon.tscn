@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://gxkjdt0wt3oo"]
+
+[ext_resource type="Script" uid="uid://ppyfmcrnj4kh" path="res://scenes/ui/hud/components/atoms/label_icon.gd" id="1_0bpqp"]
+[ext_resource type="Texture2D" uid="uid://fbso2e62e5oi" path="res://assets/textures/ui/hud/gold-icon.png" id="1_ch7le"]
+
+[node name="LabelIcon" type="MarginContainer" unique_id=332724784]
+offset_right = 90.0
+offset_bottom = 28.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 2
+script = ExtResource("1_0bpqp")
+icon = ExtResource("1_ch7le")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1323904987]
+custom_maximum_size = Vector2(-1, 24)
+propagate_maximum_size = false
+clip_contents = true
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=2129323427]
+custom_maximum_size = Vector2(28, 28)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -2)
+texture = ExtResource("1_ch7le")
+stretch_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer" unique_id=2092864340]
+layout_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "[b][font_size=14][color=#eee]Label"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
