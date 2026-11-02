@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cgrnt20vtyo4o"]
+
+[ext_resource type="Texture2D" uid="uid://fbso2e62e5oi" path="res://assets/textures/ui/hud/gold-icon.png" id="1_n1de2"]
+[ext_resource type="Script" uid="uid://cduhkgeam05a6" path="res://scenes/ui/hud/components/atoms/resource_indicator.gd" id="1_rip72"]
+[ext_resource type="PackedScene" uid="uid://bcexw4l7i1qg8" path="res://scenes/ui/hud/components/atoms/label_big.tscn" id="2_rip72"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46ade"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.8156863, 0.6627451, 0.3764706, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.5137255, 0.4, 0.18431373, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_size = 4
+
+[node name="ResourceIndicator" type="PanelContainer" unique_id=1648934901]
+custom_minimum_size = Vector2(240, 44)
+offset_right = 240.0
+offset_bottom = 44.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_46ade")
+script = ExtResource("1_rip72")
+icon = ExtResource("1_n1de2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1974628685]
+layout_mode = 2
+
+[node name="IconTexture" type="TextureRect" parent="HBoxContainer" unique_id=531299221]
+layout_mode = 2
+texture = ExtResource("1_n1de2")
+expand_mode = 2
+
+[node name="CountLabel" parent="HBoxContainer" unique_id=1861715996 instance=ExtResource("2_rip72")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2000"

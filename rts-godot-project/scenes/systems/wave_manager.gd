@@ -5,7 +5,7 @@ signal last_wave_ended
 const NUMBER_OF_WAVES = 3
 
 ## In minutes.
-@export var time_between_waves := 3
+@export var time_between_waves := 3.0
 
 var wave_number := 1
 var _total_enemies_per_wave := [0, 0, 0]

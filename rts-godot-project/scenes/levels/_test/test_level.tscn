@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dtfepesyn5ovx" path="res://assets/textures/_test/terrain/water_tile.png" id="2_spwf2"]
 [ext_resource type="PackedScene" uid="uid://vsxx1ldl4ge8" path="res://scenes/entities/environment/tree.tscn" id="4_p334e"]
 [ext_resource type="PackedScene" uid="uid://cw2n3cyv1i5fm" path="res://scenes/systems/wave_manager.tscn" id="5_3bb0s"]
-[ext_resource type="PackedScene" uid="uid://dl0u8meqcch6i" path="res://scenes/ui/hud/_test/test_hud.tscn" id="5_7uxs1"]
 [ext_resource type="PackedScene" uid="uid://14a2gabprok1" path="res://scenes/entities/environment/gold.tscn" id="5_joxrx"]
 [ext_resource type="PackedScene" uid="uid://be5rpgg1tnvq8" path="res://scenes/entities/environment/enemy_spawner.tscn" id="5_u7wn6"]
+[ext_resource type="PackedScene" uid="uid://d3k8kslb4u81w" path="res://scenes/ui/hud/_test/test_hud.tscn" id="6_p7vqb"]
 [ext_resource type="PackedScene" uid="uid://cumclswbm0umu" path="res://scenes/systems/resource_manager.tscn" id="9_p7vqb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_spwf2"]
@@ -66,10 +66,10 @@ position = Vector2(1003, 162)
 [node name="Gold" parent="Entities/Resources" unique_id=1447429859 groups=["gold_resource"] instance=ExtResource("5_joxrx")]
 position = Vector2(688, 445)
 
-[node name="TestHud" parent="." unique_id=1233428465 instance=ExtResource("5_7uxs1")]
+[node name="Hud" parent="." unique_id=292531970 instance=ExtResource("6_p7vqb")]
 
 [node name="WaveManager" parent="." unique_id=311805089 instance=ExtResource("5_3bb0s")]
-time_between_waves = 1
+time_between_waves = 0.5
 
 [node name="EnemySpawner1" parent="WaveManager" unique_id=1230395010 instance=ExtResource("5_u7wn6")]
 position = Vector2(154, 93)

@@ -11,6 +11,6 @@ offset_right = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[font_size=64][b][color=red]GAME OVER"
+text = "[font_size=120][b][color=red]GAME OVER"
 fit_content = true
 autowrap_mode = 0

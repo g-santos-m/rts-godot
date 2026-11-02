@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://t61mrl0e7uqx"]
+
+[ext_resource type="Script" uid="uid://xjhwjley3cjw" path="res://scenes/ui/hud/components/molecules/confirm_quit_dialoge.gd" id="1_gi5pb"]
+[ext_resource type="StyleBox" uid="uid://dus4ks4xhw4bq" path="res://scenes/ui/styles/button_normal_style_box_flat.tres" id="2_tkyy6"]
+[ext_resource type="StyleBox" uid="uid://bfi66b4bopixi" path="res://scenes/ui/styles/button_pressed_style_box_flat.tres" id="3_lu0m0"]
+[ext_resource type="StyleBox" uid="uid://dcv06gq4pwkd6" path="res://scenes/ui/styles/button_hover_style_box_flat.tres" id="4_k3won"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqses"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0.8156863, 0.6627451, 0.3764706, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.5137255, 0.4, 0.18431373, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xqses"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+
+[node name="ConfirmQuitDialoge" type="PanelContainer" unique_id=2109045183]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.5
+offset_top = -104.5
+offset_right = 315.5
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xqses")
+script = ExtResource("1_gi5pb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1938421002]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=1852050826]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xqses")
+bbcode_enabled = true
+text = "[b][font_size=28][color=#eee]Are you sure you want to quit the game?"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=180313714]
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="ConfirmQuitButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1120050116]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93333334, 0.93333334, 0.93333334, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("2_tkyy6")
+theme_override_styles/pressed = ExtResource("3_lu0m0")
+theme_override_styles/hover = ExtResource("4_k3won")
+text = "Quit"
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1102200733]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93333334, 0.93333334, 0.93333334, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("2_tkyy6")
+theme_override_styles/pressed = ExtResource("3_lu0m0")
+theme_override_styles/hover = ExtResource("4_k3won")
+text = "Cancel"

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://de38muyefobw8"]
+
+[ext_resource type="Script" uid="uid://8kigv8v88jsj" path="res://scenes/ui/hud/components/molecules/build_button.gd" id="1_1fe2l"]
+[ext_resource type="PackedScene" uid="uid://bie1vdd5mwxl0" path="res://scenes/ui/hud/components/atoms/label_small.tscn" id="1_ju0gn"]
+[ext_resource type="StyleBox" uid="uid://dus4ks4xhw4bq" path="res://scenes/ui/styles/button_normal_style_box_flat.tres" id="1_uawes"]
+[ext_resource type="StyleBox" uid="uid://bfi66b4bopixi" path="res://scenes/ui/styles/button_pressed_style_box_flat.tres" id="2_3ulup"]
+[ext_resource type="Texture2D" uid="uid://dg7ri3m2xuj3y" path="res://assets/textures/entities/units/worker0.png" id="2_jfy57"]
+[ext_resource type="PackedScene" uid="uid://gxkjdt0wt3oo" path="res://scenes/ui/hud/components/atoms/label_icon.tscn" id="3_4pgek"]
+[ext_resource type="StyleBox" uid="uid://dcv06gq4pwkd6" path="res://scenes/ui/styles/button_hover_style_box_flat.tres" id="3_jd5k3"]
+[ext_resource type="Texture2D" uid="uid://du4xcbmp1row0" path="res://assets/textures/ui/hud/wood-icon.png" id="5_1fe2l"]
+
+[node name="BuildButton" type="Button" unique_id=570974836]
+custom_minimum_size = Vector2(89, 154)
+offset_right = 89.0
+offset_bottom = 154.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/normal = ExtResource("1_uawes")
+theme_override_styles/pressed = ExtResource("2_3ulup")
+theme_override_styles/hover = ExtResource("3_jd5k3")
+script = ExtResource("1_1fe2l")
+button_icon = ExtResource("2_jfy57")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=885154368]
+custom_minimum_size = Vector2(89, 154)
+propagate_maximum_size = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="EntityNameLabel" parent="VBoxContainer" unique_id=1861715996 instance=ExtResource("1_ju0gn")]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Unit"
+
+[node name="EntityIcon" type="TextureRect" parent="VBoxContainer" unique_id=371344382]
+layout_mode = 2
+texture = ExtResource("2_jfy57")
+stretch_mode = 3
+
+[node name="GoldCostLabel" parent="VBoxContainer" unique_id=332724784 instance=ExtResource("3_4pgek")]
+layout_mode = 2
+text = "100"
+
+[node name="WoodCostLabel" parent="VBoxContainer" unique_id=2144798721 instance=ExtResource("3_4pgek")]
+layout_mode = 2
+text = "100"
+icon = ExtResource("5_1fe2l")
