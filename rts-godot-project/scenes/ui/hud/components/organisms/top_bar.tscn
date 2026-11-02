@@ -5,16 +5,22 @@
 [ext_resource type="PackedScene" uid="uid://c52057usofgy7" path="res://scenes/ui/hud/components/molecules/resource_panel.tscn" id="3_f3w30"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouqu7"]
-content_margin_left = 24.0
-content_margin_top = 10.0
-content_margin_right = 24.0
-content_margin_bottom = 10.0
-bg_color = Color(0.8901961, 0.74509805, 0.47843137, 0.8509804)
+content_margin_left = 48.0
+content_margin_top = 8.0
+content_margin_right = 48.0
+content_margin_bottom = 8.0
+bg_color = Color(0.5137255, 0.4, 0.18431373, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.7115942, 0.56441224, 0.28902206, 1)
+shadow_size = 4
 
 [node name="TopBar" type="PanelContainer" unique_id=97617913]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 160.0
+offset_bottom = 172.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ouqu7")
 

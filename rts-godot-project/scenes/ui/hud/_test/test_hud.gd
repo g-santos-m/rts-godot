@@ -1,38 +1,43 @@
 extends CanvasLayer
 
-signal spawn_unit(unit_name: String)
+signal spawn_entity(entity_name: String)
+#region TESTS
 signal clear_enemies
+#endregion
 
-@onready var castle_button := $MarginContainer/PanelContainer/HBoxContainer/VBoxContainer/CastleButton
-@onready var house_button := $MarginContainer/PanelContainer/HBoxContainer/VBoxContainer/HouseButton
-@onready var zombie_button := $MarginContainer/PanelContainer/HBoxContainer/VBoxContainer2/ZombieButton
-@onready var basic_unit_button := $MarginContainer/PanelContainer/HBoxContainer/VBoxContainer2/BasicUnitButton
-@onready var clear_enemies_button := $MarginContainer/PanelContainer/HBoxContainer/VBoxContainer3/ClearEnemiesButton
-@onready var fat_zombie_button := $MarginContainer/PanelContainer/HBoxContainer/VBoxContainer3/FatZombieButton
-
+@onready var _build_panel := $BuildPanel
+@onready var _top_bar_icons := $TopBar/HBoxContainer/TopBarIcons
+#region TESTS
+@onready var _testing_panel := $TestingPanel
+#endregion
 
 func _ready() -> void:
-	castle_button.pressed.connect(_on_castle_button_pressed)
-	house_button.pressed.connect(_on_house_button_pressed)
-	zombie_button.pressed.connect(_on_zombie_button_pressed)
-	basic_unit_button.pressed.connect(_on_basic_unit_button_pressed)
-	clear_enemies_button.pressed.connect(_on_clear_enemies_pressed)
-	fat_zombie_button.pressed.connect(_on_fat_zombie_button_pressed)
+	_build_panel.spawn_entity.connect(_on_build_panel_spawn_entity)
+	_top_bar_icons.back_button_pressed.connect(_on_back_button_pressed)
+	_top_bar_icons.pause_button_pressed.connect(_on_pause_button_pressed)
+	#region TESTS
+	# Para spawnear entidades, conecta con la misma función que el BuildPanel.
+	_testing_panel.spawn_entity.connect(_on_build_panel_spawn_entity)
+	_testing_panel.clear_enemies.connect(_on_testing_panel_clear_enemies)
+	#endregion
 
-func _on_castle_button_pressed() -> void:
-	spawn_unit.emit("castle")
+func show_game_over() -> void:
+	_top_bar_icons.disable_pause_button()
+	var game_over_msg = load("res://scenes/ui/hud/components/atoms/game_over.tscn").instantiate()
+	add_child(game_over_msg)
 
-func _on_house_button_pressed() -> void:
-	spawn_unit.emit("house")
+func _on_build_panel_spawn_entity(entity_name: String) -> void:
+	spawn_entity.emit(entity_name)
 
-func _on_zombie_button_pressed() -> void:
-	spawn_unit.emit("zombie")
+func _on_back_button_pressed() -> void:
+	var confirm_quit_dialog = \
+		load("res://scenes/ui/hud/components/molecules/confirm_quit_dialoge.tscn").instantiate()
+	add_child(confirm_quit_dialog)
 
-func _on_basic_unit_button_pressed() -> void:
-	spawn_unit.emit("basic_unit")
+func _on_pause_button_pressed(is_paused: bool) -> void:
+	$GamePaused.visible = is_paused
 
-func _on_clear_enemies_pressed() -> void:
+#region TESTS
+func _on_testing_panel_clear_enemies() -> void:
 	clear_enemies.emit()
-
-func _on_fat_zombie_button_pressed() -> void:
-	spawn_unit.emit("fat_zombie")
+#endregion

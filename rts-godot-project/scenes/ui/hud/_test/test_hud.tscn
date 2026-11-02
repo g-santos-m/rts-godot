@@ -1,95 +1,10 @@
-[gd_scene format=3 uid="uid://dl0u8meqcch6i"]
+[gd_scene format=3 uid="uid://d3k8kslb4u81w"]
 
-[ext_resource type="Script" uid="uid://bf0jql2brb34d" path="res://scenes/ui/hud/_test/test_hud.gd" id="1_6j03h"]
-[ext_resource type="Texture2D" uid="uid://dcd7xkwpw6pqe" path="res://assets/textures/entities/buildings/castle.png" id="2_rspcg"]
-[ext_resource type="Texture2D" uid="uid://day4ix61nvb5m" path="res://assets/textures/entities/buildings/house.png" id="3_gwhth"]
-[ext_resource type="Texture2D" uid="uid://b2r8h5uum6d2u" path="res://assets/textures/entities/enemies/zombie0.png" id="4_i0hui"]
-[ext_resource type="Texture2D" uid="uid://q4x6lrjm4u8g" path="res://assets/textures/entities/units/peon.png" id="5_wr7of"]
-[ext_resource type="PackedScene" uid="uid://d2vr1eqiq0y4p" path="res://scenes/ui/hud/components/molecules/wave_info.tscn" id="6_02khm"]
-[ext_resource type="Texture2D" uid="uid://byephscsxbhxy" path="res://assets/textures/entities/enemies/fat-zombie0.png" id="6_iqy6y"]
+[ext_resource type="PackedScene" uid="uid://cb72v5am380oy" path="res://scenes/ui/hud/hud.tscn" id="1_sdkig"]
+[ext_resource type="PackedScene" uid="uid://bcs8f7kp0iy54" path="res://scenes/ui/hud/components/organisms/testing_panel.tscn" id="2_ce7qf"]
+[ext_resource type="Script" uid="uid://bf0jql2brb34d" path="res://scenes/ui/hud/_test/test_hud.gd" id="2_sr0a0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uxs1"]
-bg_color = Color(0.047058824, 0.047058824, 0.047058824, 0.35686275)
+[node name="TestHud" unique_id=292531970 instance=ExtResource("1_sdkig")]
+script = ExtResource("2_sr0a0")
 
-[node name="TestHud" type="CanvasLayer" unique_id=1233428465]
-follow_viewport_enabled = true
-script = ExtResource("1_6j03h")
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=615350632]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1310094239]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_7uxs1")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer" unique_id=604597818]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer" unique_id=115975713]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="CastleButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=1984747519]
-custom_minimum_size = Vector2(200, 80)
-custom_maximum_size = Vector2(200, 80)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Castle"
-icon = ExtResource("2_rspcg")
-expand_icon = true
-
-[node name="HouseButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/VBoxContainer" unique_id=1446836385]
-custom_minimum_size = Vector2(200, 80)
-custom_maximum_size = Vector2(200, 80)
-layout_mode = 2
-text = "House"
-icon = ExtResource("3_gwhth")
-expand_icon = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer" unique_id=814717908]
-layout_mode = 2
-
-[node name="ZombieButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/VBoxContainer2" unique_id=2026940901]
-custom_minimum_size = Vector2(200, 80)
-custom_maximum_size = Vector2(200, 80)
-layout_mode = 2
-text = "Zombie"
-icon = ExtResource("4_i0hui")
-expand_icon = true
-
-[node name="BasicUnitButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/VBoxContainer2" unique_id=1158843697]
-custom_minimum_size = Vector2(200, 80)
-custom_maximum_size = Vector2(200, 80)
-layout_mode = 2
-text = "Farmer"
-icon = ExtResource("5_wr7of")
-expand_icon = true
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/HBoxContainer" unique_id=1094963451]
-layout_mode = 2
-
-[node name="ClearEnemiesButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/VBoxContainer3" unique_id=2077010142]
-custom_minimum_size = Vector2(200, 80)
-layout_mode = 2
-text = "Clear enemies"
-
-[node name="FatZombieButton" type="Button" parent="MarginContainer/PanelContainer/HBoxContainer/VBoxContainer3" unique_id=1852528767]
-custom_minimum_size = Vector2(200, 80)
-layout_mode = 2
-text = "Fat Zombie"
-icon = ExtResource("6_iqy6y")
-
-[node name="WaveInfo" parent="MarginContainer" unique_id=1033762958 instance=ExtResource("6_02khm")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
+[node name="TestingPanel" parent="." index="2" unique_id=1693906554 instance=ExtResource("2_ce7qf")]

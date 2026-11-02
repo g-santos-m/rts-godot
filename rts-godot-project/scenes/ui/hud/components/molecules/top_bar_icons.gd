@@ -1,38 +1,46 @@
 extends MarginContainer
 
-signal go_back
-signal is_paused(is_paused: bool)
-signal is_muted(is_muted: bool)
+signal back_button_pressed
+signal pause_button_pressed(is_paused: bool)
 
 var _is_paused := false
 var _is_muted := false
 
 @onready var _back_button = $HBoxContainer/BackButton
+@onready var _play_button = $HBoxContainer/PlayButton
 @onready var _pause_button = $HBoxContainer/PauseButton
+@onready var _unmute_button = $HBoxContainer/UnmuteButton
 @onready var _mute_button = $HBoxContainer/MuteButton
+@onready var _printer := Printer.new(name)
 
 func _ready() -> void:
 	_back_button.pressed.connect(_on_back_button_pressed)
-	_pause_button.pressed.connect(_on_pause_button_pressed)
-	_mute_button.pressed.connect(_on_mute_button_pressed)
+	_pause_button.pressed.connect(_on_pause_play_button_pressed)
+	_play_button.pressed.connect(_on_pause_play_button_pressed)
+	_mute_button.pressed.connect(_on_mute_unmute_button_pressed)
+	_unmute_button.pressed.connect(_on_mute_unmute_button_pressed)
+
+# Para desabilitar la pausa desde el hud cuando el juego finaliza por Game Over.
+func disable_pause_button() -> void:
+	_pause_button.disabled = true
 
 func _on_back_button_pressed() -> void:
-	go_back.emit()
+	_printer.cprint("back button pressed")
+	back_button_pressed.emit()
 
-func _on_pause_button_pressed() -> void:
-	_is_paused = !is_paused
-	is_paused.emit(_is_paused)
+func _on_pause_play_button_pressed() -> void:
+	_printer.cprint("pause/play button pressed - _is_paused = ", _is_paused)
+	_is_paused = !_is_paused
+	pause_button_pressed.emit(_is_paused)
+	get_tree().paused = _is_paused
 
-	if _is_paused == false:
-		_pause_button.icon = load("res://assets/textures/ui/hud/pause_96dp_DBAC46_FILL1_wght400_GRAD0_opsz48.png")
-	else:
-		_pause_button.icon = load("res://assets/textures/ui/hud/play_arrow_96dp_DBAC46_FILL1_wght400_GRAD0_opsz48.png")
+	_pause_button.visible = !_is_paused
+	_play_button.visible = _is_paused
 
-func _on_mute_button_pressed() -> void:
-	_is_muted = !is_muted
-	is_muted.emit(_is_muted)
+func _on_mute_unmute_button_pressed() -> void:
+	_printer.cprint("mute/unmute button pressed - _is_muted = ", _is_muted)
+	_is_muted = !_is_muted
+	$"/root/Soundtrack".playing = !_is_muted
 
-	if _is_muted == false:
-		_mute_button.icon = load("res://assets/textures/ui/hud/volume_mute_96dp_DBAC46_FILL1_wght400_GRAD0_opsz48.png")
-	else:
-		_mute_button.icon = load("res://assets/textures/ui/hud/volume_off_96dp_DBAC46_FILL1_wght400_GRAD0_opsz48.png")
+	_mute_button.visible = !_is_muted
+	_unmute_button.visible = _is_muted

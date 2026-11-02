@@ -3,11 +3,14 @@
 [ext_resource type="Script" uid="uid://cxvsemerbb70" path="res://scenes/ui/hud/hud.gd" id="1_as3gr"]
 [ext_resource type="PackedScene" uid="uid://ciyc06aac8k4u" path="res://scenes/ui/hud/components/organisms/top_bar.tscn" id="2_as3gr"]
 [ext_resource type="PackedScene" uid="uid://dim42iava0dkf" path="res://scenes/ui/hud/components/organisms/build_panel.tscn" id="3_ax4tw"]
+[ext_resource type="PackedScene" uid="uid://cbu3pd0vbqfpm" path="res://scenes/ui/hud/components/atoms/game_paused.tscn" id="4_ax4tw"]
 
 [node name="Hud" type="CanvasLayer" unique_id=292531970]
 script = ExtResource("1_as3gr")
 
 [node name="TopBar" parent="." unique_id=97617913 instance=ExtResource("2_as3gr")]
-offset_bottom = 200.0
 
 [node name="BuildPanel" parent="." unique_id=244630244 instance=ExtResource("3_ax4tw")]
+
+[node name="GamePaused" parent="." unique_id=1060200524 instance=ExtResource("4_ax4tw")]
+visible = false

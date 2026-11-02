@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bnsqeupwavkcf"]
 
-[ext_resource type="Texture2D" uid="uid://bru75oyoyeuu3" path="res://assets/textures/ui/hud/logout_96dp_DBAC46_FILL1_wght400_GRAD0_opsz48.png" id="1_lkscc"]
+[ext_resource type="Texture2D" uid="uid://dtdh6dngevxrr" path="res://assets/textures/ui/hud/arrow_back_64dp_D0A960_FILL0_wght700_GRAD0_opsz48.png" id="1_icv85"]
 [ext_resource type="Script" uid="uid://od18spendo8o" path="res://scenes/ui/hud/components/atoms/icon_button.gd" id="2_icv85"]
 
 [node name="IconButton" type="TextureButton" unique_id=1969232425]
 custom_maximum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
-texture_normal = ExtResource("1_lkscc")
+texture_normal = ExtResource("1_icv85")
 stretch_mode = 0
 script = ExtResource("2_icv85")
-icon = ExtResource("1_lkscc")
+icon = ExtResource("1_icv85")

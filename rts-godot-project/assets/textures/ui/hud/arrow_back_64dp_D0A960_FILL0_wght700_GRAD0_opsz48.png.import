@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://esa5bwd6un4c"
-path="res://.godot/imported/volume_mute_96dp_DBAC46_FILL1_wght400_GRAD0_opsz48.png-da0b3bad272d15b9fd1d589aa02ca00d.ctex"
+uid="uid://dtdh6dngevxrr"
+path="res://.godot/imported/arrow_back_64dp_D0A960_FILL0_wght700_GRAD0_opsz48.png-b6a49218165d7990e1776c92f2a2063f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/hud/volume_mute_96dp_DBAC46_FILL1_wght400_GRAD0_opsz48.png"
-dest_files=["res://.godot/imported/volume_mute_96dp_DBAC46_FILL1_wght400_GRAD0_opsz48.png-da0b3bad272d15b9fd1d589aa02ca00d.ctex"]
+source_file="res://assets/textures/ui/hud/arrow_back_64dp_D0A960_FILL0_wght700_GRAD0_opsz48.png"
+dest_files=["res://.godot/imported/arrow_back_64dp_D0A960_FILL0_wght700_GRAD0_opsz48.png-b6a49218165d7990e1776c92f2a2063f.ctex"]
 
 [params]
 
