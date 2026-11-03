@@ -44,7 +44,7 @@ func _spawn_enemy() -> void:
 	enemy.global_position = global_position
 	enemy.name = enemy_type.to_lower() + "_" + str(enemy.id)
 	enemy.destroyed.connect(_on_enemy_destroyed)
-	get_tree().get_first_node_in_group("enemies").add_child(enemy)
+	get_tree().get_first_node_in_group("enemies_node").add_child(enemy)
 
 func _on_enemy_destroyed() -> void:
 	enemy_destroyed.emit()

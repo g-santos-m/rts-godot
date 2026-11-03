@@ -7,8 +7,9 @@ var _attack_rate: float     # Seguntos entre ataques
 # Estado
 var _on_cooldown = false
 
+var _printer: Printer
+
 @onready var _timer = $Timer
-@onready var _printer: Printer
 
 func setup(
 	attack_damage: float,

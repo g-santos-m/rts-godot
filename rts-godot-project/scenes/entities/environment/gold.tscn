@@ -3,16 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://ufakvhmwmysl" path="res://assets/textures/entities/resources/gold.png" id="1_2lygo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xr0lx"]
-size = Vector2(99, 104)
+size = Vector2(99, 52)
 
 [node name="Gold" type="StaticBody2D" unique_id=1219665164]
 collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1408423299]
-position = Vector2(0.5, -50)
+position = Vector2(0.5, -24)
 shape = SubResource("RectangleShape2D_xr0lx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=387072874]
 position = Vector2(0, -60)
 texture = ExtResource("1_2lygo")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=1659929260]
+vertices = PackedVector2Array(53, 5, 53, -105, -52, -105, -52, 5)
