@@ -10,9 +10,9 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1408423299]
-position = Vector2(0.5, -50)
+position = Vector2(0, -51)
 shape = SubResource("RectangleShape2D_xr0lx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=387072874]
-position = Vector2(0, -60)
+position = Vector2(0, -61)
 texture = ExtResource("1_2lygo")
