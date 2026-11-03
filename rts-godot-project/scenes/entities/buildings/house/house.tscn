@@ -5,19 +5,20 @@
 [ext_resource type="PackedScene" uid="uid://cfqtyidaoicm7" path="res://scenes/entities/components/health_component.tscn" id="2_4y8o3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqses"]
-size = Vector2(60, 58)
+size = Vector2(58, 56)
 
 [node name="House" type="StaticBody2D" unique_id=582328485]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_4y8o3")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1683101310]
-texture = ExtResource("1_4fal1")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1118896185]
-position = Vector2(0, 2)
+position = Vector2(0, -27)
 shape = SubResource("RectangleShape2D_xqses")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1683101310]
+position = Vector2(0, -29)
+texture = ExtResource("1_4fal1")
+
 [node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("2_4y8o3")]
-position = Vector2(-10, -42)
+position = Vector2(-10, -67)
