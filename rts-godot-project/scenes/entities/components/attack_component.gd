@@ -20,7 +20,6 @@ func setup(
 	_attack_rate = attack_rate
 	_printer = printer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_timer.one_shot = true
 	_timer.timeout.connect(_on_timer_timeout)

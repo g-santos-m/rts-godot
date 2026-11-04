@@ -4,18 +4,19 @@
 [ext_resource type="Resource" uid="uid://irdqaghspquy" path="res://scenes/entities/enemies/zombie_stats.tres" id="2_7mxgu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q33wv"]
-radius = 19.0
-height = 58.0
+radius = 13.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_07ee4"]
-radius = 21.0
-height = 62.0
+radius = 15.0
+height = 34.0
 
 [node name="Zombie" unique_id=917598100 instance=ExtResource("1_q33wv")]
 stats = ExtResource("2_7mxgu")
 
-[node name="CollisionBox" parent="." index="0" unique_id=1798760610]
+[node name="CollisionBox" parent="." index="1" unique_id=1798760610]
+position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_q33wv")
 
 [node name="RangeBox" parent="RangeComponent" parent_id_path=PackedInt32Array(1357743773) index="0" unique_id=732615573]
+position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_07ee4")

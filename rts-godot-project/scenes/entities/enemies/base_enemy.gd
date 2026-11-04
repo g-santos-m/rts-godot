@@ -27,6 +27,9 @@ func _ready() -> void:
 	name = "%s_%s" % [stats.enemy_type, id]
 	_printer = Printer.new(name)
 
+	_nav_agent.velocity_computed.connect(_on_velocity_computed)
+	_nav_agent.avoidance_priority = 0.2
+
 	# Componentes
 	_attack_comp.setup(stats.attack_damage, stats.attack_rate, _printer)
 	_range_comp.setup(_printer)
@@ -34,43 +37,44 @@ func _ready() -> void:
 	_health_comp.setup(stats.max_health, _printer)
 	_health_comp.destroyed.connect(_on_destroyed)
 
-
 	_printer.cprint("has spawned at ", global_position)
 	_set_closest_building()
 
 func _physics_process(delta: float) -> void:
-	# Actualiza el objetivo actual. Si no hay objetivo válido, se para.
+	# Si no tiene objetivo el que tenía desaparece, busca otro.
 	if _current_target == null or not is_instance_valid(_current_target):
 		# Resetea el estado de ataque.
-		_is_target_in_range = false
-		_animated_sprite.stop()
 		_set_closest_building()
-	if _current_target == null:
-		velocity = Vector2.ZERO
-		move_and_slide()
-		return
 
-	# Pasa la posición del objetivo a NavigationAgent2D.
-	_nav_agent.target_position = _current_target.global_position
+	# Si no encuentra, se mantiene parado.
+	if _current_target == null:
+		_animated_sprite.stop()
+		_nav_agent.velocity = Vector2.ZERO
+		return
 
 	# Si el objetivo esta en rango, para y ataca.
 	if _is_target_in_range == true:
-		velocity = Vector2.ZERO
 		_animated_sprite.play("attack")
 		_attack_comp.attack_target(_current_target)
-		move_and_slide()
+		_nav_agent.velocity = Vector2.ZERO
 		return
+	# Si no esta en rango, calcula la siguiente posición y se desplaza.
+	else:
+		_animated_sprite.stop()
+		var next_position = _nav_agent.get_next_path_position()
+		var direction: Vector2 = global_position.direction_to(next_position)
+		_animated_sprite.flip_h = direction.x < 0
+		var desired_velocity: Vector2 = direction * stats.movement_speed
+		# Con avoidance activado, le pasamos la velocidad al NavigationAgent2D, que devolverá la
+		# velocidad correcta con la signal velocity_computed.
+		_nav_agent.velocity = desired_velocity
 
-	# Calcula la siguiente posición.
-	var next_position = _nav_agent.get_next_path_position()
-	var direction: Vector2 = (next_position - global_position).normalized()
-	$AnimatedSprite2D.flip_h = direction.x < 0
-	velocity = direction * stats.movement_speed
+func _on_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
 	move_and_slide()
 
 # Busca el edificio más cercano.
 func _set_closest_building() -> void:
-
 	# Recoge la lista de edificios activos en el mapa.
 	var buildings := get_tree().get_first_node_in_group("buildings_node").get_children()
 
@@ -87,10 +91,12 @@ func _set_closest_building() -> void:
 	_current_target = closest_building
 	if _current_target:
 		_printer.cprint("is targeting ", _current_target.name, " at ", _current_target.global_position)
+		_nav_agent.target_position = _current_target.global_position
 
-func _on_body_in_range(body: PhysicsBody2D) -> void:
+func _on_body_in_range(body: PhysicsBody2D, is_in_range: bool) -> void:
 	if body == _current_target:
-		_is_target_in_range = true
+		_is_target_in_range = is_in_range
+		_nav_agent.avoidance_priority = 1 if is_in_range else 0.2
 
 func _on_destroyed() -> void:
 	_printer.cprint("has been destroyed")
