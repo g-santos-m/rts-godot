@@ -1,34 +1,59 @@
 [gd_scene format=3 uid="uid://dd18wmronyiuj"]
 
 [ext_resource type="Script" uid="uid://b24cpb7d7wno8" path="res://scenes/entities/units/basic_unit2.gd" id="1_hw2x6"]
-[ext_resource type="Texture2D" uid="uid://q4x6lrjm4u8g" path="res://assets/textures/entities/units/peon.png" id="2_cxbi8"]
+[ext_resource type="Texture2D" uid="uid://dg7ri3m2xuj3y" path="res://assets/textures/entities/units/worker0.png" id="2_mhb62"]
 [ext_resource type="PackedScene" uid="uid://dyjc7xlgqf668" path="res://scenes/entities/components/range_component.tscn" id="3_ex58t"]
+[ext_resource type="Texture2D" uid="uid://8xix0i3rrvlw" path="res://assets/textures/entities/units/worker1.png" id="3_jvsv1"]
+[ext_resource type="Texture2D" uid="uid://bj755bjrrlli7" path="res://assets/textures/entities/units/worker2.png" id="4_wga3b"]
+[ext_resource type="Texture2D" uid="uid://g67atihhyk8u" path="res://assets/textures/entities/units/worker3.png" id="5_poly4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k1lsw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mhb62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jvsv1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wga3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_poly4")
+}],
+"loop": 1,
+"name": &"work",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_loskt"]
-radius = 20.0
-height = 50.0
+radius = 12.0
+height = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1lsw"]
-radius = 23.0
-height = 54.0
+radius = 14.0
+height = 36.0
 
 [node name="UnidadTest" type="CharacterBody2D" unique_id=1996506914 groups=["units"]]
 collision_mask = 15
 script = ExtResource("1_hw2x6")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=877613637]
-position = Vector2(0, -32)
-texture = ExtResource("2_cxbi8")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=132714460]
+position = Vector2(1, -32)
+sprite_frames = SubResource("SpriteFrames_k1lsw")
+animation = &"work"
+frame_progress = 0.73910385
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1674712769]
-position = Vector2(5, -25)
+position = Vector2(-4, -18)
 shape = SubResource("CapsuleShape2D_loskt")
 
 [node name="RangeComponent" parent="." unique_id=1357743773 instance=ExtResource("3_ex58t")]
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeComponent" unique_id=1320484570]
-position = Vector2(5, -25)
+position = Vector2(-4, -18)
 shape = SubResource("CapsuleShape2D_k1lsw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1470258585]
