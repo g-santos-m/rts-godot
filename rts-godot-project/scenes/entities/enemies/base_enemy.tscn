@@ -13,13 +13,13 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_xl36c")
-}, {
-"duration": 1.0,
 "texture": ExtResource("4_cuato")
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_tvoxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xl36c")
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_8qq8f")
@@ -40,23 +40,22 @@ height = 62.0
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=917598100]
 collision_layer = 2
 collision_mask = 15
+motion_mode = 1
 script = ExtResource("1_e0gqf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=198998156]
 position = Vector2(0, -28)
 sprite_frames = SubResource("SpriteFrames_xqses")
 animation = &"attack"
-frame = 3
-frame_progress = 0.76666945
+frame_progress = 0.5953698
 
 [node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1798760610]
 position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_3d0nf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=762855349]
-path_max_distance = 200.0
 avoidance_enabled = true
-radius = 20.0
+radius = 15.0
 max_speed = 200.0
 avoidance_layers = 2
 avoidance_mask = 2
