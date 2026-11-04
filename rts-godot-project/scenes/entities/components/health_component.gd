@@ -4,9 +4,9 @@ signal destroyed
 
 # Propiedades gráficas
 const red_background_p0 := Vector2(0,0)
-const red_background_p3 := Vector2(0,6)
+const red_background_p3 := Vector2(0,8)
 const green_bar_p0 := Vector2(0,0)
-const green_bar_p3 := Vector2(0,6)
+const green_bar_p3 := Vector2(0,8)
 
 var _max_health: float
 var current_health: float
@@ -31,17 +31,17 @@ func take_damage(damage: float) -> void:
 		destroyed.emit()
 
 func paint_bar() -> void:
-	const length_mult = 5
+	const length_mult = 2	# Píxeles por punto de vida.
 	self.visible = _max_health != current_health
 	_red_background.polygon = [
 		red_background_p0,
 		Vector2(_max_health * length_mult, 0),
-		Vector2(_max_health * length_mult, 6),
+		Vector2(_max_health * length_mult, 8),
 		red_background_p3
 	]
 	_green_bar.polygon = [
 		green_bar_p0,
 		Vector2(current_health * length_mult, 0),
-		Vector2(current_health * length_mult, 6),
+		Vector2(current_health * length_mult, 8),
 		green_bar_p3
 	]

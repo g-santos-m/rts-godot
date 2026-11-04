@@ -28,12 +28,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vrixv"]
-radius = 25.0
-height = 72.0
+radius = 17.0
+height = 38.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3d0nf"]
-radius = 27.0
-height = 76.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e0gqf"]
+radius = 19.0
+height = 42.0
 
 [node name="FatZombie" unique_id=917598100 instance=ExtResource("1_0k52c")]
 stats = ExtResource("2_wi2in")
@@ -43,10 +43,10 @@ sprite_frames = SubResource("SpriteFrames_xqses")
 frame = 0
 frame_progress = 0.0
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=1798760610]
-position = Vector2(0, -29)
+[node name="CollisionBox" parent="." index="1" unique_id=1798760610]
+position = Vector2(0, -18)
 shape = SubResource("CapsuleShape2D_vrixv")
 
-[node name="CollisionShape2D" parent="RangeComponent" parent_id_path=PackedInt32Array(1357743773) index="0" unique_id=732615573]
-position = Vector2(0, -29)
-shape = SubResource("CapsuleShape2D_3d0nf")
+[node name="RangeBox" parent="RangeComponent" parent_id_path=PackedInt32Array(1357743773) index="0" unique_id=732615573]
+position = Vector2(0, -18)
+shape = SubResource("CapsuleShape2D_e0gqf")

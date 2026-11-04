@@ -39,6 +39,10 @@ wave_manager=""
 resource_manager=""
 wood_resource=""
 gold_resource=""
+buildings_node=""
+enemies_node=""
+units_node=""
+resources_node=""
 
 [input]
 

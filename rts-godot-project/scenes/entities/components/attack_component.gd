@@ -7,8 +7,9 @@ var _attack_rate: float     # Seguntos entre ataques
 # Estado
 var _on_cooldown = false
 
+var _printer: Printer
+
 @onready var _timer = $Timer
-@onready var _printer: Printer
 
 func setup(
 	attack_damage: float,
@@ -19,7 +20,6 @@ func setup(
 	_attack_rate = attack_rate
 	_printer = printer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_timer.one_shot = true
 	_timer.timeout.connect(_on_timer_timeout)
