@@ -24,21 +24,27 @@ func _ready() -> void:
 	_resource_manager = get_tree().get_first_node_in_group("resource_manager")
 	#Conectar señales
 	_resource_timer.timeout.connect(_on_resource_timer_timeout)
-	_range_comp.body_exited.connect(_on_body_exited)
+	#_range_comp.body_exited.connect(_on_body_exited)
 
 #Cuando el recurso entra en rango, se guarda,se comienza a recolectar y se inicia el ResourceTimer
-func _on_body_in_range(body: PhysicsBody2D) -> void:
-	if body.is_in_group("gold_resource") or body.is_in_group("wood_resource"):
-		_current_resource = body
-		_farm_resource()
-		_resource_timer.start()
+func _on_body_in_range(body: PhysicsBody2D, is_in_range: bool) -> void:
+	if is_in_range:
+		if body.is_in_group("gold_resource") or body.is_in_group("wood_resource"):
+			_current_resource = body
+			_farm_resource()
+			_resource_timer.start()
+	else:
+		if body == _current_resource:
+			_current_resource = null
+			_resource_timer.stop()
+			_animated_sprite.stop()
 		
 #Cuando el recurso sale de rango se deja de recolectar
-func _on_body_exited(body: PhysicsBody2D) -> void:
-	if body == _current_resource:
-		_current_resource = null
-		_resource_timer.stop()
-		_animated_sprite.stop()
+#func _on_body_exited(body: PhysicsBody2D) -> void:
+#	if body == _current_resource:
+#			_current_resource = null
+#			_resource_timer.stop()
+#			_animated_sprite.stop()
 	
 #Lógica de recolectar
 func _farm_resource() -> void:

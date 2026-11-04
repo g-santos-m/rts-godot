@@ -23,6 +23,9 @@ func _increment_gold():
 func _increment_wood():
 	wood += 100
 	print("Wood: " + str(wood))
+	
+	resources_updated.emit(_get_resources_dict())
+
 
 func _get_resources_dict() -> Dictionary:
 	return {
