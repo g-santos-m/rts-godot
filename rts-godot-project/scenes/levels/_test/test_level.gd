@@ -57,6 +57,7 @@ func _spawn_house(position: Vector2) -> void:
 	var house: Node2D = house_scene.instantiate()
 	house.global_position = position
 	house.name = "house_%d" % house.id
+	house.tree_exited.connect(_rebake_navigation)
 	$Entities/Buildings.add_child(house)
 
 #region TESTS
@@ -64,6 +65,7 @@ func _spawn_castle(position: Vector2) -> void:
 	var castle: Node2D = castle_scene.instantiate()
 	castle.global_position = position
 	castle.name = "Castle_%d" % castle.id
+	castle.tree_exited.connect(_rebake_navigation)
 	$Entities/Buildings.add_child(castle)
 
 func _spawn_zombie(position: Vector2) -> void:
@@ -75,6 +77,9 @@ func _spawn_fat_zombie(position: Vector2) -> void:
 	var fat_zombie: Node2D = fat_zombie_scene.instantiate()
 	fat_zombie.global_position = position
 	$Entities/Enemies.add_child(fat_zombie)
+
+func _rebake_navigation() -> void:
+	$NavigationRegion2D.bake_navigation_polygon()
 
 #func _on_castle_destroyed() -> void:
 #	_hud.show_game_over()

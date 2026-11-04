@@ -20,6 +20,9 @@ func _ready() -> void:
 	_mute_button.pressed.connect(_on_mute_unmute_button_pressed)
 	_unmute_button.pressed.connect(_on_mute_unmute_button_pressed)
 
+	# Para que empiece con la música muteada por defecto.
+	_on_mute_unmute_button_pressed()
+
 # Para desabilitar la pausa desde el hud cuando el juego finaliza por Game Over.
 func disable_pause_button() -> void:
 	_pause_button.disabled = true

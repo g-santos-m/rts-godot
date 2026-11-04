@@ -28,7 +28,7 @@ func _ready() -> void:
 	_printer = Printer.new(name)
 
 	_nav_agent.velocity_computed.connect(_on_velocity_computed)
-	_nav_agent.avoidance_priority = 0.2
+	#_nav_agent.avoidance_priority = 0.2
 
 	# Componentes
 	_attack_comp.setup(stats.attack_damage, stats.attack_rate, _printer)
@@ -82,6 +82,8 @@ func _set_closest_building() -> void:
 	var closest_building: StaticBody2D = null
 	var shortest_distance = INF
 	for building in buildings:
+		# Cogemos como referencia el centro de su CollisionShape2D, en lugar de la global_position
+		# del nodo raíz, que está en los pies del edificio.
 		var distance := global_position.distance_to(building.global_position)
 		if distance < shortest_distance:
 			closest_building = building
@@ -91,12 +93,25 @@ func _set_closest_building() -> void:
 	_current_target = closest_building
 	if _current_target:
 		_printer.cprint("is targeting ", _current_target.name, " at ", _current_target.global_position)
-		_nav_agent.target_position = _current_target.global_position
+		#_nav_agent.target_position = _current_target.global_position
+		_nav_agent.target_position = _get_random_target_point(_current_target)
+
+# Calculates a random point within the building's collision shape to direct the enemy to. Avoids
+# every enemy piling up on a side of the building.
+func _get_random_target_point(building: StaticBody2D) -> Vector2:
+	var collision_shape: CollisionShape2D = building.get_children().filter(
+		func (node: Node2D) -> bool: return node.is_class("CollisionShape2D")
+	)[0]
+
+	var random_target_point_x: int = collision_shape.global_position.x + randi_range(-10, 10)
+	var random_target_point_y: int = collision_shape.global_position.y + randi_range(-10, 10)
+
+	return Vector2(random_target_point_x, random_target_point_y)
 
 func _on_body_in_range(body: PhysicsBody2D, is_in_range: bool) -> void:
 	if body == _current_target:
 		_is_target_in_range = is_in_range
-		_nav_agent.avoidance_priority = 1 if is_in_range else 0.2
+		#_nav_agent.avoidance_priority = 1 if is_in_range else 0.2
 
 func _on_destroyed() -> void:
 	_printer.cprint("has been destroyed")
