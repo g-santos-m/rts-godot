@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://c1702onbxfcq0"]
+
+[ext_resource type="Script" uid="uid://b24cpb7d7wno8" path="res://scenes/entities/units/basic_unit2.gd" id="1_ewj7k"]
+[ext_resource type="Texture2D" uid="uid://dg7ri3m2xuj3y" path="res://assets/textures/entities/units/worker0.png" id="2_n2p4y"]
+[ext_resource type="Texture2D" uid="uid://8xix0i3rrvlw" path="res://assets/textures/entities/units/worker1.png" id="3_rnapk"]
+[ext_resource type="Texture2D" uid="uid://bj755bjrrlli7" path="res://assets/textures/entities/units/worker2.png" id="4_fo3w1"]
+[ext_resource type="Texture2D" uid="uid://g67atihhyk8u" path="res://assets/textures/entities/units/worker3.png" id="5_xswp2"]
+[ext_resource type="PackedScene" uid="uid://dyjc7xlgqf668" path="res://scenes/entities/components/range_component.tscn" id="6_1uc5k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k1lsw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n2p4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rnapk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fo3w1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xswp2")
+}],
+"loop": 1,
+"name": &"work",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_loskt"]
+radius = 12.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1lsw"]
+radius = 14.0
+height = 52.0
+
+[node name="UnidadTest" type="CharacterBody2D" unique_id=1996506914 groups=["units"]]
+collision_mask = 15
+script = ExtResource("1_ewj7k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=132714460]
+position = Vector2(1, -32)
+sprite_frames = SubResource("SpriteFrames_k1lsw")
+animation = &"work"
+frame_progress = 0.6849433
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1674712769]
+position = Vector2(-4, -18)
+shape = SubResource("CapsuleShape2D_loskt")
+
+[node name="RangeComponent" parent="." unique_id=1357743773 instance=ExtResource("6_1uc5k")]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeComponent" unique_id=1320484570]
+position = Vector2(-5, -26)
+shape = SubResource("CapsuleShape2D_k1lsw")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1470258585]
+target_desired_distance = 32.0
+
+[node name="ResourceTimer" type="Timer" parent="." unique_id=771064161]
+wait_time = 5.0

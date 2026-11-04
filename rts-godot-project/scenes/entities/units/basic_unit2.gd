@@ -38,14 +38,8 @@ func _on_body_in_range(body: PhysicsBody2D, is_in_range: bool) -> void:
 			_current_resource = null
 			_resource_timer.stop()
 			_animated_sprite.stop()
-		
-#Cuando el recurso sale de rango se deja de recolectar
-#func _on_body_exited(body: PhysicsBody2D) -> void:
-#	if body == _current_resource:
-#			_current_resource = null
-#			_resource_timer.stop()
-#			_animated_sprite.stop()
-	
+
+
 #Lógica de recolectar
 func _farm_resource() -> void:
 	_animated_sprite.play("work")
