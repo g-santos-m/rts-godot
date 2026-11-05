@@ -22,6 +22,8 @@ func _ready() -> void:
 		_sprite.get_rect().position.y * 2 - 10
 	)
 	_health_comp.destroyed.connect(_on_destroyed)
+
+	get_tree().get_first_node_in_group("navigation_region").bake_navigation_polygon()
 	_printer.cprint("has spawned at ", global_position)
 
 func take_damage(damage: float) -> void:

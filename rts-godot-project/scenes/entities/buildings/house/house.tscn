@@ -27,5 +27,5 @@ position = Vector2(-10, -67)
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=1315296201]
 position = Vector2(0, -18)
-vertices = PackedVector2Array(-28, 18, -28, -18, 28, -18, 28, 18)
+vertices = PackedVector2Array(-23, 18, 23, 18, 29, 0, 22, -18, -22, -18, -29, 0)
 affect_navigation_mesh = true

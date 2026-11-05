@@ -18,16 +18,15 @@ func _increment_gold():
 	gold += 100
 	print("Gold: " + str(gold))
 
-	resources_updated.emit(_get_resources_dict())
+	resources_updated.emit(get_resources_dict())
 
 func _increment_wood():
 	wood += 100
 	print("Wood: " + str(wood))
-	
-	resources_updated.emit(_get_resources_dict())
 
+	resources_updated.emit(get_resources_dict())
 
-func _get_resources_dict() -> Dictionary:
+func get_resources_dict() -> Dictionary:
 	return {
 		"population": population,
 		"max_population": max_population,

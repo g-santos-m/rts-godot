@@ -10,15 +10,8 @@ static var id := 1
 @onready var _sprite := $Sprite2D
 @onready var _health_comp := $HealthComponent
 @onready var _printer := Printer.new(name)
-#Spawn
-@onready var unit_scene_path = "res://scenes/entities/units/basic_unit2.tscn"
-var loaded_unit : PackedScene
-#SpawnFin
 
 func _ready() -> void:
-	#Spawn
-	loaded_unit = load(unit_scene_path)
-	#SpawnFin
 	id += 1
 	_health_comp.setup(MAX_HEALTH, _printer)
 	# Hay que llamar a paint_bar() al principio para que la barra de vida tome
@@ -31,6 +24,8 @@ func _ready() -> void:
 		_sprite.get_rect().position.y * 2 - 10
 	)
 	_health_comp.destroyed.connect(_on_destroyed)
+
+	get_tree().get_first_node_in_group("navigation_region").bake_navigation_polygon()
 	_printer.cprint("has spawned at ", global_position)
 
 func take_damage(damage: float) -> void:
@@ -40,10 +35,3 @@ func _on_destroyed() -> void:
 	_printer.cprint("has been destroyed")
 	destroyed.emit()
 	queue_free()
-
-#Spawn
-func _on_spawn_timer_timeout():
-	var new_unit = loaded_unit.instantiate()
-	get_tree().root.add_child(new_unit)
-	new_unit.global_position = $SpawnPosition.global_position
-#SpawnFin
