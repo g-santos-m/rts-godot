@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvq7k483siahs"]
 
-[ext_resource type="Script" uid="uid://b4xgary4ibmwp" path="res://scenes/entities/buildings/castle/castle.gd" id="1_58gdu"]
+[ext_resource type="Script" uid="uid://b4xgary4ibmwp" path="res://scenes/entities/buildings/castle.gd" id="1_58gdu"]
 [ext_resource type="Texture2D" uid="uid://dcd7xkwpw6pqe" path="res://assets/textures/entities/buildings/castle.png" id="2_58gdu"]
 [ext_resource type="PackedScene" uid="uid://cfqtyidaoicm7" path="res://scenes/entities/components/health_component.tscn" id="3_banmx"]
 

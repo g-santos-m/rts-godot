@@ -31,7 +31,7 @@ func take_damage(damage: float) -> void:
 		destroyed.emit()
 
 func paint_bar() -> void:
-	const length_mult = 2	# Píxeles por punto de vida.
+	const length_mult = 2.5	# Píxeles por punto de vida.
 	self.visible = _max_health != current_health
 	_red_background.polygon = [
 		red_background_p0,

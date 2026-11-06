@@ -1,35 +1,57 @@
-extends CharacterBody2D
+extends BaseUnit
+
+@export var stats: BaseUnitStats
 
 static var id := 1
 
-@onready var _animated_sprite := $AnimatedSprite2D
-@onready var _resource_timer := $ResourceTimer
 var _current_resource: PhysicsBody2D = null
-@onready var _nav_agent := $NavigationAgent2D
 var _resource_manager : Node
-@onready var _range_comp := $RangeComponent
-@onready var _printer := Printer.new(name)
-@export var speed = 300
 var av = Vector2.ZERO
 var avoid_weight = 0.1
 var selected = false:
 	set = set_selected
 var target = null
 
+# Para cálculo de velocidad según el tipo de terreno.
 var _base_layer: TileMapLayer
 var _last_cell_coords: Vector2 = Vector2(-999999, -999999)
 var _current_terrain_speed_mult: float = 1.0
 
+@onready var _animated_sprite := $AnimatedSprite2D
+@onready var _nav_agent := $NavigationAgent2D
+@onready var _health_comp := $HealthComponent
+@onready var _resource_timer := $ResourceTimer
+@onready var _range_comp := $RangeComponent
+@onready var _printer: Printer
+
 func _ready() -> void:
 	id += 1
+	name = "%s_%s" % [stats.unit_type, id]
+	_printer = Printer.new(name)
+
 	_printer.cprint("has spawned at ", global_position)
 	_range_comp.setup(_printer)
 	_range_comp.body_in_range.connect(_on_body_in_range)
+	_health_comp.setup(stats.max_health, _printer)
+	# Hay que llamar a paint_bar() al principio para que la barra de vida tome
+	# tamaño correcto y poder posicionarla adecuadamente después.
+	_health_comp.paint_bar()
+	# Posiciona la barra centrada horizontalmente y 10 píxeles sobre el sprite
+	# de la entidad.
+	_health_comp.position = Vector2(
+		-(_health_comp.get_child(0).polygon[1].x / 2 - 5),
+		-(_animated_sprite.sprite_frames.get_frame_texture("work", 0).get_height() + 10)
+	)
+	_health_comp.destroyed.connect(_on_destroyed)
+
 	_resource_manager = get_tree().get_first_node_in_group("resource_manager")
 	# Conectar señales
 	_resource_timer.timeout.connect(_on_resource_timer_timeout)
 	#_range_comp.body_exited.connect(_on_body_exited)
 	_base_layer = get_tree().get_first_node_in_group("base_layer")
+
+func take_damage(damage: float) -> void:
+	_health_comp.take_damage(damage)
 
 # Cuando el recurso entra en rango, se guarda,se comienza a recolectar y se inicia el ResourceTimer
 func _on_body_in_range(body: Node2D, is_in_range: bool) -> void:
@@ -89,7 +111,7 @@ func _physics_process(_delta) -> void:
 	_animated_sprite.flip_h = direction.x < 0
 
 	# Aplica la velocidad y mueve al personaje
-	velocity = direction * speed * _current_terrain_speed_mult
+	velocity = direction * stats.movement_speed * _current_terrain_speed_mult
 	move_and_slide()
 
 func _update_terrain_speed_mult() -> void:
@@ -103,3 +125,7 @@ func _update_terrain_speed_mult() -> void:
 	_last_cell_coords = current_cell
 	var tile_data: TileData = _base_layer.get_cell_tile_data(current_cell)
 	_current_terrain_speed_mult = tile_data.get_custom_data("speed_mult_units")
+
+func _on_destroyed() -> void:
+	_printer.cprint("has been destroyed")
+	queue_free()

@@ -1,9 +1,9 @@
 extends Node2D
 
 var worker_scene := preload("res://scenes/entities/units/worker.tscn")
-var house_scene := preload("res://scenes/entities/buildings/house/house.tscn")
+var house_scene := preload("res://scenes/entities/buildings/house.tscn")
 #region TESTS
-var castle_scene := preload("res://scenes/entities/buildings/castle/castle.tscn")
+var castle_scene := preload("res://scenes/entities/buildings/castle.tscn")
 var zombie_scene := preload("res://scenes/entities/enemies/zombie.tscn")
 var fat_zombie_scene := preload("res://scenes/entities/enemies/fat_zombie.tscn")
 #endregion
@@ -50,13 +50,12 @@ func _on_spawn_entity(entity_name: String) -> void:
 func _spawn_worker(spawn_position: Vector2) -> void:
 	var worker: Node2D = worker_scene.instantiate()
 	worker.global_position = spawn_position
-	worker.name = "Worker_%d" % worker.id
 	$Entities/Units.add_child(worker)
 
 func _spawn_house(spawn_position: Vector2) -> void:
 	var house: Node2D = house_scene.instantiate()
 	house.global_position = spawn_position
-	house.name = "house_%d" % house.id
+	house.name = "House_%d" % house.id
 	house.tree_exited.connect(_rebake_navigation)
 	$Entities/Buildings.add_child(house)
 

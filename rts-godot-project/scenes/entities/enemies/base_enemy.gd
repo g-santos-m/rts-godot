@@ -1,3 +1,4 @@
+class_name BaseEnemy
 extends CharacterBody2D
 
 signal destroyed
@@ -18,8 +19,9 @@ var _printer: Printer
 @onready var _animated_sprite := $AnimatedSprite2D
 @onready var _nav_agent := $NavigationAgent2D
 @onready var _attack_comp := $AttackComponent
-@onready var _range_comp := $RangeComponent
 @onready var _health_comp := $HealthComponent
+@onready var _attack_range_comp := $AttackRange
+@onready var _detection_range_comp := $DetectionRange
 
 func _ready() -> void:
 	id = _next_ids_by_type[stats.enemy_type]
@@ -28,14 +30,18 @@ func _ready() -> void:
 	_printer = Printer.new(name)
 
 	_nav_agent.velocity_computed.connect(_on_velocity_computed)
-	#_nav_agent.avoidance_priority = 0.2
+	_nav_agent.avoidance_priority = 0.2
 
 	# Componentes
 	_attack_comp.setup(stats.attack_damage, stats.attack_rate, _printer)
-	_range_comp.setup(_printer)
-	_range_comp.body_in_range.connect(_on_body_in_range)
 	_health_comp.setup(stats.max_health, _printer)
 	_health_comp.destroyed.connect(_on_destroyed)
+	_attack_range_comp.setup(_printer)
+	_attack_range_comp.body_in_range.connect(_on_body_in_attack_range)
+	_detection_range_comp.setup(_printer)
+	_detection_range_comp.body_in_range.connect(_on_body_in_detection_range)
+	var detection_range_shape: CircleShape2D = _detection_range_comp.get_child(0).shape
+	detection_range_shape.radius = stats.detection_range
 
 	_printer.cprint("has spawned at ", global_position)
 	_set_closest_building()
@@ -89,12 +95,17 @@ func _set_closest_building() -> void:
 			closest_building = building
 			shortest_distance = distance
 
-	# Asigna el edificio más cercano como objetivo.
-	_current_target = closest_building
-	if _current_target:
-		_printer.cprint("is targeting ", _current_target.name, " at ", _current_target.global_position)
-		#_nav_agent.target_position = _current_target.global_position
-		_nav_agent.target_position = _get_random_target_point(_current_target)
+	if closest_building:
+		_set_target(closest_building)
+
+func _set_target(target: PhysicsBody2D) -> void:
+	_current_target = target
+	_printer.cprint("is targeting ", _current_target.name, " at ", _current_target.global_position)
+	_nav_agent.target_position = _current_target.global_position
+	#if target.is_class("CharacterBody2D"):
+	#	_nav_agent.target_position = _current_target.global_position
+	#else:
+	#	_nav_agent.target_position = _get_random_target_point(_current_target)
 
 # Calculates a random point within the building's collision shape to direct the enemy to. Avoids
 # every enemy piling up on a side of the building.
@@ -108,10 +119,16 @@ func _get_random_target_point(building: StaticBody2D) -> Vector2:
 
 	return Vector2(random_target_point_x, random_target_point_y)
 
-func _on_body_in_range(body: Node2D, is_in_range: bool) -> void:
-	if body == _current_target:
+func _on_body_in_attack_range(body: Node2D, is_in_range: bool) -> void:
+	if body == _current_target or _current_target == null:
 		_is_target_in_range = is_in_range
-		#_nav_agent.avoidance_priority = 1 if is_in_range else 0.2
+		_nav_agent.avoidance_priority = 1 if is_in_range else 0.2
+
+func _on_body_in_detection_range(body: Node2D, is_in_range: bool) -> void:
+	if is_in_range and _current_target is not CharacterBody2D:
+		_set_target(body)
+	else:
+		_current_target = null
 
 func _on_destroyed() -> void:
 	_printer.cprint("has been destroyed")
