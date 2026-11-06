@@ -27,55 +27,55 @@ func _ready() -> void:
 	_hud.clear_enemies.connect(_on_clear_enemies)
 	#endregion
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		match _placing_entity_name:
 			"worker":
-				_spawn_worker(event.global_position)
+				_spawn_worker(get_global_mouse_position())
 			"house":
-				_spawn_house(event.global_position)
+				_spawn_house(get_global_mouse_position())
 			#region TESTS
 			"castle":
-				_spawn_castle(event.global_position)
+				_spawn_castle(get_global_mouse_position())
 			"zombie":
-				_spawn_zombie(event.global_position)
+				_spawn_zombie(get_global_mouse_position())
 			"fat_zombie":
-				_spawn_fat_zombie(event.global_position)
+				_spawn_fat_zombie(get_global_mouse_position())
 			#endregion
 		_placing_entity_name = ""
 
 func _on_spawn_entity(entity_name: String) -> void:
 	_placing_entity_name = entity_name
 
-func _spawn_worker(position: Vector2) -> void:
+func _spawn_worker(spawn_position: Vector2) -> void:
 	var worker: Node2D = worker_scene.instantiate()
-	worker.global_position = position
+	worker.global_position = spawn_position
 	worker.name = "Worker_%d" % worker.id
 	$Entities/Units.add_child(worker)
 
-func _spawn_house(position: Vector2) -> void:
+func _spawn_house(spawn_position: Vector2) -> void:
 	var house: Node2D = house_scene.instantiate()
-	house.global_position = position
+	house.global_position = spawn_position
 	house.name = "house_%d" % house.id
 	house.tree_exited.connect(_rebake_navigation)
 	$Entities/Buildings.add_child(house)
 
 #region TESTS
-func _spawn_castle(position: Vector2) -> void:
+func _spawn_castle(spawn_position: Vector2) -> void:
 	var castle: Node2D = castle_scene.instantiate()
-	castle.global_position = position
+	castle.global_position = spawn_position
 	castle.name = "Castle_%d" % castle.id
 	castle.tree_exited.connect(_rebake_navigation)
 	$Entities/Buildings.add_child(castle)
 
-func _spawn_zombie(position: Vector2) -> void:
+func _spawn_zombie(spawn_position: Vector2) -> void:
 	var zombie: Node2D = zombie_scene.instantiate()
-	zombie.global_position = position
+	zombie.global_position = spawn_position
 	$Entities/Enemies.add_child(zombie)
 
-func _spawn_fat_zombie(position: Vector2) -> void:
+func _spawn_fat_zombie(spawn_position: Vector2) -> void:
 	var fat_zombie: Node2D = fat_zombie_scene.instantiate()
-	fat_zombie.global_position = position
+	fat_zombie.global_position = spawn_position
 	$Entities/Enemies.add_child(fat_zombie)
 
 func _rebake_navigation() -> void:

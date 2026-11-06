@@ -18,9 +18,11 @@ border_color = Color(0.7115942, 0.56441224, 0.28902206, 1)
 shadow_size = 4
 
 [node name="TopBar" type="PanelContainer" unique_id=97617913]
+custom_minimum_size = Vector2(0, 180)
+custom_maximum_size = Vector2(-1, 180)
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 172.0
+offset_bottom = 180.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ouqu7")
 

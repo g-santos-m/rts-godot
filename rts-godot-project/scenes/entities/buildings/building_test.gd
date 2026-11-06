@@ -10,14 +10,14 @@ signal build_building
 
 func _ready() -> void:
 	pass
-	
+
 func _input(event):
 	if event.is_action_pressed("build") && can_build.size() == 0:
 		build_building.emit()
 		has_built = true
 		queue_redraw()
 
-func _process(delta):
+func _process(_delta):
 	if !has_built:
 		parent_building.global_position = get_global_mouse_position()
 		building_area.position = -(building_area.size/2)
