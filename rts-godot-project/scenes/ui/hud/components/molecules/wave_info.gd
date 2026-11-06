@@ -13,7 +13,7 @@ func _ready() -> void:
 	_next_wave_timer = _wave_manager.get_child(0)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_next_wave_timer_label.text = _format_time(_next_wave_timer.time_left)
 	_wave_number_label.text = str(_wave_manager.wave_number)
 	_enemy_number_label.text = str(_wave_manager.number_of_active_enemies)

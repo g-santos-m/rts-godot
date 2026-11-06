@@ -32,7 +32,7 @@ func _ready() -> void:
 	_base_layer = get_tree().get_first_node_in_group("base_layer")
 
 # Cuando el recurso entra en rango, se guarda,se comienza a recolectar y se inicia el ResourceTimer
-func _on_body_in_range(body: PhysicsBody2D, is_in_range: bool) -> void:
+func _on_body_in_range(body: Node2D, is_in_range: bool) -> void:
 	if is_in_range:
 		if body.is_in_group("gold_resource") or body.is_in_group("wood_resource"):
 			_current_resource = body
@@ -43,7 +43,6 @@ func _on_body_in_range(body: PhysicsBody2D, is_in_range: bool) -> void:
 			_current_resource = null
 			_resource_timer.stop()
 			_animated_sprite.stop()
-
 
 # Lógica de recolectar
 func _farm_resource() -> void:

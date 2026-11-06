@@ -40,7 +40,7 @@ func _ready() -> void:
 	_printer.cprint("has spawned at ", global_position)
 	_set_closest_building()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Si no tiene objetivo el que tenía desaparece, busca otro.
 	if _current_target == null or not is_instance_valid(_current_target):
 		# Resetea el estado de ataque.
@@ -108,7 +108,7 @@ func _get_random_target_point(building: StaticBody2D) -> Vector2:
 
 	return Vector2(random_target_point_x, random_target_point_y)
 
-func _on_body_in_range(body: PhysicsBody2D, is_in_range: bool) -> void:
+func _on_body_in_range(body: Node2D, is_in_range: bool) -> void:
 	if body == _current_target:
 		_is_target_in_range = is_in_range
 		#_nav_agent.avoidance_priority = 1 if is_in_range else 0.2
