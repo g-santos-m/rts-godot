@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BaseBuildingStats" format=3 uid="uid://dfosv7tiwaiqb"]
+
+[ext_resource type="Script" uid="uid://dwoqornt0ly0k" path="res://scenes/entities/buildings/base_building_stats.gd" id="1_cb70f"]
+
+[resource]
+script = ExtResource("1_cb70f")
+building_type = "Tower"
+max_health = 50.0
+attack_damage = 3.0
+detection_range = 250.0
+attack_rate = 1.0
+metadata/_custom_type_script = "uid://dwoqornt0ly0k"

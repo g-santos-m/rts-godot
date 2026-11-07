@@ -79,6 +79,9 @@ func _physics_process(_delta: float) -> void:
 		# velocidad correcta con la signal velocity_computed.
 		_nav_agent.velocity = desired_velocity
 
+func take_damage(damage: float) -> void:
+	_health_comp.take_damage(damage)
+
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 	move_and_slide()

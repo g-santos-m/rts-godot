@@ -2,6 +2,7 @@ extends Node2D
 
 var worker_scene := preload("res://scenes/entities/units/worker.tscn")
 var house_scene := preload("res://scenes/entities/buildings/house.tscn")
+var tower_scene := preload("res://scenes/entities/buildings/tower.tscn")
 #region TESTS
 var castle_scene := preload("res://scenes/entities/buildings/castle.tscn")
 var zombie_scene := preload("res://scenes/entities/enemies/zombie.tscn")
@@ -27,10 +28,12 @@ func _ready() -> void:
 	#endregion
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		match _placing_entity_name:
 			"house":
 				_spawn_house(get_global_mouse_position())
+			"tower":
+				_spawn_tower(get_global_mouse_position())
 			#region TESTS
 			"castle":
 				_spawn_castle(get_global_mouse_position())
@@ -57,9 +60,14 @@ func _spawn_worker() -> void:
 func _spawn_house(spawn_position: Vector2) -> void:
 	var house: Node2D = house_scene.instantiate()
 	house.global_position = spawn_position
-	house.name = "House_%d" % house.id
 	house.tree_exited.connect(_rebake_navigation)
 	$Entities/Buildings.add_child(house)
+
+func _spawn_tower(spawn_position: Vector2) -> void:
+	var tower: Node2D = tower_scene.instantiate()
+	tower.global_position = spawn_position
+	tower.tree_exited.connect(_rebake_navigation)
+	$Entities/Buildings.add_child(tower)
 
 func _rebake_navigation() -> void:
 	$NavigationRegion2D.bake_navigation_polygon()
