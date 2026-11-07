@@ -25,8 +25,8 @@ var _current_terrain_speed_mult: float = 1.0
 @onready var _printer: Printer
 
 func _ready() -> void:
-	id += 1
 	name = "%s_%s" % [stats.unit_type, id]
+	id += 1
 	_printer = Printer.new(name)
 
 	_printer.cprint("has spawned at ", global_position)

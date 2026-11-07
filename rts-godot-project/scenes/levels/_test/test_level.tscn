@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://chtm6jp0sg1ll" path="res://assets/textures/terrain/dirt_sheet.png" id="7_337sl"]
 [ext_resource type="Texture2D" uid="uid://c87lng6xctj3l" path="res://assets/textures/terrain/water_sheet.png" id="9_c8377"]
 [ext_resource type="PackedScene" uid="uid://cumclswbm0umu" path="res://scenes/systems/resource_manager.tscn" id="9_p7vqb"]
+[ext_resource type="PackedScene" uid="uid://cvq7k483siahs" path="res://scenes/entities/buildings/castle.tscn" id="10_6ytb5"]
 [ext_resource type="Texture2D" uid="uid://bqw7lqvcno2w5" path="res://assets/textures/terrain/sand_sheet.png" id="12_igpsl"]
 [ext_resource type="PackedScene" uid="uid://hahi1pp55ke6" path="res://scenes/systems/camera.tscn" id="16_5emos"]
 
@@ -219,6 +220,9 @@ y_sort_enabled = true
 
 [node name="Buildings" type="Node2D" parent="Entities" unique_id=1668517650 groups=["buildings_node"]]
 y_sort_enabled = true
+
+[node name="Castle" parent="Entities/Buildings" unique_id=363965524 instance=ExtResource("10_6ytb5")]
+position = Vector2(1561, 598)
 
 [node name="Enemies" type="Node2D" parent="Entities" unique_id=850698506 groups=["enemies_node"]]
 y_sort_enabled = true

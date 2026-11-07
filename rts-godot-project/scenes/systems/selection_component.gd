@@ -14,8 +14,12 @@ func _unhandled_input(event):
 				drag_start = get_global_mouse_position()
 			else:
 				for item in selected:
-					item.collider.target = event.position
-					item.collider.selected = false
+					# Si la unidad ha sido destruida después de ser seleccionada, la quita.
+					if not is_instance_valid(item.collider):
+						selected.erase(item)
+					else:
+						item.collider.target = event.position
+						item.collider.selected = false
 				selected = []
 		elif dragging:
 			dragging = false

@@ -4,15 +4,14 @@ signal destroyed
 
 # Estadísticas
 const MAX_HEALTH := 90.0
-
-static var id := 1
+const NAME := "Castle"
 
 @onready var _sprite := $Sprite2D
 @onready var _health_comp := $HealthComponent
-@onready var _printer := Printer.new(name)
+@onready var _printer := Printer.new(NAME)
 
 func _ready() -> void:
-	id += 1
+	name = NAME
 	_health_comp.setup(MAX_HEALTH, _printer)
 	# Hay que llamar a paint_bar() al principio para que la barra de vida tome
 	# tamaño correcto y poder posicionarla adecuadamente después.
