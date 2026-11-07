@@ -66,7 +66,6 @@ avoidance_mask = 2
 [node name="AttackComponent" parent="." unique_id=1099593692 instance=ExtResource("7_ohmky")]
 
 [node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("9_2g3lp")]
-visible = false
 
 [node name="AttackRange" parent="." unique_id=1357743773 instance=ExtResource("8_13q7i")]
 collision_mask = 5

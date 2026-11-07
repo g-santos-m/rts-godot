@@ -1,4 +1,5 @@
-extends Node
+class_name AttackComponent
+extends Node2D
 
 # Estadísticas
 var _attack_damage: float

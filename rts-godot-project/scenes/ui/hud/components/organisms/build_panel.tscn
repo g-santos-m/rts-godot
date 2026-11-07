@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://de38muyefobw8" path="res://scenes/ui/hud/components/molecules/build_button.tscn" id="1_3wjke"]
 [ext_resource type="Script" uid="uid://cgo4muf0fb5mp" path="res://scenes/ui/hud/components/organisms/build_panel.gd" id="1_txob7"]
 [ext_resource type="Texture2D" uid="uid://day4ix61nvb5m" path="res://assets/textures/entities/buildings/house.png" id="2_x6ke7"]
+[ext_resource type="Texture2D" uid="uid://boh0loyva8hns" path="res://assets/textures/ui/hud/tower_icon.png" id="4_qwis8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrixv"]
 content_margin_left = 24.0
@@ -66,8 +67,9 @@ label_text = "Wall"
 gold_cost = 25
 wood_cost = 50
 
-[node name="TowerButton" parent="GridContainer" unique_id=122490061 instance=ExtResource("1_3wjke")]
+[node name="TowerButton" parent="GridContainer" unique_id=1368757292 instance=ExtResource("1_3wjke")]
 layout_mode = 2
 label_text = "Tower"
-gold_cost = 200
-wood_cost = 400
+button_icon = ExtResource("4_qwis8")
+gold_cost = 250
+wood_cost = 200
