@@ -1,27 +1,26 @@
 extends Node2D
 
 var worker_scene := preload("res://scenes/entities/units/worker.tscn")
-var house_scene := preload("res://scenes/entities/buildings/house/house.tscn")
+var house_scene := preload("res://scenes/entities/buildings/house.tscn")
 #region TESTS
-var castle_scene := preload("res://scenes/entities/buildings/castle/castle.tscn")
+var castle_scene := preload("res://scenes/entities/buildings/castle.tscn")
 var zombie_scene := preload("res://scenes/entities/enemies/zombie.tscn")
 var fat_zombie_scene := preload("res://scenes/entities/enemies/fat_zombie.tscn")
 #endregion
 
+const UNIT_SPAWN_OFFSET = Vector2(0, 50)
+
 @onready var _wave_manager := $WaveManager
 @onready var _hud := $Hud
-#region TESTS
-#@onready var _castle := $Entities/Buildings/Castle
-#endregion
+@onready var _castle := $Entities/Buildings/Castle
 
 var _placing_entity_name: String
 
 func _ready() -> void:
 	_hud.spawn_entity.connect(_on_spawn_entity)
 	_wave_manager.last_wave_ended.connect(_on_last_wave_ended)
-	# TODO Corregir el nombre de la variable y añadir el nodo directamente en el árbol.
-	var selectionComponent = SelectionComponent.new()
-	add_child(selectionComponent)
+	var selection_component = SelectionComponent.new()
+	add_child(selection_component)
 	#region TESTS
 	#_castle.destroyed.connect(_on_castle_destroyed)
 	_hud.clear_enemies.connect(_on_clear_enemies)
@@ -30,8 +29,6 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		match _placing_entity_name:
-			"worker":
-				_spawn_worker(get_global_mouse_position())
 			"house":
 				_spawn_house(get_global_mouse_position())
 			#region TESTS
@@ -45,28 +42,37 @@ func _input(event: InputEvent) -> void:
 		_placing_entity_name = ""
 
 func _on_spawn_entity(entity_name: String) -> void:
-	_placing_entity_name = entity_name
+	if entity_name == "worker":
+		if _castle:
+			_spawn_worker()
+	else:
+		_placing_entity_name = entity_name
 
-func _spawn_worker(spawn_position: Vector2) -> void:
+func _spawn_worker() -> void:
 	var worker: Node2D = worker_scene.instantiate()
-	worker.global_position = spawn_position
-	worker.name = "Worker_%d" % worker.id
+	worker.global_position = _castle.global_position + UNIT_SPAWN_OFFSET + \
+		Vector2(randf(), randf()) * 100
 	$Entities/Units.add_child(worker)
 
 func _spawn_house(spawn_position: Vector2) -> void:
 	var house: Node2D = house_scene.instantiate()
 	house.global_position = spawn_position
-	house.name = "house_%d" % house.id
+	house.name = "House_%d" % house.id
 	house.tree_exited.connect(_rebake_navigation)
 	$Entities/Buildings.add_child(house)
 
+func _rebake_navigation() -> void:
+	$NavigationRegion2D.bake_navigation_polygon()
+
 #region TESTS
 func _spawn_castle(spawn_position: Vector2) -> void:
-	var castle: Node2D = castle_scene.instantiate()
-	castle.global_position = spawn_position
-	castle.name = "Castle_%d" % castle.id
-	castle.tree_exited.connect(_rebake_navigation)
-	$Entities/Buildings.add_child(castle)
+	# Solo puede haber un castillo a la vez.
+	if _castle == null or !is_instance_valid(_castle):
+		var castle: Node2D = castle_scene.instantiate()
+		castle.global_position = spawn_position
+		castle.tree_exited.connect(_rebake_navigation)
+		$Entities/Buildings.add_child(castle)
+		_castle = castle
 
 func _spawn_zombie(spawn_position: Vector2) -> void:
 	var zombie: Node2D = zombie_scene.instantiate()
@@ -77,9 +83,6 @@ func _spawn_fat_zombie(spawn_position: Vector2) -> void:
 	var fat_zombie: Node2D = fat_zombie_scene.instantiate()
 	fat_zombie.global_position = spawn_position
 	$Entities/Enemies.add_child(fat_zombie)
-
-func _rebake_navigation() -> void:
-	$NavigationRegion2D.bake_navigation_polygon()
 
 #func _on_castle_destroyed() -> void:
 #	_hud.show_game_over()

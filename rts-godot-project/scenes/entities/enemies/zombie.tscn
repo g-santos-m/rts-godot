@@ -18,6 +18,12 @@ stats = ExtResource("2_7mxgu")
 position = Vector2(0, -13)
 shape = SubResource("CapsuleShape2D_q33wv")
 
-[node name="RangeBox" parent="RangeComponent" parent_id_path=PackedInt32Array(1357743773) index="0" unique_id=732615573]
+[node name="AttackRange" parent="." index="5" unique_id=1357743773]
+monitorable = false
+
+[node name="RangeBox" parent="AttackRange" index="0" unique_id=732615573]
 position = Vector2(0, -13)
 shape = SubResource("CapsuleShape2D_07ee4")
+
+[node name="DetectionRange" parent="." index="6" unique_id=114068512]
+monitorable = false

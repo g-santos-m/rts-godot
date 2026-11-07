@@ -5,8 +5,6 @@ var dragging = false
 var drag_start = Vector2.ZERO
 var select_rect = RectangleShape2D.new()
 var selected = []
-var has_building = false
-@onready var building_scene = preload("res://scenes/entities/buildings/house_test.tscn")
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -16,8 +14,12 @@ func _unhandled_input(event):
 				drag_start = get_global_mouse_position()
 			else:
 				for item in selected:
-					item.collider.target = event.position
-					item.collider.selected = false
+					# Si la unidad ha sido destruida después de ser seleccionada, la quita.
+					if not is_instance_valid(item.collider):
+						selected.erase(item)
+					else:
+						item.collider.target = event.position
+						item.collider.selected = false
 				selected = []
 		elif dragging:
 			dragging = false
@@ -34,7 +36,6 @@ func _unhandled_input(event):
 				item.collider.selected = true
 	if event is InputEventMouseMotion and dragging:
 		queue_redraw()
-
 
 func _draw():
 	if dragging:

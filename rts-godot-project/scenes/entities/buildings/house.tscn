@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ihxc1n1ieu2t"]
 
 [ext_resource type="Texture2D" uid="uid://day4ix61nvb5m" path="res://assets/textures/entities/buildings/house.png" id="1_4fal1"]
-[ext_resource type="Script" uid="uid://bnnvb1vv6t7h0" path="res://scenes/entities/buildings/house/house.gd" id="1_4y8o3"]
+[ext_resource type="Script" uid="uid://bnnvb1vv6t7h0" path="res://scenes/entities/buildings/house.gd" id="1_4y8o3"]
 [ext_resource type="PackedScene" uid="uid://cfqtyidaoicm7" path="res://scenes/entities/components/health_component.tscn" id="2_4y8o3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3d0nf"]

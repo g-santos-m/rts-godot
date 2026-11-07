@@ -24,7 +24,7 @@ func _ready() -> void:
 	_timer.one_shot = true
 	_timer.timeout.connect(_on_timer_timeout)
 
-func attack_target(target: CollisionObject2D) -> void:
+func attack_target(target: PhysicsBody2D) -> void:
 	if not _on_cooldown:
 		_printer.cprint("deals ", _attack_damage, " damage to ", target.name)
 		target.take_damage(_attack_damage)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dpcvaar3sdux3"]
 
-[ext_resource type="Script" uid="uid://de046xycjm46l" path="res://scenes/entities/enemies/base_enemy.gd" id="1_e0gqf"]
+[ext_resource type="Script" uid="uid://bymdwrudccmso" path="res://scenes/entities/enemies/base_enemy.gd" id="1_e0gqf"]
 [ext_resource type="Texture2D" uid="uid://blgevjea6as2l" path="res://assets/textures/entities/enemies/zombie2.png" id="3_xl36c"]
 [ext_resource type="Texture2D" uid="uid://b2r8h5uum6d2u" path="res://assets/textures/entities/enemies/zombie0.png" id="4_cuato"]
 [ext_resource type="Texture2D" uid="uid://0wy3iro50q1h" path="res://assets/textures/entities/enemies/zombie1.png" id="5_tvoxq"]
@@ -37,6 +37,9 @@ height = 58.0
 radius = 23.0
 height = 62.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xqses"]
+radius = 150.0
+
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=917598100]
 collision_layer = 2
 collision_mask = 15
@@ -62,11 +65,18 @@ avoidance_mask = 2
 
 [node name="AttackComponent" parent="." unique_id=1099593692 instance=ExtResource("7_ohmky")]
 
-[node name="RangeComponent" parent="." unique_id=1357743773 instance=ExtResource("8_13q7i")]
+[node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("9_2g3lp")]
+visible = false
+
+[node name="AttackRange" parent="." unique_id=1357743773 instance=ExtResource("8_13q7i")]
 collision_mask = 5
 
-[node name="RangeBox" type="CollisionShape2D" parent="RangeComponent" unique_id=732615573]
+[node name="RangeBox" type="CollisionShape2D" parent="AttackRange" unique_id=732615573]
 position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_xqses")
 
-[node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("9_2g3lp")]
+[node name="DetectionRange" parent="." unique_id=114068512 instance=ExtResource("8_13q7i")]
+collision_mask = 1
+
+[node name="DetectionBox" type="CollisionShape2D" parent="DetectionRange" unique_id=676277600]
+shape = SubResource("CircleShape2D_xqses")

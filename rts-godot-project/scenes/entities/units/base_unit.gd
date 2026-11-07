@@ -1,0 +1,2 @@
+class_name BaseUnit
+extends CharacterBody2D
