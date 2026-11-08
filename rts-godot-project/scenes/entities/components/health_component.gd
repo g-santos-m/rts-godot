@@ -2,14 +2,9 @@ extends Node2D
 
 signal destroyed
 
-# Propiedades gráficas
-const red_background_p0 := Vector2(0,0)
-const red_background_p3 := Vector2(0,8)
-const green_bar_p0 := Vector2(0,0)
-const green_bar_p3 := Vector2(0,8)
-
 var _max_health: float
 var current_health: float
+var background_painted: bool
 
 @onready var _red_background = $RedBackground
 @onready var _green_bar = $GreenBar
@@ -19,7 +14,7 @@ func setup(max_health: float, printer: Printer) -> void:
 	_max_health = max_health
 	current_health = max_health
 	_printer = printer
-
+	
 func take_damage(damage: float) -> void:
 	current_health -= damage
 	if current_health < 0:
@@ -31,17 +26,20 @@ func take_damage(damage: float) -> void:
 		destroyed.emit()
 
 func paint_bar() -> void:
-	const length_mult = 2.5	# Píxeles por punto de vida.
-	self.visible = _max_health != current_health
-	_red_background.polygon = [
-		red_background_p0,
-		Vector2(_max_health * length_mult, 0),
-		Vector2(_max_health * length_mult, 8),
-		red_background_p3
-	]
+	const LENGTH_MULT = 2.5		# Píxeles por punto de vida.
+	const BAR_HALF_HEIGHT = 4
+	visible = _max_health != current_health
+	if !background_painted:
+		_red_background.polygon = [
+			Vector2(-_max_health / 2 * LENGTH_MULT, -BAR_HALF_HEIGHT),
+			Vector2(_max_health / 2 * LENGTH_MULT, -BAR_HALF_HEIGHT),
+			Vector2(_max_health / 2 * LENGTH_MULT, BAR_HALF_HEIGHT),
+			Vector2(-_max_health / 2 * LENGTH_MULT, BAR_HALF_HEIGHT)
+		]
+		background_painted = true
 	_green_bar.polygon = [
-		green_bar_p0,
-		Vector2(current_health * length_mult, 0),
-		Vector2(current_health * length_mult, 8),
-		green_bar_p3
+		_red_background.polygon[0],
+		Vector2(current_health / 2 * LENGTH_MULT, -BAR_HALF_HEIGHT),
+		Vector2(current_health / 2 * LENGTH_MULT, BAR_HALF_HEIGHT),
+		_red_background.polygon[3],
 	]

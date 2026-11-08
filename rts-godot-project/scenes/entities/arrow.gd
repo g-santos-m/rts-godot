@@ -1,7 +1,7 @@
 class_name Arrow
 extends Node2D
 
-var SPEED: float = 400			# Píxeles/segundo
+var SPEED: float = 700			# Píxeles/segundo
 var MAX_DISTANCE: float = 500	# Píxeles
 
 # Parámetros

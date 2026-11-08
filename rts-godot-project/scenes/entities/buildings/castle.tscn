@@ -1,31 +1,7 @@
-[gd_scene format=3 uid="uid://cvq7k483siahs"]
+[gd_scene format=3 uid="uid://i3bg0ltcgs8p"]
 
-[ext_resource type="Script" uid="uid://b4xgary4ibmwp" path="res://scenes/entities/buildings/castle.gd" id="1_58gdu"]
-[ext_resource type="Texture2D" uid="uid://dcd7xkwpw6pqe" path="res://assets/textures/entities/buildings/castle.png" id="2_58gdu"]
-[ext_resource type="PackedScene" uid="uid://cfqtyidaoicm7" path="res://scenes/entities/components/health_component.tscn" id="3_banmx"]
+[ext_resource type="PackedScene" uid="uid://cm6bm5vmea66u" path="res://scenes/entities/buildings/base_building.tscn" id="1_af46p"]
+[ext_resource type="Resource" uid="uid://drlux3isydidu" path="res://scenes/entities/buildings/castle_stats.tres" id="2_jk18y"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i2g43"]
-radius = 40.0
-height = 132.0
-
-[node name="Castle" type="StaticBody2D" unique_id=363965524]
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("1_58gdu")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1907619970]
-position = Vector2(0, -61)
-texture = ExtResource("2_58gdu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=749159625]
-position = Vector2(0, -40)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_i2g43")
-
-[node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("3_banmx")]
-position = Vector2(-11, -139)
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=563819917]
-position = Vector2(0, -40)
-vertices = PackedVector2Array(0, 40, 39, 40, 67, 19, 67, -18, 40, -40, -40, -40, -67, -18, -67, 19, -40, 40)
-affect_navigation_mesh = true
+[node name="Castle" unique_id=363965524 instance=ExtResource("1_af46p")]
+stats = ExtResource("2_jk18y")

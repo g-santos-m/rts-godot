@@ -33,15 +33,9 @@ func _ready() -> void:
 	_range_comp.setup(_printer)
 	_range_comp.body_in_range.connect(_on_body_in_range)
 	_health_comp.setup(stats.max_health, _printer)
-	# Hay que llamar a paint_bar() al principio para que la barra de vida tome
-	# tamaño correcto y poder posicionarla adecuadamente después.
 	_health_comp.paint_bar()
-	# Posiciona la barra centrada horizontalmente y 10 píxeles sobre el sprite
-	# de la entidad.
-	_health_comp.position = Vector2(
-		-(_health_comp.get_child(0).polygon[1].x / 2 - 5),
+	_health_comp.position.y = \
 		-(_animated_sprite.sprite_frames.get_frame_texture("work", 0).get_height() + 10)
-	)
 	_health_comp.destroyed.connect(_on_destroyed)
 
 	_resource_manager = get_tree().get_first_node_in_group("resource_manager")

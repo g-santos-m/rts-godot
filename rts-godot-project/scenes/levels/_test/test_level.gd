@@ -11,11 +11,11 @@ var fat_zombie_scene := preload("res://scenes/entities/enemies/fat_zombie.tscn")
 
 const UNIT_SPAWN_OFFSET = Vector2(0, 50)
 
+var _placing_entity_name: String
+
 @onready var _wave_manager := $WaveManager
 @onready var _hud := $Hud
-@onready var _castle := $Entities/Buildings/Castle
-
-var _placing_entity_name: String
+@onready var _castle := $Entities/Buildings/Castle_1
 
 func _ready() -> void:
 	_hud.spawn_entity.connect(_on_spawn_entity)

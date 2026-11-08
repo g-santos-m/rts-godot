@@ -33,6 +33,9 @@ func _ready() -> void:
 	_nav_agent.avoidance_priority = 0.2
 	_attack_comp.setup(stats.attack_damage, stats.attack_rate, _printer)
 	_health_comp.setup(stats.max_health, _printer)
+	_health_comp.paint_bar() 
+	_health_comp.position.y = \
+		-(_animated_sprite.sprite_frames.get_frame_texture("attack", 0).get_height() + 10)
 	_health_comp.destroyed.connect(_on_destroyed)
 	_attack_range_comp.setup(_printer)
 	_detection_range_comp.setup(_printer)

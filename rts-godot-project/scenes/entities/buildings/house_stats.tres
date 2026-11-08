@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BaseBuildingStats" format=3 uid="uid://d4eqgbccwo6l0"]
+
+[ext_resource type="Script" uid="uid://dwoqornt0ly0k" path="res://scenes/entities/buildings/base_building_stats.gd" id="1_op1vm"]
+
+[resource]
+script = ExtResource("1_op1vm")
+metadata/_custom_type_script = "uid://dwoqornt0ly0k"
