@@ -56,7 +56,7 @@ shape = SubResource("CapsuleShape2D_loskt")
 target_desired_distance = 32.0
 
 [node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("7_rnapk")]
-position = Vector2(-9, -66)
+position = Vector2(0, -64)
 
 [node name="ResourceTimer" type="Timer" parent="." unique_id=771064161]
 wait_time = 5.0

@@ -28,4 +28,4 @@ vertices = PackedVector2Array(0, 40, 39, 40, 67, 19, 67, -18, 40, -40, -40, -40,
 affect_navigation_mesh = true
 
 [node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("3_hol23")]
-position = Vector2(-11, -139)
+position = Vector2(0, -139)
