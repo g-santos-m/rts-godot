@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://de38muyefobw8" path="res://scenes/ui/hud/components/molecules/build_button.tscn" id="1_3wjke"]
 [ext_resource type="Script" uid="uid://cgo4muf0fb5mp" path="res://scenes/ui/hud/components/organisms/build_panel.gd" id="1_txob7"]
 [ext_resource type="Texture2D" uid="uid://day4ix61nvb5m" path="res://assets/textures/entities/buildings/house.png" id="2_x6ke7"]
+[ext_resource type="Texture2D" uid="uid://dkwlxebo24og4" path="res://assets/textures/entities/units/knight0.png" id="3_eup01"]
 [ext_resource type="Texture2D" uid="uid://boh0loyva8hns" path="res://assets/textures/ui/hud/tower_icon.png" id="4_qwis8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrixv"]
@@ -48,6 +49,7 @@ label_text = "Worker"
 [node name="KnightButton" parent="GridContainer" unique_id=275053535 instance=ExtResource("1_3wjke")]
 layout_mode = 2
 label_text = "Knight"
+button_icon = ExtResource("3_eup01")
 gold_cost = 200
 
 [node name="ArcherButton" parent="GridContainer" unique_id=1262109275 instance=ExtResource("1_3wjke")]

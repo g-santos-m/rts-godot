@@ -12,7 +12,6 @@ static var _next_ids_by_type := {
 
 var id: int
 var _current_target: PhysicsBody2D
-
 var _printer: Printer
 
 @onready var _animated_sprite := $AnimatedSprite2D

@@ -43,7 +43,7 @@ tile_set = SubResource("TileSet_xqses")
 
 [node name="Buildings" type="Node" parent="Entities" unique_id=338388759 groups=["buildings_node"]]
 
-[node name="Castle" parent="Entities/Buildings" unique_id=363965524 instance=ExtResource("4_sk5k4")]
+[node name="Castle_1" parent="Entities/Buildings" unique_id=363965524 instance=ExtResource("4_sk5k4")]
 position = Vector2(866, 424)
 
 [node name="Enemies" type="Node" parent="Entities" unique_id=1027554146 groups=["enemies_node"]]
