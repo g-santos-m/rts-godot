@@ -2,8 +2,8 @@ extends Camera2D
 
 const HUD_TOP_BAR_HEIGHT = 180
 const TILE_SIZE = 64
-const MAX_ZOOM = 1
-const MIN_ZOOM = 0.5
+const MAX_ZOOM = 1.2
+const MIN_ZOOM = 0.4
 const ZOOM_STEP = 0.1
 
 @export var camera_speed: float = 500.0		# Píxeles/segundo
@@ -14,10 +14,10 @@ func _ready() -> void:
 	var base_layer: TileMapLayer = get_tree().get_first_node_in_group("base_layer")
 	map_size = base_layer.get_used_rect().size * TILE_SIZE
 
-	limit_top = -HUD_TOP_BAR_HEIGHT
-	limit_bottom = map_size.y
-	limit_left = 0
-	limit_right = map_size.x
+	limit_top = -HUD_TOP_BAR_HEIGHT - 400
+	limit_bottom = map_size.y + 400
+	limit_left = 0 - 400
+	limit_right = map_size.x + 400
 
 func _process(delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
