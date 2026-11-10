@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_j0p7c")
+detection_range = 0.0
 metadata/_custom_type_script = "uid://b48a5nmsj1ho0"

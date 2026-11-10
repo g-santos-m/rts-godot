@@ -1,11 +1,11 @@
 extends Node
 
-var worker_scene := preload("res://scenes/entities/units/basic_unit2.tscn")
+var worker_scene := preload("res://scenes/entities/units/worker.tscn")
 var house_scene := preload("res://scenes/entities/buildings/house.tscn")
 
 @onready var _hud := $Hud
 @onready var _wave_manager := $WaveManager
-@onready var _castle := $Entities/Buildings/Castle
+@onready var _castle := $Entities/Buildings/Castle_1
 
 var _placing_entity_name: String
 

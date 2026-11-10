@@ -1,6 +1,7 @@
 extends Node2D
 
 var worker_scene := preload("res://scenes/entities/units/worker.tscn")
+var knight_scene := preload("res://scenes/entities/units/knight.tscn")
 var house_scene := preload("res://scenes/entities/buildings/house.tscn")
 var tower_scene := preload("res://scenes/entities/buildings/tower.tscn")
 #region TESTS
@@ -28,12 +29,16 @@ func _ready() -> void:
 	#endregion
 
 func _input(event: InputEvent) -> void:
+	var building: PhysicsBody2D
+
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		match _placing_entity_name:
 			"house":
-				_spawn_house(get_global_mouse_position())
+				building = house_scene.instantiate()
+			#"wall":
+				#building = wall_scene.instantiate()
 			"tower":
-				_spawn_tower(get_global_mouse_position())
+				building = tower_scene.instantiate()
 			#region TESTS
 			"castle":
 				_spawn_castle(get_global_mouse_position())
@@ -42,32 +47,40 @@ func _input(event: InputEvent) -> void:
 			"fat_zombie":
 				_spawn_fat_zombie(get_global_mouse_position())
 			#endregion
+		if building:
+			_spawn_building(building, get_global_mouse_position())
 		_placing_entity_name = ""
 
 func _on_spawn_entity(entity_name: String) -> void:
-	if entity_name == "worker":
-		if _castle:
-			_spawn_worker()
-	else:
-		_placing_entity_name = entity_name
+	# Para unidades.
+	if _castle:
+		match entity_name:
+			"worker":
+				var worker := worker_scene.instantiate()
+				_spawn_unit(worker)
+				return
+			"knight":
+				var knight := knight_scene.instantiate()
+				_spawn_unit(knight)
+				return
+			"archer":
+				pass
+				#var archer := archer_scene.instantiate()
+				#_spawn_unit(archer)
+				#return
 
-func _spawn_worker() -> void:
-	var worker: Node2D = worker_scene.instantiate()
-	worker.global_position = _castle.global_position + UNIT_SPAWN_OFFSET + \
+	# Para el resto de entidades que requieren un segundo click.
+	_placing_entity_name = entity_name
+
+func _spawn_unit(unit: BaseUnit) -> void:
+	unit.global_position = _castle.global_position + UNIT_SPAWN_OFFSET + \
 		Vector2(randf(), randf()) * 100
-	$Entities/Units.add_child(worker)
+	$Entities/Units.add_child(unit)
 
-func _spawn_house(spawn_position: Vector2) -> void:
-	var house: Node2D = house_scene.instantiate()
-	house.global_position = spawn_position
-	house.tree_exited.connect(_rebake_navigation)
-	$Entities/Buildings.add_child(house)
-
-func _spawn_tower(spawn_position: Vector2) -> void:
-	var tower: Node2D = tower_scene.instantiate()
-	tower.global_position = spawn_position
-	tower.tree_exited.connect(_rebake_navigation)
-	$Entities/Buildings.add_child(tower)
+func _spawn_building(building: BaseBuilding, spawn_position: Vector2) -> void:
+	building.global_position = spawn_position
+	building.tree_exited.connect(_rebake_navigation)
+	$Entities/Buildings.add_child(building)
 
 func _rebake_navigation() -> void:
 	$NavigationRegion2D.bake_navigation_polygon()

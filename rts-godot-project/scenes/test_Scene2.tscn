@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://crljii3nq61ci"]
-
-[ext_resource type="Script" uid="uid://md1p2ho87brs" path="res://scenes/systems/selection_component.gd" id="1_lktkq"]
-
-[node name="TestScene2" type="Node2D" unique_id=1611312182]
-script = ExtResource("1_lktkq")

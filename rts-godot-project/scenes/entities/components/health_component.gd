@@ -14,7 +14,7 @@ func setup(max_health: float, printer: Printer) -> void:
 	_max_health = max_health
 	current_health = max_health
 	_printer = printer
-	
+
 func take_damage(damage: float) -> void:
 	current_health -= damage
 	if current_health < 0:
@@ -39,7 +39,8 @@ func paint_bar() -> void:
 		background_painted = true
 	_green_bar.polygon = [
 		_red_background.polygon[0],
-		Vector2(current_health / 2 * LENGTH_MULT, -BAR_HALF_HEIGHT),
+		Vector2(_red_background.polygon[0].x + current_health * LENGTH_MULT, -BAR_HALF_HEIGHT),
+		Vector2(_red_background.polygon[3].x + current_health * LENGTH_MULT, BAR_HALF_HEIGHT),
 		Vector2(current_health / 2 * LENGTH_MULT, BAR_HALF_HEIGHT),
 		_red_background.polygon[3],
 	]
