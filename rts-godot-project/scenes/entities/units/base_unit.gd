@@ -12,7 +12,8 @@ static var _next_ids_by_type := {
 }
 
 var id: int
-var _target: Vector2
+var move_destination: Vector2:
+	set = set_move_destination
 var _printer: Printer
 var selected = false:
 	set = set_selected
@@ -24,58 +25,23 @@ var _current_terrain_speed_mult: float = 1.0
 @onready var _animated_sprite := $AnimatedSprite2D
 @onready var _nav_agent := $NavigationAgent2D
 @onready var _health_comp := $HealthComponent
-@onready var _range_comp := $RangeComponent
 
 func _ready() -> void:
-	id = _next_ids_by_type[stats.enemy_type]
-	_next_ids_by_type[stats.enemy_type] += 1
-	name = "%s_%s" % [stats.enemy_type, id]
+	id = _next_ids_by_type[stats.unit_type]
+	_next_ids_by_type[stats.unit_type] += 1
+	name = "%s_%s" % [stats.unit_type, id]
 	_printer = Printer.new(name)
 
+	_nav_agent.avoidance_priority = 0.2
 	_health_comp.setup(stats.max_health, _printer)
 	_health_comp.paint_bar()
 	_health_comp.position.y = \
-		-(_animated_sprite.sprite_frames.get_frame_texture("work", 0).get_height() + 10)
+		-(_animated_sprite.sprite_frames.get_frame_texture("animation", 0).get_height() + 10)
 	_health_comp.destroyed.connect(_on_destroyed)
-	_range_comp.setup(_printer)
-	_range_comp.body_in_range.connect(_on_body_in_range)
 
 	_base_layer = get_tree().get_first_node_in_group("base_layer")
-	
+
 	_printer.cprint("has spawned at ", global_position)
-
-func take_damage(damage: float) -> void:
-	_health_comp.take_damage(damage)
-
-func set_selected(value):
-	selected = value
-	if selected:
-		_animated_sprite.self_modulate = Color.AQUA;
-	else:
-		_animated_sprite.self_modulate = Color.WHITE;
-
-func set_target():
-	if selected:
-		_nav_agent.target_position = get_global_mouse_position()
-		_target = get_global_mouse_position()
-
-# Cuando el recurso entra en rango, se guarda,se comienza a recolectar y se
-# inicia el ResourceTimer
-func _on_body_in_range(body: Node2D, is_in_range: bool) -> void:
-	if is_in_range:
-		if body.is_in_group("gold_resource") or body.is_in_group("wood_resource"):
-			_current_resource = body
-			_farm_resource()
-			_resource_timer.start()
-	else:
-		if body == _current_resource:
-			_current_resource = null
-			_resource_timer.stop()
-			_animated_sprite.stop()
-
-func _input(event: InputEvent) -> void:
-	if selected and event.is_action_pressed("set_target"):
-		_nav_agent.target_position = get_global_mouse_position()
 
 func _physics_process(_delta) -> void:
 	# Si ya llegó al final de la ruta (o no tiene una), se detiene y no hace nada más
@@ -95,6 +61,20 @@ func _physics_process(_delta) -> void:
 	# Aplica la velocidad y mueve al personaje
 	velocity = direction * stats.movement_speed * _current_terrain_speed_mult
 	move_and_slide()
+
+func take_damage(damage: float) -> void:
+	_health_comp.take_damage(damage)
+
+func set_selected(value):
+	selected = value
+	if selected:
+		_animated_sprite.self_modulate = Color.AQUA;
+	else:
+		_animated_sprite.self_modulate = Color.WHITE;
+
+func set_move_destination(mouse_position: Vector2) -> void:
+	move_destination = mouse_position
+	_nav_agent.target_position = move_destination
 
 func _update_terrain_speed_mult() -> void:
 	# Convertir la posicion global a coordenadas locales de la cuadricula de tiles

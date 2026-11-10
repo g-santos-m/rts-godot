@@ -1,6 +1,6 @@
 extends Node
 
-var worker_scene := preload("res://scenes/entities/units/basic_unit2.tscn")
+var worker_scene := preload("res://scenes/entities/units/worker.tscn")
 var house_scene := preload("res://scenes/entities/buildings/house.tscn")
 
 @onready var _hud := $Hud

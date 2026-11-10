@@ -32,7 +32,7 @@ func _ready() -> void:
 	_nav_agent.avoidance_priority = 0.2
 	_attack_comp.setup(stats.attack_damage, stats.attack_rate, _printer)
 	_health_comp.setup(stats.max_health, _printer)
-	_health_comp.paint_bar() 
+	_health_comp.paint_bar()
 	_health_comp.position.y = \
 		-(_animated_sprite.sprite_frames.get_frame_texture("attack", 0).get_height() + 10)
 	_health_comp.destroyed.connect(_on_destroyed)
@@ -90,12 +90,12 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 
 func _set_target_unit() -> void:
 	if _detection_range_comp.has_overlapping_bodies():
-		var units_in_range: Array[Node2D] = \
+		var entities_in_range: Array[Node2D] = \
 			_detection_range_comp.get_overlapping_bodies().filter(
 				func (body: Node2D) -> bool: return body is BaseUnit
 			)
-		if units_in_range.size() > 0:
-			_set_target(units_in_range.pick_random())
+		if entities_in_range.size() > 0:
+			_set_target(entities_in_range.pick_random())
 
 # Busca el edificio más cercano.
 func _set_target_building() -> void:

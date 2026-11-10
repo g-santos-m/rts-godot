@@ -20,6 +20,7 @@ func setup(direction: Vector2, damage: float, printer: Printer) -> void:
 
 func _ready() -> void:
 	_initial_position = global_position
+	z_index = 1
 	_area_2d.body_entered.connect(_on_body_entered)
 
 func _physics_process(delta: float) -> void:
