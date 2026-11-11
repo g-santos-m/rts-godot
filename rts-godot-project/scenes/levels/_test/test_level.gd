@@ -4,6 +4,7 @@ signal placing_tower(is_placing_tower: bool)
 
 var worker_scene := preload("res://scenes/entities/units/worker.tscn")
 var knight_scene := preload("res://scenes/entities/units/knight.tscn")
+var archer_scene := preload("res://scenes/entities/units/archer.tscn")
 var house_scene := preload("res://scenes/entities/buildings/house.tscn")
 var tower_scene := preload("res://scenes/entities/buildings/tower.tscn")
 #region TESTS
@@ -77,10 +78,9 @@ func _on_spawn_entity(entity_name: String) -> void:
 				_spawn_unit(knight)
 				return
 			"archer":
-				pass
-				#var archer := archer_scene.instantiate()
-				#_spawn_unit(archer)
-				#return
+				var archer := archer_scene.instantiate()
+				_spawn_unit(archer)
+				return
 
 	# Para el resto de entidades que requieren un segundo click.
 	_placing_entity_name = entity_name
