@@ -61,6 +61,7 @@ func _physics_process(_delta: float) -> void:
 	if _attack_range_comp.overlaps_body(_current_target):
 		_nav_agent.avoidance_priority = 1
 		_animated_sprite.play("attack")
+		_animated_sprite.flip_h = _current_target.global_position.x < global_position.x
 		_attack_comp.attack_target(_current_target)
 		_nav_agent.velocity = Vector2.ZERO
 		return
