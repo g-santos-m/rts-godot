@@ -198,7 +198,7 @@ source_geometry_mode = 1
 source_geometry_group_name = &"navigation_obstacles"
 agent_radius = 28.0
 
-[node name="TestLevel" type="Node2D" unique_id=543807021]
+[node name="TestLevel" type="Node2D" unique_id=543807021 groups=["levels"]]
 y_sort_enabled = true
 script = ExtResource("1_joxrx")
 

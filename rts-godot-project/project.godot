@@ -46,6 +46,7 @@ enemies_node=""
 units_node=""
 resources_node=""
 navigation_region=""
+levels=""
 
 [input]
 
