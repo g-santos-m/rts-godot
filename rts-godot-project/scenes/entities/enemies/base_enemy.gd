@@ -96,7 +96,7 @@ func _set_target_unit() -> void:
 				func (body: Node2D) -> bool: return body is BaseUnit
 			)
 		if entities_in_range.size() > 0:
-			_set_target(entities_in_range.pick_random())
+			_set_target(_get_nearest_target(entities_in_range))
 
 # Busca el edificio más cercano.
 func _set_target_building() -> void:
@@ -121,6 +121,16 @@ func _set_target(target: PhysicsBody2D) -> void:
 	#	_nav_agent.target_position = _current_target.global_position
 	#else:
 	#	_nav_agent.target_position = _get_random_target_point(_current_target)
+
+func _get_nearest_target(entities: Array[Node2D]) -> PhysicsBody2D:
+	var nearest_target: Node2D
+	var shortest_distance = INF
+	for entity in entities:
+		var distance := global_position.distance_to(entity.global_position)
+		if distance < shortest_distance:
+			nearest_target = entity
+			shortest_distance = distance
+	return nearest_target as PhysicsBody2D
 
 # Calcula un punto aleatorio dentro de la CollisionShape2D del objetivo para guardar como target.
 # De esta manera se intenta evitar que todos los enemigos se dirijan al mismo punto exacto.
