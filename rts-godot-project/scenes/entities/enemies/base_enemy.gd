@@ -5,10 +5,7 @@ signal destroyed
 
 @export var stats: BaseEnemyStats
 
-static var _next_ids_by_type := {
-	"Zombie": 1,
-	"FatZombie": 1,
-}
+static var _next_ids_by_type := { "Zombie": 1, "FatZombie": 1 }
 
 var id: int
 var _current_target: PhysicsBody2D
@@ -20,6 +17,7 @@ var _printer: Printer
 @onready var _health_comp := $HealthComponent
 @onready var _attack_range_comp := $AttackRange
 @onready var _detection_range_comp := $DetectionRange
+
 
 func _ready() -> void:
 	id = _next_ids_by_type[stats.enemy_type]
@@ -34,8 +32,8 @@ func _ready() -> void:
 	_health_comp.setup(stats.max_health, _printer)
 	_health_comp.paint_bar()
 	_health_comp.position.y = \
-		-(_animated_sprite.sprite_frames.get_frame_texture("attack", 0).get_height() + 10)
-	_health_comp.destroyed.connect(_on_destroyed)
+			-(_animated_sprite.sprite_frames.get_frame_texture("attack", 0).get_height() + 10)
+	_health_comp.destroyed.connect(on_destroyed)
 	_attack_range_comp.setup(_printer)
 	_detection_range_comp.setup(_printer)
 	_detection_range_comp.body_in_range.connect(_on_body_in_detection_range)
@@ -44,11 +42,13 @@ func _ready() -> void:
 
 	_printer.cprint("has spawned at ", global_position)
 
+
 func _physics_process(_delta: float) -> void:
 	# Si no tiene objetivo o el que tenía ha desaparecido, busca otro.
 	if _current_target == null or not is_instance_valid(_current_target):
 		_animated_sprite.stop()
-		# Busca primero unidades en rango de detección, si no encuentra, busca el edificio más cercano.
+		# Busca primero unidades en rango de detección, si no encuentra, busca el edificio más
+		# cercano.
 		_set_target_unit()
 		if _current_target == null:
 			_set_target_building()
@@ -61,9 +61,9 @@ func _physics_process(_delta: float) -> void:
 	if _attack_range_comp.overlaps_body(_current_target):
 		_nav_agent.avoidance_priority = 1
 		_animated_sprite.play("attack")
+		_animated_sprite.flip_h = _current_target.global_position.x < global_position.x
 		_attack_comp.attack_target(_current_target)
 		_nav_agent.velocity = Vector2.ZERO
-		return
 	# Si no esta en rango, calcula la siguiente posición y se desplaza.
 	else:
 		_nav_agent.avoidance_priority = 0.2
@@ -81,21 +81,26 @@ func _physics_process(_delta: float) -> void:
 		# velocidad correcta con la signal velocity_computed.
 		_nav_agent.velocity = desired_velocity
 
+
 func take_damage(damage: float) -> void:
 	_health_comp.take_damage(damage)
+
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 	move_and_slide()
 
+
 func _set_target_unit() -> void:
 	if _detection_range_comp.has_overlapping_bodies():
 		var entities_in_range: Array[Node2D] = \
-			_detection_range_comp.get_overlapping_bodies().filter(
-				func (body: Node2D) -> bool: return body is BaseUnit
-			)
+				_detection_range_comp.get_overlapping_bodies().filter(
+					func(body: Node2D) -> bool:
+						return body is BaseUnit,
+				)
 		if entities_in_range.size() > 0:
-			_set_target(entities_in_range.pick_random())
+			_set_target(_get_nearest_target(entities_in_range))
+
 
 # Busca el edificio más cercano.
 func _set_target_building() -> void:
@@ -112,6 +117,7 @@ func _set_target_building() -> void:
 				shortest_distance = distance
 		_set_target(closest_building)
 
+
 func _set_target(target: PhysicsBody2D) -> void:
 	_current_target = target
 	_printer.cprint("is targeting ", _current_target.name, " at ", _current_target.global_position)
@@ -121,11 +127,24 @@ func _set_target(target: PhysicsBody2D) -> void:
 	#else:
 	#	_nav_agent.target_position = _get_random_target_point(_current_target)
 
+
+func _get_nearest_target(entities: Array[Node2D]) -> PhysicsBody2D:
+	var nearest_target: Node2D
+	var shortest_distance = INF
+	for entity in entities:
+		var distance := global_position.distance_to(entity.global_position)
+		if distance < shortest_distance:
+			nearest_target = entity
+			shortest_distance = distance
+	return nearest_target as PhysicsBody2D
+
+
 # Calcula un punto aleatorio dentro de la CollisionShape2D del objetivo para guardar como target.
 # De esta manera se intenta evitar que todos los enemigos se dirijan al mismo punto exacto.
 func _get_random_target_point(building: StaticBody2D) -> Vector2:
 	var collision_shape: CollisionShape2D = building.get_children().filter(
-		func (node: Node2D) -> bool: return node.is_class("CollisionShape2D")
+		func(node: Node2D) -> bool:
+			return node.is_class("CollisionShape2D"),
 	)[0]
 
 	var random_target_point_x: int = collision_shape.global_position.x + randi_range(-10, 10)
@@ -133,13 +152,15 @@ func _get_random_target_point(building: StaticBody2D) -> Vector2:
 
 	return Vector2(random_target_point_x, random_target_point_y)
 
+
 func _on_body_in_detection_range(body: Node2D, is_in_range: bool) -> void:
 	if is_in_range and _current_target is not BaseUnit:
 		_current_target = body
 	elif not is_in_range and body == _current_target:
 		_current_target = null
 
-func _on_destroyed() -> void:
+
+func on_destroyed() -> void:
 	_printer.cprint("has been destroyed")
 	destroyed.emit()
 	queue_free()

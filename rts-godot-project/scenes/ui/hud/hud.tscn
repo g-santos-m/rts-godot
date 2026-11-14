@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dim42iava0dkf" path="res://scenes/ui/hud/components/organisms/build_panel.tscn" id="3_ax4tw"]
 [ext_resource type="PackedScene" uid="uid://cbu3pd0vbqfpm" path="res://scenes/ui/hud/components/atoms/game_paused.tscn" id="4_ax4tw"]
 
-[node name="Hud" type="CanvasLayer" unique_id=292531970]
+[node name="Hud" type="CanvasLayer" unique_id=292531970 groups=["hud"]]
 script = ExtResource("1_as3gr")
 
 [node name="TopBar" parent="." unique_id=97617913 instance=ExtResource("2_as3gr")]

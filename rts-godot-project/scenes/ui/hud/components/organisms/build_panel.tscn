@@ -4,7 +4,9 @@
 [ext_resource type="Script" uid="uid://cgo4muf0fb5mp" path="res://scenes/ui/hud/components/organisms/build_panel.gd" id="1_txob7"]
 [ext_resource type="Texture2D" uid="uid://day4ix61nvb5m" path="res://assets/textures/entities/buildings/house.png" id="2_x6ke7"]
 [ext_resource type="Texture2D" uid="uid://dkwlxebo24og4" path="res://assets/textures/entities/units/knight0.png" id="3_eup01"]
+[ext_resource type="Texture2D" uid="uid://c3qttg5c45yop" path="res://assets/textures/entities/units/archer1.png" id="4_ms3jd"]
 [ext_resource type="Texture2D" uid="uid://boh0loyva8hns" path="res://assets/textures/ui/hud/tower_icon.png" id="4_qwis8"]
+[ext_resource type="Texture2D" uid="uid://fx1lvfmv7b0i" path="res://assets/textures/entities/buildings/wall.png" id="6_dy2ed"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrixv"]
 content_margin_left = 24.0
@@ -22,6 +24,10 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 shadow_size = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb1re"]
+atlas = ExtResource("6_dy2ed")
+region = Rect2(0, 128, 64, 64)
 
 [node name="BuildPanel" type="PanelContainer" unique_id=244630244]
 anchors_preset = 3
@@ -55,6 +61,7 @@ gold_cost = 200
 [node name="ArcherButton" parent="GridContainer" unique_id=1262109275 instance=ExtResource("1_3wjke")]
 layout_mode = 2
 label_text = "Archer"
+button_icon = ExtResource("4_ms3jd")
 gold_cost = 250
 
 [node name="HouseButton" parent="GridContainer" unique_id=392485595 instance=ExtResource("1_3wjke")]
@@ -66,6 +73,7 @@ wood_cost = 200
 [node name="WallButton" parent="GridContainer" unique_id=1622535266 instance=ExtResource("1_3wjke")]
 layout_mode = 2
 label_text = "Wall"
+button_icon = SubResource("AtlasTexture_vb1re")
 gold_cost = 25
 wood_cost = 50
 
