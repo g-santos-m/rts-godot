@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://pet654s5k16q"]
+
+[ext_resource type="PackedScene" uid="uid://cm6bm5vmea66u" path="res://scenes/entities/buildings/base_building.tscn" id="1_wbrhh"]
+[ext_resource type="Resource" uid="uid://cq5e8qmbilw6e" path="res://scenes/entities/buildings/wall_stats.tres" id="2_0qj3u"]
+[ext_resource type="Script" uid="uid://bp26badop65ll" path="res://scenes/entities/buildings/wall.gd" id="2_kgryh"]
+[ext_resource type="Texture2D" uid="uid://fx1lvfmv7b0i" path="res://assets/textures/entities/buildings/wall.png" id="3_kgryh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb1re"]
+resource_local_to_scene = true
+atlas = ExtResource("3_kgryh")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vb1re"]
+radius = 8.0
+height = 34.0
+
+[node name="Wall" unique_id=363965524 instance=ExtResource("1_wbrhh")]
+script = ExtResource("2_kgryh")
+stats = ExtResource("2_0qj3u")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1907619970]
+position = Vector2(0, -28)
+texture = SubResource("AtlasTexture_vb1re")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=749159625]
+position = Vector2(0, -16)
+rotation = 0.0
+shape = SubResource("CapsuleShape2D_vb1re")
+
+[node name="NavigationObstacle2D" parent="." index="2" unique_id=563819917]
+position = Vector2(4.618532e-14, -12.999999)
+rotation = 1.5707964
+scale = Vector2(0.2, 0.2)
+vertices = PackedVector2Array(0, 40, 39, 40, 67, 19, 67, -18, 40, -40, -69.99999, -39.999992, -94.99999, -19.999992, -94.99999, 20.000004, -69.99999, 40)
+
+[node name="HealthComponent" parent="." index="3" unique_id=1745330916]
+position = Vector2(0, -84)

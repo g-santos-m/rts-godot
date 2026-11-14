@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://df87624kogpge"]
+
+[ext_resource type="Script" uid="uid://dwyyea0f18lsf" path="res://scenes/systems/build_manager.gd" id="1_6puqn"]
+
+[node name="BuildManager" type="Node2D" unique_id=1772456519]
+script = ExtResource("1_6puqn")

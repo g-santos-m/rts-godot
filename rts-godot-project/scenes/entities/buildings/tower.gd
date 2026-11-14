@@ -13,6 +13,7 @@ var _range_visual_aid := RangeVisualAid.new()
 @onready var _range_comp := $RangeComponent
 @onready var _attack_comp := $RangedAttackComponent
 
+
 func _ready() -> void:
 	super._ready()
 	_attack_comp.setup(stats.attack_damage, stats.attack_rate, _printer)
@@ -22,7 +23,8 @@ func _ready() -> void:
 	range_shape.radius = stats.detection_range
 	add_child(_range_visual_aid)
 	_range_visual_aid.visible = false
-	get_tree().get_first_node_in_group("levels").placing_tower.connect(_on_placing_tower)
+	get_tree().get_first_node_in_group("build_manager").placing_tower.connect(_on_placing_tower)
+
 
 func _physics_process(_delta: float) -> void:
 	# Si no tiene objetivo o el que tenía ha desaparecido, busca otro.
@@ -32,6 +34,7 @@ func _physics_process(_delta: float) -> void:
 			return
 
 	_attack_comp.attack_target(_current_target)
+
 
 func _on_placing_tower(is_placing_tower: bool) -> void:
 	_range_visual_aid.visible = is_placing_tower
