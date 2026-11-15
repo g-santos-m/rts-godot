@@ -19,6 +19,15 @@ var id: int
 @onready var _printer: Printer
 
 
+static func reset_ids() -> void:
+	_next_ids_by_type = {
+		"House": 1,
+		"Wall": 1,
+		"Tower": 1,
+		"Castle": 1
+}
+
+
 func _ready() -> void:
 	id = _next_ids_by_type[stats.building_type]
 	_next_ids_by_type[stats.building_type] += 1

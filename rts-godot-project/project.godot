@@ -49,6 +49,7 @@ levels=""
 entities_node=""
 hud=""
 selection_component=""
+confirm_back_dialogue=""
 
 [input]
 

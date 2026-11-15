@@ -5,7 +5,10 @@ signal destroyed
 
 @export var stats: BaseEnemyStats
 
-static var _next_ids_by_type := { "Zombie": 1, "FatZombie": 1 }
+static var _next_ids_by_type := {
+	"Zombie": 1,
+	"FatZombie": 1
+}
 
 var id: int
 var _current_target: PhysicsBody2D
@@ -17,6 +20,13 @@ var _printer: Printer
 @onready var _health_comp := $HealthComponent
 @onready var _attack_range_comp := $AttackRange
 @onready var _detection_range_comp := $DetectionRange
+
+
+static func reset_ids() -> void:
+	_next_ids_by_type = {
+		"Zombie": 1,
+		"FatZombie": 1
+	}
 
 
 func _ready() -> void:

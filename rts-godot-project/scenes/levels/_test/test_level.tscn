@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cbv2fub6u6ukl"]
 
-[ext_resource type="Script" uid="uid://crgk5n4j2grjk" path="res://scenes/levels/_test/test_level1.gd" id="1_edfom"]
+[ext_resource type="Script" uid="uid://crgk5n4j2grjk" path="res://scenes/levels/_test/test_level.gd" id="1_edfom"]
 [ext_resource type="Texture2D" uid="uid://cd4v3150nvdvx" path="res://assets/textures/terrain/base.png" id="4_5emos"]
 [ext_resource type="Texture2D" uid="uid://hgkgug4vjb45" path="res://assets/textures/terrain/grass_sheet.png" id="4_44d0p"]
 [ext_resource type="Texture2D" uid="uid://bcomqlu6llvfy" path="res://assets/textures/terrain/base_water_sheet.png" id="4_c8377"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://14a2gabprok1" path="res://scenes/entities/environment/gold.tscn" id="5_joxrx"]
 [ext_resource type="PackedScene" uid="uid://be5rpgg1tnvq8" path="res://scenes/entities/environment/enemy_spawner.tscn" id="5_u7wn6"]
 [ext_resource type="Texture2D" uid="uid://111fb7u632iq" path="res://assets/textures/terrain/base_sand_sheet.png" id="6_edfom"]
-[ext_resource type="PackedScene" uid="uid://d3k8kslb4u81w" path="res://scenes/ui/hud/_test/test_hud.tscn" id="6_p7vqb"]
+[ext_resource type="PackedScene" uid="uid://d3k8kslb4u81w" path="res://scenes/ui/views/hud/_test/test_hud.tscn" id="6_p7vqb"]
 [ext_resource type="Texture2D" uid="uid://chtm6jp0sg1ll" path="res://assets/textures/terrain/dirt_sheet.png" id="7_337sl"]
 [ext_resource type="Texture2D" uid="uid://c87lng6xctj3l" path="res://assets/textures/terrain/water_sheet.png" id="9_c8377"]
 [ext_resource type="PackedScene" uid="uid://cumclswbm0umu" path="res://scenes/systems/resource_manager.tscn" id="9_p7vqb"]

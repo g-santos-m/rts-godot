@@ -5,7 +5,11 @@ signal destroyed
 
 @export var stats: BaseUnitStats
 
-static var _next_ids_by_type := { "Worker": 1, "Knight": 1, "Archer": 1 }
+static var _next_ids_by_type := {
+	"Worker": 1,
+	"Knight": 1,
+	"Archer": 1,
+	}
 
 var id: int
 var move_destination: Vector2:
@@ -21,6 +25,14 @@ var _current_terrain_speed_mult: float = 1.0
 @onready var _animated_sprite := $AnimatedSprite2D
 @onready var _nav_agent := $NavigationAgent2D
 @onready var _health_comp := $HealthComponent
+
+
+static func reset_ids() -> void:
+	_next_ids_by_type = {
+		"Worker": 1,
+		"Knight": 1,
+		"Archer": 1,
+		}
 
 
 func _ready() -> void:
