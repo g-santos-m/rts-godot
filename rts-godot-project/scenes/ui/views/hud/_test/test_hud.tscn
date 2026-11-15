@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d3k8kslb4u81w"]
+
+[ext_resource type="PackedScene" uid="uid://cb72v5am380oy" path="res://scenes/ui/views/hud/hud.tscn" id="1_sdkig"]
+[ext_resource type="PackedScene" uid="uid://bcs8f7kp0iy54" path="res://scenes/ui/components/organisms/testing_panel.tscn" id="2_ce7qf"]
+[ext_resource type="Script" uid="uid://bf0jql2brb34d" path="res://scenes/ui/views/hud/_test/test_hud.gd" id="2_sr0a0"]
+
+[node name="TestHud" unique_id=292531970 instance=ExtResource("1_sdkig")]
+script = ExtResource("2_sr0a0")
+
+[node name="TestingPanel" parent="." index="2" unique_id=1693906554 instance=ExtResource("2_ce7qf")]

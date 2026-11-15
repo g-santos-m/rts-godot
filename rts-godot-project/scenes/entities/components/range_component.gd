@@ -49,7 +49,7 @@ func _on_body_exited(body: Node2D) -> void:
 			target_enemy = null
 
 func _get_base_type(entity: PhysicsBody2D) -> String:
-	if entity != null:
+	if entity != null and is_instance_valid(entity):
 		return entity.get_script().get_base_script().get_global_name()
 	else:
 		return ""

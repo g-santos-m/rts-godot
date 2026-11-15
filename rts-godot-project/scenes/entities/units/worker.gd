@@ -1,3 +1,4 @@
+class_name Worker
 extends BaseUnit
 
 var _current_resource: PhysicsBody2D = null

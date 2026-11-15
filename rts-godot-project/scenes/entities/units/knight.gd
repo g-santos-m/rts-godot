@@ -1,3 +1,4 @@
+class_name Knight
 extends BaseUnit
 
 var _target_enemy: BaseEnemy:

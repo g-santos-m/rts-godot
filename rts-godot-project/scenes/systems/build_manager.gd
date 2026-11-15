@@ -52,8 +52,6 @@ func _input(event: InputEvent) -> void:
 			match _entity_being_placed_name:
 				"house":
 					_spawn_building(house_scene.instantiate())
-				"wall":
-					_spawn_building(wall_scene.instantiate())
 				"tower":
 					_spawn_building(tower_scene.instantiate())
 				#region TESTS
@@ -138,6 +136,7 @@ func _clear_placing_state() -> void:
 	if _entity_being_placed_name == "wall":
 		_wall_building_manager.queue_free()
 		_wall_building_manager = null
+		_wall_building_mode = false
 		_selection_comp.toggle_active(true)
 
 	if _ghost_building:
@@ -148,7 +147,7 @@ func _clear_placing_state() -> void:
 
 
 func _rebake_navigation() -> void:
-	_navigation_region.bake_navigation_polygon()
+	_navigation_region.bake_navigation_polygon.call_deferred()
 
 
 func _on_spawn_walls(tiles: Array[Vector2]) -> void:

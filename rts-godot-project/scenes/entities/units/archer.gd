@@ -1,3 +1,4 @@
+class_name Archer
 extends BaseUnit
 
 var _arrow_scene := preload("res://scenes/entities/arrow.tscn")
