@@ -128,8 +128,8 @@ func _units_fat_zombie() -> void:
 	archer1.position = _spawn_point + _CHASER_OFFSET * _chaser_offset_dir + Vector2(30, -30)
 	archer2.position = _spawn_point + _CHASER_OFFSET * _chaser_offset_dir + Vector2(30, 30)
 	_units.add_child(fat_zombie)
-	_units.add_child(archer1)
 	_units.add_child(knight)
+	_units.add_child(archer1)
 	_units.add_child(archer2)
 	_animated_units = _units.get_children()
 
@@ -144,8 +144,8 @@ func _horde_units() -> void:
 	knight.position = _spawn_point
 	archer1.position = _spawn_point + Vector2(-30, -30)
 	archer2.position = _spawn_point + Vector2(-30, 30)
-	_units.add_child(archer1)
 	_units.add_child(knight)
+	_units.add_child(archer1)
 	_units.add_child(archer2)
 
 	for i in range(20):
@@ -155,7 +155,7 @@ func _horde_units() -> void:
 		else:
 			zombie.texture = load("res://assets/textures/entities/enemies/fat-zombie0.png")
 		zombie.position = _spawn_point + _CHASER_OFFSET * 1.7 * _chaser_offset_dir \
-				+ Vector2(randi_range(-60, 60), (-60 + i * 5))
+				+ Vector2(randi_range(-60, 60), randi_range(-60, 60))
 		_units.add_child(zombie)
 
 	_animated_units = _units.get_children()

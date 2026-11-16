@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BuildCosts" format=3 uid="uid://fa0ptlfe3n82"]
+
+[ext_resource type="Script" uid="uid://cmto12g8fvk0u" path="res://scenes/systems/build_costs.gd" id="1_cpceo"]
+
+[resource]
+script = ExtResource("1_cpceo")
+worker_gold = 10
+worker_wood = 10
+knight_gold = 10
+knight_wood = 10
+archer_gold = 10
+archer_wood = 10
+house_gold = 10
+house_wood = 10
+wall_gold = 10
+wall_wood = 10
+tower_gold = 10
+tower_wood = 10
+metadata/_custom_type_script = "uid://cmto12g8fvk0u"
