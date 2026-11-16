@@ -7,7 +7,7 @@ var target_enemy: CharacterBody2D
 
 @onready var _printer: Printer
 
-func setup(printer: Printer, target_type: String = "") -> void:
+func setup(printer: Printer, target_type: String = "None") -> void:
 	_printer = printer
 	_target_type = target_type
 
@@ -49,7 +49,11 @@ func _on_body_exited(body: Node2D) -> void:
 			target_enemy = null
 
 func _get_base_type(entity: PhysicsBody2D) -> String:
-	if entity != null and is_instance_valid(entity):
+	if (
+			entity != null
+			and is_instance_valid(entity)
+			and entity.get_script()
+	):
 		return entity.get_script().get_base_script().get_global_name()
 	else:
 		return ""

@@ -22,6 +22,8 @@ var _base_layer: TileMapLayer
 var _last_cell_coords: Vector2 = Vector2(-999999, -999999)
 var _current_terrain_speed_mult: float = 1.0
 
+var _resource_manager: ResourceManager
+
 @onready var _animated_sprite := $AnimatedSprite2D
 @onready var _nav_agent := $NavigationAgent2D
 @onready var _health_comp := $HealthComponent
@@ -49,6 +51,7 @@ func _ready() -> void:
 	_health_comp.destroyed.connect(_on_destroyed)
 
 	_base_layer = get_tree().get_first_node_in_group("base_layer")
+	_resource_manager = get_tree().get_first_node_in_group("resource_manager")
 
 	_printer.cprint("has spawned at ", global_position)
 
@@ -103,5 +106,6 @@ func _update_terrain_speed_mult() -> void:
 
 func _on_destroyed() -> void:
 	_printer.cprint("has been destroyed")
+	_resource_manager.decrement_population()
 	destroyed.emit()
 	queue_free()

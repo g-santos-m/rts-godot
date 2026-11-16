@@ -29,5 +29,7 @@ func get_costs(unit_name: String) -> Array[int]:
 			return [wall_gold, wall_wood]
 		"Tower":
 			return [tower_gold, tower_wood]
+		"Castle":
+			return [0, 0]
 
 	return []

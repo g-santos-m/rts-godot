@@ -2,7 +2,6 @@ class_name Worker
 extends BaseUnit
 
 var _current_resource: PhysicsBody2D = null
-var _resource_manager : Node
 
 @onready var _resource_timer := $ResourceTimer
 @onready var _range_comp := $RangeComponent
@@ -10,7 +9,6 @@ var _resource_manager : Node
 func _ready() -> void:
 	super._ready()
 
-	_resource_manager = get_tree().get_first_node_in_group("resource_manager")
 	_resource_timer.timeout.connect(_on_resource_timer_timeout)
 	_range_comp.setup(_printer)
 	_range_comp.body_in_range.connect(_on_body_in_range)
@@ -37,9 +35,9 @@ func _on_body_in_range(body: Node2D, is_in_range: bool) -> void:
 func _farm_resource() -> void:
 	_animated_sprite.play("animation")
 	if _current_resource.is_in_group("gold_resource"):
-		_resource_manager._increment_gold()
+		_resource_manager.increment_gold()
 	elif _current_resource.is_in_group("wood_resource"):
-		_resource_manager._increment_wood()
+		_resource_manager.increment_wood()
 
 # Recolectar cada vez que el ResourceTimer llega a 0
 func _on_resource_timer_timeout() -> void:

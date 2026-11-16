@@ -98,7 +98,7 @@ func _on_spawn_entity(entity_name: String) -> void:
 
 
 func _spawn_unit(unit: BaseUnit) -> void:
-	if _request_resources(unit):
+	if _request_resources(unit.name, true):
 		unit.global_position = _level.castle.global_position + UNIT_SPAWN_OFFSET + \
 				Vector2(randf(), randf()) * 100
 		_entities_node.get_node("Units").add_child(unit)
@@ -107,12 +107,15 @@ func _spawn_unit(unit: BaseUnit) -> void:
 
 
 func _spawn_building(building: BaseBuilding) -> void:
-	building.global_position = _ghost_building.global_position \
-			+ Vector2(0, (_ghost_building.get_rect().size.y / 2))
-	building.tree_exited.connect(_rebake_navigation)
-	_entities_node.get_node("Buildings").add_child(building)
-	_rebake_navigation()
-	_clear_placing_state()
+	if _request_resources(building.name):
+		building.global_position = _ghost_building.global_position \
+				+ Vector2(0, (_ghost_building.get_rect().size.y / 2))
+		building.tree_exited.connect(_rebake_navigation)
+		_entities_node.get_node("Buildings").add_child(building)
+		_rebake_navigation()
+		_clear_placing_state()
+	else:
+		_printer.cprint("not enough resources for " + building.name)
 
 
 func _attach_building_ghost(entity_name: String) -> void:
@@ -160,13 +163,16 @@ func _rebake_navigation() -> void:
 
 func _on_spawn_walls(tiles: Array[Vector2]) -> void:
 	for tile in tiles:
-		var wall: Wall = wall_scene.instantiate()
-		wall.global_position = _base_layer.map_to_local(tile) + \
-				Vector2(0, GlobalVariables.TILE_SIZE.y / 2)
-		wall.tree_exited.connect(_rebake_navigation)
-		_entities_node.get_node("Buildings").add_child(wall)
-		walls_in_map.append(wall)
-		wall.tree_exiting.connect(_on_wall_exiting.bind(wall))
+		if _request_resources("Wall"):
+			var wall: Wall = wall_scene.instantiate()
+			wall.global_position = _base_layer.map_to_local(tile) + \
+					Vector2(0, GlobalVariables.TILE_SIZE.y / 2)
+			wall.tree_exited.connect(_rebake_navigation)
+			_entities_node.get_node("Buildings").add_child(wall)
+			walls_in_map.append(wall)
+			wall.tree_exiting.connect(_on_wall_exiting.bind(wall))
+		else:
+			_printer.cprint("not enough resources for Wall")
 	update_walls.emit()
 	_rebake_navigation()
 	_clear_placing_state()
@@ -177,9 +183,9 @@ func _on_wall_exiting(wall: Wall) -> void:
 	update_walls.emit()
 
 
-func _request_resources(entity: PhysicsBody2D) -> bool:
-	var costs: Array[int] = _build_costs.get_costs(entity.name)
-	var has_enough_resources: bool = _resource_manager.decrement_resources(costs)
+func _request_resources(entity_name: String, is_unit: bool = false) -> bool:
+	var costs: Array[int] = _build_costs.get_costs(entity_name)
+	var has_enough_resources: bool = _resource_manager.decrement_resources(costs, is_unit)
 	return has_enough_resources
 
 
@@ -188,7 +194,6 @@ func _spawn_castle() -> void:
 	# Solo puede haber un castillo a la vez.
 	if _level.castle == null or !is_instance_valid(_level.castle):
 		var castle: Castle = castle_scene.instantiate()
-		_attach_building_ghost(_entity_being_placed_name)
 		_spawn_building(castle)
 		_level.castle = castle
 
