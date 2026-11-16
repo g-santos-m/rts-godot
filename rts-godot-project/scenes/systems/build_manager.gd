@@ -18,18 +18,22 @@ var fat_zombie_scene := preload("res://scenes/entities/enemies/fat_zombie.tscn")
 
 const UNIT_SPAWN_OFFSET = Vector2(0, 50)
 
+@export var _build_costs: BuildCosts
+
 var walls_in_map: Array[Wall] = []
 var _entity_being_placed_name: String
 var _ghost_building: Sprite2D
-var _wall_building_manager: WallBuildingManager
 var _wall_building_mode: bool = false
 
 var _entities_node: Node2D
 var _navigation_region: NavigationRegion2D
 var _base_layer: TileMapLayer
 var _selection_comp: SelectionComponent
+var _wall_building_manager: WallBuildingManager
+var _resource_manager: ResourceManager
 
 @onready var _level: Node2D = get_parent()
+@onready var _printer: Printer = Printer.new(name)
 
 
 func _ready() -> void:
@@ -37,6 +41,7 @@ func _ready() -> void:
 	_navigation_region = get_tree().get_first_node_in_group("navigation_region")
 	_base_layer = get_tree().get_first_node_in_group("base_layer")
 	_selection_comp = get_tree().get_first_node_in_group("selection_component")
+	_resource_manager = get_tree().get_first_node_in_group("resource_manager")
 
 	get_tree().get_first_node_in_group("hud").spawn_entity.connect(_on_spawn_entity)
 
@@ -93,9 +98,12 @@ func _on_spawn_entity(entity_name: String) -> void:
 
 
 func _spawn_unit(unit: BaseUnit) -> void:
-	unit.global_position = _level.castle.global_position + UNIT_SPAWN_OFFSET + \
-			Vector2(randf(), randf()) * 100
-	_entities_node.get_node("Units").add_child(unit)
+	if _request_resources(unit):
+		unit.global_position = _level.castle.global_position + UNIT_SPAWN_OFFSET + \
+				Vector2(randf(), randf()) * 100
+		_entities_node.get_node("Units").add_child(unit)
+	else:
+		_printer.cprint("not enough resources for " + unit.name)
 
 
 func _spawn_building(building: BaseBuilding) -> void:
@@ -167,6 +175,12 @@ func _on_spawn_walls(tiles: Array[Vector2]) -> void:
 func _on_wall_exiting(wall: Wall) -> void:
 	walls_in_map.erase(wall)
 	update_walls.emit()
+
+
+func _request_resources(entity: PhysicsBody2D) -> bool:
+	var costs: Array[int] = _build_costs.get_costs(entity.name)
+	var has_enough_resources: bool = _resource_manager.decrement_resources(costs)
+	return has_enough_resources
 
 
 #region TESTS
