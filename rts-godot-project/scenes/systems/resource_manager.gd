@@ -23,37 +23,35 @@ func increment_wood():
 	resources_updated.emit(get_resources_dict())
 
 
-func increment_population() -> void:
-	_population += 1
-	resources_updated.emit(get_resources_dict())
-
-
 func increment_max_population() -> void:
 	_max_population += 5
 	resources_updated.emit(get_resources_dict())
 
 
-func decrement_resources(resources_needed: Array[int]) -> bool:
-	if _gold >= resources_needed[0] and _wood >= resources_needed[1]:
+func decrement_max_population() -> void:
+	_max_population -= 5
+	resources_updated.emit(get_resources_dict())
+
+
+func decrement_population() -> void:
+	_population -= 1
+	resources_updated.emit(get_resources_dict())
+
+
+func decrement_resources(resources_needed: Array[int], is_unit: bool) -> bool:
+	if (
+			_gold >= resources_needed[0]
+			and _wood >= resources_needed[1]
+			and (!is_unit or _population < _max_population)
+	):
 		_gold -= resources_needed[0]
 		_wood -= resources_needed[1]
-		return true
-	else:
-		return false
-
-
-func decrement_population() -> bool:
-	if _population < _max_population:
-		_population -= 1
+		if is_unit:
+			_population += 1
 		resources_updated.emit(get_resources_dict())
 		return true
 	else:
 		return false
-
-
-func decrement_max_population() -> void:
-	_max_population -= 5
-	resources_updated.emit(get_resources_dict())
 
 
 func get_resources_dict() -> Dictionary:
