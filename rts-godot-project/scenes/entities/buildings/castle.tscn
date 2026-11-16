@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://i3bg0ltcgs8p"]
 
 [ext_resource type="PackedScene" uid="uid://cm6bm5vmea66u" path="res://scenes/entities/buildings/base_building.tscn" id="1_af46p"]
-[ext_resource type="Resource" uid="uid://drlux3isydidu" path="res://scenes/entities/buildings/castle_stats.tres" id="2_jk18y"]
+[ext_resource type="Script" uid="uid://dk8vanr5eujbs" path="res://scenes/entities/buildings/castle.gd" id="2_jk18y"]
+[ext_resource type="Resource" uid="uid://drlux3isydidu" path="res://scenes/entities/buildings/castle_stats.tres" id="3_kt84p"]
 
 [node name="Castle" unique_id=363965524 instance=ExtResource("1_af46p")]
-stats = ExtResource("2_jk18y")
+script = ExtResource("2_jk18y")
+stats = ExtResource("3_kt84p")

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cy4waeaf81cn3"]
+
+[ext_resource type="Script" uid="uid://d3maqugbwps6y" path="res://scenes/ui/components/atoms/label_very_big.gd" id="1_f4c5f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ublql"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[node name="LabelVeryBig" type="MarginContainer" unique_id=1861715996]
+offset_right = 161.0
+offset_bottom = 75.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+script = ExtResource("1_f4c5f")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=145335240]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ublql")
+bbcode_enabled = true
+text = "[b][font_size=48][color=#eee]Label"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1

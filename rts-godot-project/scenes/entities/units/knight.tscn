@@ -2,22 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://1omyikrr2oxx" path="res://scenes/entities/units/base_unit.tscn" id="1_k5xpp"]
 [ext_resource type="Script" uid="uid://bvc5vhf4l0ypu" path="res://scenes/entities/units/knight.gd" id="2_kclqp"]
-[ext_resource type="Script" uid="uid://b48a5nmsj1ho0" path="res://scenes/entities/units/base_unit_stats.gd" id="3_auorg"]
+[ext_resource type="Resource" uid="uid://1uufhhb5h72i" path="res://scenes/entities/units/knight_stats.tres" id="3_7vpev"]
 [ext_resource type="Texture2D" uid="uid://dkwlxebo24og4" path="res://assets/textures/entities/units/knight0.png" id="4_7vpev"]
 [ext_resource type="Texture2D" uid="uid://b62x71lyvjj6v" path="res://assets/textures/entities/units/knight1.png" id="5_t16lg"]
 [ext_resource type="Texture2D" uid="uid://ce27nlqtit757" path="res://assets/textures/entities/units/knight2.png" id="6_tv7ik"]
 [ext_resource type="Texture2D" uid="uid://dnkbcmbnfpog0" path="res://assets/textures/entities/units/knight3.png" id="7_0h1v6"]
 [ext_resource type="PackedScene" uid="uid://dn72hx05oapx5" path="res://scenes/entities/components/attack_component.tscn" id="8_7vpev"]
 [ext_resource type="PackedScene" uid="uid://dyjc7xlgqf668" path="res://scenes/entities/components/range_component.tscn" id="9_t16lg"]
-
-[sub_resource type="Resource" id="Resource_vrixv"]
-script = ExtResource("3_auorg")
-unit_type = "Knight"
-max_health = 20.0
-movement_speed = 210.0
-attack_damage = 5.0
-attack_rate = 0.8
-metadata/_custom_type_script = "uid://b48a5nmsj1ho0"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xqses"]
 animations = [{
@@ -48,7 +39,7 @@ radius = 100.0
 
 [node name="Knight" unique_id=1996506914 instance=ExtResource("1_k5xpp")]
 script = ExtResource("2_kclqp")
-stats = SubResource("Resource_vrixv")
+stats = ExtResource("3_7vpev")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=132714460]
 sprite_frames = SubResource("SpriteFrames_xqses")

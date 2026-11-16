@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://by7we0csgxgje"]
+
+[ext_resource type="PackedScene" uid="uid://1omyikrr2oxx" path="res://scenes/entities/units/base_unit.tscn" id="1_mtutv"]
+[ext_resource type="Script" uid="uid://ccnqwttp0wck1" path="res://scenes/entities/units/archer.gd" id="2_a70rh"]
+[ext_resource type="Resource" uid="uid://cgfox3b3swh45" path="res://scenes/entities/units/archer_stats.tres" id="3_wwom5"]
+[ext_resource type="Texture2D" uid="uid://rsacjg1145r6" path="res://assets/textures/entities/units/archer0.png" id="4_x4den"]
+[ext_resource type="Texture2D" uid="uid://c3qttg5c45yop" path="res://assets/textures/entities/units/archer1.png" id="5_211er"]
+[ext_resource type="Texture2D" uid="uid://lwom870xnspd" path="res://assets/textures/entities/units/archer2.png" id="6_potof"]
+[ext_resource type="PackedScene" uid="uid://dyjc7xlgqf668" path="res://scenes/entities/components/range_component.tscn" id="7_4x1qp"]
+[ext_resource type="PackedScene" uid="uid://uyb45nrrcfb5" path="res://scenes/entities/components/ranged_attack_component.tscn" id="8_1jrlb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mm1lw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_x4den")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_211er")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_potof")
+}],
+"loop": 1,
+"name": &"animation",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_juyfb"]
+radius = 200.0
+
+[node name="Archer" unique_id=1996506914 instance=ExtResource("1_mtutv")]
+script = ExtResource("2_a70rh")
+stats = ExtResource("3_wwom5")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=132714460]
+sprite_frames = SubResource("SpriteFrames_mm1lw")
+
+[node name="RangeComponent" parent="." index="4" unique_id=1357743773 instance=ExtResource("7_4x1qp")]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeComponent" index="0" unique_id=241700891]
+shape = SubResource("CircleShape2D_juyfb")
+
+[node name="RangedAttackComponent" parent="." index="5" unique_id=1500910560 instance=ExtResource("8_1jrlb")]
+position = Vector2(0, -26)

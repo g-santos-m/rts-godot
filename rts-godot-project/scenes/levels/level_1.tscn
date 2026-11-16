@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://diu523epsm05d" path="res://assets/textures/terrain/base_dirt_sheet.png" id="3_excbq"]
 [ext_resource type="Texture2D" uid="uid://111fb7u632iq" path="res://assets/textures/terrain/base_sand_sheet.png" id="4_iav0o"]
 [ext_resource type="PackedScene" uid="uid://i3bg0ltcgs8p" path="res://scenes/entities/buildings/castle.tscn" id="4_sk5k4"]
-[ext_resource type="PackedScene" uid="uid://cb72v5am380oy" path="res://scenes/ui/hud/hud.tscn" id="4_x42e6"]
+[ext_resource type="PackedScene" uid="uid://cb72v5am380oy" path="res://scenes/ui/views/hud/hud.tscn" id="4_x42e6"]
 [ext_resource type="Texture2D" uid="uid://bcomqlu6llvfy" path="res://assets/textures/terrain/base_water_sheet.png" id="5_dnkej"]
 [ext_resource type="PackedScene" uid="uid://14a2gabprok1" path="res://scenes/entities/environment/gold.tscn" id="7_iav0o"]
 [ext_resource type="PackedScene" uid="uid://cw2n3cyv1i5fm" path="res://scenes/systems/wave_manager.tscn" id="7_s8va5"]
@@ -89,7 +89,7 @@ sources/3 = SubResource("TileSetAtlasSource_wtwp4")
 sources/4 = SubResource("TileSetAtlasSource_iwr0g")
 sources/5 = SubResource("TileSetAtlasSource_bahl2")
 
-[node name="Level1" type="Node" unique_id=999812030]
+[node name="Level1" type="Node2D" unique_id=1735509336]
 script = ExtResource("1_ksju7")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1760637189]

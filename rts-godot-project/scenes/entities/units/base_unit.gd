@@ -9,7 +9,7 @@ static var _next_ids_by_type := {
 	"Worker": 1,
 	"Knight": 1,
 	"Archer": 1,
-}
+	}
 
 var id: int
 var move_destination: Vector2:
@@ -22,9 +22,20 @@ var _base_layer: TileMapLayer
 var _last_cell_coords: Vector2 = Vector2(-999999, -999999)
 var _current_terrain_speed_mult: float = 1.0
 
+var _resource_manager: ResourceManager
+
 @onready var _animated_sprite := $AnimatedSprite2D
 @onready var _nav_agent := $NavigationAgent2D
 @onready var _health_comp := $HealthComponent
+
+
+static func reset_ids() -> void:
+	_next_ids_by_type = {
+		"Worker": 1,
+		"Knight": 1,
+		"Archer": 1,
+		}
+
 
 func _ready() -> void:
 	id = _next_ids_by_type[stats.unit_type]
@@ -36,12 +47,14 @@ func _ready() -> void:
 	_health_comp.setup(stats.max_health, _printer)
 	_health_comp.paint_bar()
 	_health_comp.position.y = \
-		-(_animated_sprite.sprite_frames.get_frame_texture("animation", 0).get_height() + 10)
+			-(_animated_sprite.sprite_frames.get_frame_texture("animation", 0).get_height() + 10)
 	_health_comp.destroyed.connect(_on_destroyed)
 
 	_base_layer = get_tree().get_first_node_in_group("base_layer")
+	_resource_manager = get_tree().get_first_node_in_group("resource_manager")
 
 	_printer.cprint("has spawned at ", global_position)
+
 
 func _physics_process(_delta) -> void:
 	# Si ya llegó al final de la ruta (o no tiene una), se detiene y no hace nada más
@@ -62,19 +75,23 @@ func _physics_process(_delta) -> void:
 	velocity = direction * stats.movement_speed * _current_terrain_speed_mult
 	move_and_slide()
 
+
 func take_damage(damage: float) -> void:
 	_health_comp.take_damage(damage)
+
 
 func set_selected(value):
 	selected = value
 	if selected:
-		_animated_sprite.self_modulate = Color.AQUA;
+		_animated_sprite.self_modulate = Color.AQUA
 	else:
-		_animated_sprite.self_modulate = Color.WHITE;
+		_animated_sprite.self_modulate = Color.WHITE
+
 
 func set_move_destination(mouse_position: Vector2) -> void:
 	move_destination = mouse_position
 	_nav_agent.target_position = move_destination
+
 
 func _update_terrain_speed_mult() -> void:
 	# Convertir la posicion global a coordenadas locales de la cuadricula de tiles
@@ -86,7 +103,9 @@ func _update_terrain_speed_mult() -> void:
 	var tile_data: TileData = _base_layer.get_cell_tile_data(current_cell)
 	_current_terrain_speed_mult = tile_data.get_custom_data("speed_mult_units")
 
+
 func _on_destroyed() -> void:
 	_printer.cprint("has been destroyed")
+	_resource_manager.decrement_population()
 	destroyed.emit()
 	queue_free()

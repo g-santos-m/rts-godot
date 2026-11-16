@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BaseUnitStats" format=3 uid="uid://cgfox3b3swh45"]
+
+[ext_resource type="Script" uid="uid://b48a5nmsj1ho0" path="res://scenes/entities/units/base_unit_stats.gd" id="1_o2dge"]
+
+[resource]
+script = ExtResource("1_o2dge")
+unit_type = "Archer"
+max_health = 15.0
+attack_damage = 3.0
+metadata/_custom_type_script = "uid://b48a5nmsj1ho0"

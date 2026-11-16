@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dohovp6sby27y"]
+
+[ext_resource type="Script" uid="uid://dxsbloffbr0ep" path="res://scenes/systems/wall_building_manager.gd" id="1_vsyuk"]
+
+[node name="WallBuildingManager" type="Node2D" unique_id=73599959]
+script = ExtResource("1_vsyuk")

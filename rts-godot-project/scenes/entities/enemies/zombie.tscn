@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b2qex581p6w8c"]
 
 [ext_resource type="PackedScene" uid="uid://dpcvaar3sdux3" path="res://scenes/entities/enemies/base_enemy.tscn" id="1_q33wv"]
+[ext_resource type="Script" uid="uid://c1xku6k6w4lpm" path="res://scenes/entities/enemies/zombie.gd" id="2_07ee4"]
 [ext_resource type="Resource" uid="uid://irdqaghspquy" path="res://scenes/entities/enemies/zombie_stats.tres" id="2_7mxgu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q33wv"]
@@ -12,6 +13,7 @@ radius = 17.0
 height = 36.0
 
 [node name="Zombie" unique_id=917598100 instance=ExtResource("1_q33wv")]
+script = ExtResource("2_07ee4")
 stats = ExtResource("2_7mxgu")
 
 [node name="CollisionBox" parent="." index="1" unique_id=1798760610]

@@ -32,7 +32,8 @@ radius = 12.0
 height = 26.0
 
 [node name="BaseUnit" type="CharacterBody2D" unique_id=1996506914]
-collision_mask = 15
+collision_mask = 31
+safe_margin = 0.05
 script = ExtResource("1_4fbn4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=132714460]
@@ -45,6 +46,7 @@ position = Vector2(0, -13)
 shape = SubResource("CapsuleShape2D_loskt")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1470258585]
+target_desired_distance = 60.0
 avoidance_enabled = true
 
 [node name="HealthComponent" parent="." unique_id=1745330916 instance=ExtResource("7_xpu48")]

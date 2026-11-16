@@ -39,4 +39,8 @@ func _unhandled_input(event):
 
 func _draw():
 	if dragging:
-		draw_rect(Rect2(drag_start, get_global_mouse_position() - drag_start), Color.AQUA, false, 10.0)
+		draw_rect(Rect2(drag_start, get_global_mouse_position() - drag_start), Color.DIM_GRAY, false, 8.0)
+		draw_rect(Rect2(drag_start, get_global_mouse_position() - drag_start), Color.FLORAL_WHITE, false, 6.0)
+
+func toggle_active(is_active: bool) -> void:
+	set_process_unhandled_input(is_active)

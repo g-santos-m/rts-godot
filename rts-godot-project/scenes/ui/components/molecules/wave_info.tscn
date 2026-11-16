@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://d2vr1eqiq0y4p"]
+
+[ext_resource type="Script" uid="uid://u6t5wim5gfr" path="res://scenes/ui/components/molecules/wave_info.gd" id="1_1vet8"]
+[ext_resource type="StyleBox" uid="uid://b0smjkkhmili7" path="res://scenes/ui/styles/container_style_box.tres" id="1_2ok8q"]
+[ext_resource type="PackedScene" uid="uid://bcexw4l7i1qg8" path="res://scenes/ui/components/atoms/label_big.tscn" id="2_7vm8q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i85x2"]
+bg_color = Color(0.70980394, 0.5647059, 0.2901961, 1)
+
+[node name="WaveInfo" type="PanelContainer" unique_id=1222134407]
+offset_right = 443.0
+offset_bottom = 86.0
+theme_override_styles/panel = ExtResource("1_2ok8q")
+script = ExtResource("1_1vet8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=821661286]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1124244445]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i85x2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=2118015391]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WaveNumberLabel" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=1861715996 instance=ExtResource("2_7vm8q")]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "Wave"
+
+[node name="NextWaveTimerLabel" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=919819518 instance=ExtResource("2_7vm8q")]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "Next wave"
+
+[node name="EnemyNumberLabel" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=706244130 instance=ExtResource("2_7vm8q")]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "Enemies"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1926837264]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WaveNumber" parent="VBoxContainer/HBoxContainer2" unique_id=1062792991 instance=ExtResource("2_7vm8q")]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "1"
+
+[node name="NextWaveTimer" parent="VBoxContainer/HBoxContainer2" unique_id=729258534 instance=ExtResource("2_7vm8q")]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "3:00"
+
+[node name="EnemyNumber" parent="VBoxContainer/HBoxContainer2" unique_id=743604456 instance=ExtResource("2_7vm8q")]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+text = "20"
