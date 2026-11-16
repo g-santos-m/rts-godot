@@ -231,7 +231,7 @@ visible = false
 time_between_waves = 0.5
 
 [node name="EnemySpawner1" parent="WaveManager" unique_id=1594341160 instance=ExtResource("8_dga24")]
-position = Vector2(-607, 1098)
+position = Vector2(-638, 1147)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([4, 6, 8])
 
@@ -308,6 +308,31 @@ enemies_per_wave = Array[int]([0, 0, 8])
 [node name="EnemySpawner16" parent="WaveManager" unique_id=1796003313 instance=ExtResource("8_dga24")]
 position = Vector2(4647, 1880)
 enemy_type = "Zombie"
-enemies_per_wave = Array[int]([0, 0, 6])
+enemies_per_wave = Array[int]([0, 0, 8])
+
+[node name="EnemySpawner17" parent="WaveManager" unique_id=942140849 instance=ExtResource("8_dga24")]
+position = Vector2(-637, 1023)
+enemy_type = "FatZombie"
+enemies_per_wave = Array[int]([1, 3, 5])
+
+[node name="EnemySpawner18" parent="WaveManager" unique_id=1495197677 instance=ExtResource("8_dga24")]
+position = Vector2(2250, -579)
+enemy_type = "FatZombie"
+enemies_per_wave = Array[int]([1, 3, 5])
+
+[node name="EnemySpawner19" parent="WaveManager" unique_id=948801489 instance=ExtResource("8_dga24")]
+position = Vector2(2403, 1922)
+enemy_type = "FatZombie"
+enemies_per_wave = Array[int]([1, 3, 5])
+
+[node name="EnemySpawner20" parent="WaveManager" unique_id=114786610 instance=ExtResource("8_dga24")]
+position = Vector2(-661, -66)
+enemy_type = "FatZombie"
+enemies_per_wave = Array[int]([1, 3, 5])
+
+[node name="EnemySpawner21" parent="WaveManager" unique_id=1541382162 instance=ExtResource("8_dga24")]
+position = Vector2(5553, 717)
+enemy_type = "FatZombie"
+enemies_per_wave = Array[int]([1, 3, 5])
 
 [node name="ResourceManager" parent="." unique_id=578601721 instance=ExtResource("9_dga24")]
