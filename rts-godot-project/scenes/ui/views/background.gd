@@ -162,7 +162,7 @@ func _horde_units() -> void:
 
 func _reset_animation() -> void:
 	_is_waiting = true
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(5).timeout
 	_is_waiting = false
 	_animation_number = 0
 	_setup_next_animation()

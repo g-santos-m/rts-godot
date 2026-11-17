@@ -6,11 +6,19 @@ signal resources_updated(resources: Dictionary)
 @export var starting_max_population: int = 10
 @export var starting_gold: int = 100
 @export var starting_wood: int = 100
+@export var auto_gather_increment: int = 5
+@export var auto_gather_interval: int = 5		# En segundos.
 
 var _population: int = 0
 var _max_population: int = starting_max_population
 var _gold: int = starting_gold
 var _wood: int = starting_wood
+
+@onready var _auto_gather_timer: Timer = $Timer
+
+func _ready() -> void:
+	_auto_gather_timer.wait_time = auto_gather_interval
+	_auto_gather_timer.timeout.connect(_auto_gather_resources)
 
 
 func increment_gold():
@@ -61,3 +69,8 @@ func get_resources_dict() -> Dictionary:
 		"gold": _gold,
 		"wood": _wood,
 	}
+
+func _auto_gather_resources() -> void:
+	_gold += auto_gather_increment
+	_wood += auto_gather_increment
+	resources_updated.emit(get_resources_dict())
