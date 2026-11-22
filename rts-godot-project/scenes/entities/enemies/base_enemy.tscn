@@ -58,8 +58,6 @@ shape = SubResource("CapsuleShape2D_3d0nf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=762855349]
 avoidance_enabled = true
-radius = 15.0
-max_speed = 200.0
 avoidance_layers = 2
 avoidance_mask = 2
 
@@ -77,6 +75,7 @@ shape = SubResource("CapsuleShape2D_xqses")
 
 [node name="DetectionRange" parent="." unique_id=114068512 instance=ExtResource("8_13q7i")]
 collision_mask = 1
+monitorable = false
 
 [node name="DetectionBox" type="CollisionShape2D" parent="DetectionRange" unique_id=676277600]
 shape = SubResource("CircleShape2D_xqses")

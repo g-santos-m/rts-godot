@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dyjc7xlgqf668" path="res://scenes/entities/components/range_component.tscn" id="6_1uc5k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hkwyj"]
-radius = 17.0
+radius = 18.0
 height = 36.0
 
 [node name="Worker" unique_id=1996506914 instance=ExtResource("1_ba5xg")]
@@ -20,5 +20,5 @@ wait_time = 5.0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeComponent" index="0" unique_id=853562560]
-position = Vector2(0, -13)
+position = Vector2(0, -11)
 shape = SubResource("CapsuleShape2D_hkwyj")

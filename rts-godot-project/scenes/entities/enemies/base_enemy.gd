@@ -12,6 +12,7 @@ static var _next_ids_by_type := {
 
 var id: int
 var _current_target: PhysicsBody2D
+var _building_target_random_position: Variant
 var _printer: Printer
 
 @onready var _animated_sprite := $AnimatedSprite2D
@@ -38,6 +39,7 @@ func _ready() -> void:
 	# Componentes
 	_nav_agent.velocity_computed.connect(_on_velocity_computed)
 	_nav_agent.avoidance_priority = 0.2
+	_nav_agent.max_speed = stats.movement_speed
 	_attack_comp.setup(stats.attack_damage, stats.attack_rate, _printer)
 	_health_comp.setup(stats.max_health, _printer)
 	_health_comp.paint_bar()
@@ -57,6 +59,7 @@ func _physics_process(_delta: float) -> void:
 	# Si no tiene objetivo o el que tenía ha desaparecido, busca otro.
 	if _current_target == null or not is_instance_valid(_current_target):
 		_animated_sprite.stop()
+		_building_target_random_position = null
 		# Busca primero unidades en rango de detección, si no encuentra, busca el edificio más
 		# cercano.
 		_set_target_unit()
@@ -67,7 +70,10 @@ func _physics_process(_delta: float) -> void:
 				_nav_agent.velocity = Vector2.ZERO
 				return
 
-	# Si el objetivo esta en rango, para y ataca.
+	if _building_target_random_position:
+		_disable_resource_collision(global_position.distance_to(_building_target_random_position) < 100)
+
+		# Si el objetivo esta en rango, para y ataca.
 	if _attack_range_comp.overlaps_body(_current_target):
 		_nav_agent.avoidance_priority = 1
 		_animated_sprite.play("attack")
@@ -77,7 +83,6 @@ func _physics_process(_delta: float) -> void:
 	# Si no esta en rango, calcula la siguiente posición y se desplaza.
 	else:
 		_nav_agent.avoidance_priority = 0.2
-		_animated_sprite.play("attack")
 		_animated_sprite.stop()
 		# Si el objetivo es una unidad, se actualiza su posición al NavigationAgent, por si se ha
 		# movido.
@@ -103,39 +108,32 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 
 func _set_target_unit() -> void:
 	if _detection_range_comp.has_overlapping_bodies():
-		var entities_in_range: Array[Node2D] = \
+		var units_in_range: Array[Node2D] = \
 				_detection_range_comp.get_overlapping_bodies().filter(
 					func(body: Node2D) -> bool:
 						return body is BaseUnit,
 				)
-		if entities_in_range.size() > 0:
-			_set_target(_get_nearest_target(entities_in_range))
+		if units_in_range.size() > 0:
+			_current_target = _get_nearest_target(units_in_range)
+			_printer.cprint("is targeting ", _current_target.name, " at ", _current_target.global_position)
+			_nav_agent.target_position = _current_target.global_position
 
 
 # Busca el edificio más cercano.
 func _set_target_building() -> void:
 	# Recoge la lista de edificios activos en el mapa.
-	var buildings := get_tree().get_first_node_in_group("buildings_node").get_children()
+	var buildings: Array[Node] = get_tree().get_first_node_in_group("buildings_node").get_children()
 	# Itera sobre la lista calculando la distancia al edificio.
 	if buildings:
-		var closest_building: StaticBody2D = null
-		var shortest_distance = INF
+		# Necesario para evitar fallo de tipos.
+		var buildings_filtered: Array[Node2D]
 		for building in buildings:
-			var distance := global_position.distance_to(building.global_position)
-			if distance < shortest_distance:
-				closest_building = building
-				shortest_distance = distance
-		_set_target(closest_building)
-
-
-func _set_target(target: PhysicsBody2D) -> void:
-	_current_target = target
-	_printer.cprint("is targeting ", _current_target.name, " at ", _current_target.global_position)
-	_nav_agent.target_position = _current_target.global_position
-	#if target.is_class("CharacterBody2D"):
-	#	_nav_agent.target_position = _current_target.global_position
-	#else:
-	#	_nav_agent.target_position = _get_random_target_point(_current_target)
+			if building is Node2D:
+				buildings_filtered.append(building)
+		_current_target = _get_nearest_target(buildings_filtered)
+		_printer.cprint("is targeting ", _current_target.name, " at ", _current_target.global_position)
+		_building_target_random_position = _get_random_target_point(_current_target as StaticBody2D)
+		_nav_agent.target_position = _building_target_random_position
 
 
 func _get_nearest_target(entities: Array[Node2D]) -> PhysicsBody2D:
@@ -157,17 +155,23 @@ func _get_random_target_point(building: StaticBody2D) -> Vector2:
 			return node.is_class("CollisionShape2D"),
 	)[0]
 
-	var random_target_point_x: int = collision_shape.global_position.x + randi_range(-10, 10)
-	var random_target_point_y: int = collision_shape.global_position.y + randi_range(-10, 10)
+	var random_target_point_x: int = collision_shape.global_position.x + randf_range(-30, 30)
+	var random_target_point_y: int = collision_shape.global_position.y + randf_range(-5, 5)
 
 	return Vector2(random_target_point_x, random_target_point_y)
 
 
 func _on_body_in_detection_range(body: Node2D, is_in_range: bool) -> void:
 	if is_in_range and _current_target is not BaseUnit:
+		_building_target_random_position = null
 		_current_target = body
 	elif not is_in_range and body == _current_target:
 		_current_target = null
+
+
+func _disable_resource_collision(is_disabled: bool) -> void:
+	_nav_agent.set_navigation_layer_value(1, !is_disabled)
+	_nav_agent.set_navigation_layer_value(2, is_disabled)
 
 
 func on_destroyed() -> void:

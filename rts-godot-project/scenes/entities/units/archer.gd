@@ -37,5 +37,5 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	if _target_enemy:
-		move_destination = _target_enemy.global_position
+		set_target_position(_target_enemy.global_position)
 	super._physics_process(_delta)
