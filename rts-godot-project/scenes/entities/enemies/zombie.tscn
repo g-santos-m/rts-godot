@@ -5,27 +5,26 @@
 [ext_resource type="Resource" uid="uid://irdqaghspquy" path="res://scenes/entities/enemies/zombie_stats.tres" id="2_7mxgu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q33wv"]
-radius = 12.0
-height = 26.0
+radius = 11.0
+height = 24.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_07ee4"]
-radius = 17.0
-height = 36.0
+radius = 16.0
+height = 34.0
 
 [node name="Zombie" unique_id=917598100 instance=ExtResource("1_q33wv")]
 script = ExtResource("2_07ee4")
 stats = ExtResource("2_7mxgu")
 
 [node name="CollisionBox" parent="." index="1" unique_id=1798760610]
-position = Vector2(0, -13)
+position = Vector2(0, -11)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_q33wv")
 
-[node name="AttackRange" parent="." index="5" unique_id=1357743773]
-monitorable = false
-
-[node name="RangeBox" parent="AttackRange" index="0" unique_id=732615573]
-position = Vector2(0, -13)
+[node name="RangeBox" parent="AttackRange" parent_id_path=PackedInt32Array(1357743773) index="0" unique_id=732615573]
+position = Vector2(0, -11)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_07ee4")
 
-[node name="DetectionRange" parent="." index="6" unique_id=114068512]
-monitorable = false
+[node name="DetectionBox" parent="DetectionRange" parent_id_path=PackedInt32Array(114068512) index="0" unique_id=676277600]
+visible = false

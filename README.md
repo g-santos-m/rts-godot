@@ -15,4 +15,4 @@ estudio español [Numantian games](https://numantiangames.com/).
 
 3. Extraer y abrir el ejecutable de Godot Engine (no requiere instalación).
 4. Importar el proyecto desde Godot.
-5. Para arrancar el nivel de pruebas pulsar **F5**.
+5. Para arrancar el juego pulsar **F5**.

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://vsxx1ldl4ge8"]
 
 [ext_resource type="Texture2D" uid="uid://cwh26gsk118pg" path="res://assets/textures/entities/resources/tree.png" id="1_68xy6"]
+[ext_resource type="Script" uid="uid://k5qigc3d15aa" path="res://scenes/entities/environment/game_resource.gd" id="1_nccvu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xqses"]
 radius = 26.0
@@ -9,6 +10,7 @@ height = 74.0
 [node name="Tree" type="StaticBody2D" unique_id=1219665164 groups=["wood_resource"]]
 collision_layer = 8
 collision_mask = 0
+script = ExtResource("1_nccvu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=387072874]
 position = Vector2(0, -60)

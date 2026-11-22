@@ -31,7 +31,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tv7ik"]
-radius = 17.0
+radius = 18.0
 height = 36.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0h1v6"]
@@ -50,12 +50,13 @@ sprite_frames = SubResource("SpriteFrames_xqses")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" index="0" unique_id=833765658]
-position = Vector2(0, -13)
+position = Vector2(0, -11)
 shape = SubResource("CapsuleShape2D_tv7ik")
 
 [node name="DetectionRange" parent="." index="6" unique_id=1723907517 instance=ExtResource("9_t16lg")]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange" index="0" unique_id=1341086323]
+visible = false
 position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_0h1v6")

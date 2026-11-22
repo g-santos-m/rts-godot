@@ -4,3 +4,6 @@
 
 [node name="ResourceManager" type="Node" unique_id=578601721 groups=["resource_manager"]]
 script = ExtResource("1_3mdr4")
+
+[node name="Timer" type="Timer" parent="." unique_id=1605835396]
+autostart = true

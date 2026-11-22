@@ -50,9 +50,10 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _get_base_type(entity: PhysicsBody2D) -> String:
 	if (
-			entity != null
+			entity
 			and is_instance_valid(entity)
 			and entity.get_script()
+			and entity.get_script().get_base_script()
 	):
 		return entity.get_script().get_base_script().get_global_name()
 	else:

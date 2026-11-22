@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_tti3d")
 building_type = "Castle"
-max_health = 90.0
+max_health = 300.0
 metadata/_custom_type_script = "uid://dwoqornt0ly0k"

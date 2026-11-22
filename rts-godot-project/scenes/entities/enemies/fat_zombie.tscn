@@ -29,12 +29,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vrixv"]
-radius = 16.0
-height = 34.0
+radius = 12.0
+height = 28.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e0gqf"]
-radius = 21.0
-height = 44.0
+radius = 17.0
+height = 38.0
 
 [node name="FatZombie" unique_id=917598100 instance=ExtResource("1_0k52c")]
 script = ExtResource("2_pwyqh")
@@ -45,9 +45,14 @@ sprite_frames = SubResource("SpriteFrames_xqses")
 frame_progress = 0.0
 
 [node name="CollisionBox" parent="." index="1" unique_id=1798760610]
-position = Vector2(0, -16)
+position = Vector2(0, -12)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vrixv")
 
 [node name="RangeBox" parent="AttackRange" parent_id_path=PackedInt32Array(1357743773) index="0" unique_id=732615573]
-position = Vector2(0, -16)
+position = Vector2(0, -12)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_e0gqf")
+
+[node name="DetectionBox" parent="DetectionRange" parent_id_path=PackedInt32Array(114068512) index="0" unique_id=676277600]
+visible = false
