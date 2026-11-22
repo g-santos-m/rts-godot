@@ -41,6 +41,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeComponent" index="0" unique_id=241700891]
+visible = false
 shape = SubResource("CircleShape2D_juyfb")
 
 [node name="RangedAttackComponent" parent="." index="5" unique_id=1500910560 instance=ExtResource("8_1jrlb")]

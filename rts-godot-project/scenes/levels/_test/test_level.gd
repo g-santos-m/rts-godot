@@ -36,7 +36,7 @@ func _reset_ids() -> void:
 
 
 func _on_clear_enemies() -> void:
-	var enemies: Array[BaseEnemy] = $Entities/Enemies.get_children() as Array[BaseEnemy]
+	var enemies: Array[Node] = $Entities/Enemies.get_children()
 	for enemy in enemies:
 		enemy.on_destroyed()
 #endregion

@@ -12,8 +12,6 @@ static var _next_ids_by_type := {
 	}
 
 var id: int
-var move_destination: Vector2:
-	set = set_move_destination
 var _printer: Printer
 var selected = false:
 	set = set_selected
@@ -24,8 +22,8 @@ var _current_terrain_speed_mult: float = 1.0
 
 var _resource_manager: ResourceManager
 
-@onready var _animated_sprite := $AnimatedSprite2D
-@onready var _nav_agent := $NavigationAgent2D
+@onready var _animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var _health_comp := $HealthComponent
 
 
@@ -43,7 +41,9 @@ func _ready() -> void:
 	name = "%s_%s" % [stats.unit_type, id]
 	_printer = Printer.new(name)
 
+	_nav_agent.velocity_computed.connect(_on_velocity_computed)
 	_nav_agent.avoidance_priority = 0.2
+	_nav_agent.max_speed = stats.movement_speed
 	_health_comp.setup(stats.max_health, _printer)
 	_health_comp.paint_bar()
 	_health_comp.position.y = \
@@ -59,7 +59,7 @@ func _ready() -> void:
 func _physics_process(_delta) -> void:
 	# Si ya llegó al final de la ruta (o no tiene una), se detiene y no hace nada más
 	if _nav_agent.is_navigation_finished():
-		velocity = Vector2.ZERO
+		_nav_agent.velocity = Vector2.ZERO
 		return
 
 	_update_terrain_speed_mult()
@@ -71,9 +71,10 @@ func _physics_process(_delta) -> void:
 	var direction = global_position.direction_to(next_position)
 	_animated_sprite.flip_h = direction.x < 0
 
-	# Aplica la velocidad y mueve al personaje
-	velocity = direction * stats.movement_speed * _current_terrain_speed_mult
-	move_and_slide()
+	var desired_velocity: Vector2 = direction * stats.movement_speed * _current_terrain_speed_mult
+	# Con avoidance activado, le pasamos la velocidad al NavigationAgent2D, que devolverá la
+	# velocidad correcta con la signal velocity_computed.
+	_nav_agent.velocity = desired_velocity
 
 
 func take_damage(damage: float) -> void:
@@ -88,9 +89,13 @@ func set_selected(value):
 		_animated_sprite.self_modulate = Color.WHITE
 
 
-func set_move_destination(mouse_position: Vector2) -> void:
-	move_destination = mouse_position
-	_nav_agent.target_position = move_destination
+func set_target_position(target_position: Vector2) -> void:
+	_nav_agent.target_position = target_position
+
+
+func _on_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
+	move_and_slide()
 
 
 func _update_terrain_speed_mult() -> void:

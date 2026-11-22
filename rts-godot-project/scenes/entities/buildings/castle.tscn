@@ -4,6 +4,17 @@
 [ext_resource type="Script" uid="uid://dk8vanr5eujbs" path="res://scenes/entities/buildings/castle.gd" id="2_jk18y"]
 [ext_resource type="Resource" uid="uid://drlux3isydidu" path="res://scenes/entities/buildings/castle_stats.tres" id="3_kt84p"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kt84p"]
+radius = 32.0
+height = 128.0
+
 [node name="Castle" unique_id=363965524 instance=ExtResource("1_af46p")]
 script = ExtResource("2_jk18y")
 stats = ExtResource("3_kt84p")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=749159625]
+position = Vector2(0, -32)
+shape = SubResource("CapsuleShape2D_kt84p")
+
+[node name="NavigationObstacle2D" parent="." index="2" unique_id=563819917]
+vertices = PackedVector2Array(0, 40, 41, 40, 64, 18, 64, -4, 42, -24, -41, -24, -64, -4, -64, 18, -41, 40)

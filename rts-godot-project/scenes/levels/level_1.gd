@@ -29,15 +29,15 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_spawn_entity(entity_name: String) -> void:
 	_placing_entity_name = entity_name
 
-func _spawn_worker(position: Vector2) -> void:
+func _spawn_worker(spawn_position: Vector2) -> void:
 	var worker: Node2D = worker_scene.instantiate()
-	worker.global_position = position
+	worker.global_position = spawn_position
 	worker.name = "Worker_%d" % worker.id
 	$Entities/Units.add_child(worker)
 
-func _spawn_house(position: Vector2) -> void:
+func _spawn_house(spawn_position: Vector2) -> void:
 	var house: Node2D = house_scene.instantiate()
-	house.global_position = position
+	house.global_position = spawn_position
 	house.name = "House_%d" % house.id
 	$Entities/Buildings.add_child(house)
 
