@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		"camera_up",
 		"camera_down",
 	)
-	global_position += direction * camera_speed * delta
+	global_position += direction * camera_speed * Vector2(1 / zoom.x, 1 / zoom.y) * delta
 	_update_camera_position()
 
 

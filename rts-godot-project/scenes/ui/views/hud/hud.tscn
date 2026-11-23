@@ -5,8 +5,20 @@
 [ext_resource type="PackedScene" uid="uid://dim42iava0dkf" path="res://scenes/ui/components/organisms/build_panel.tscn" id="3_ax4tw"]
 [ext_resource type="PackedScene" uid="uid://cbu3pd0vbqfpm" path="res://scenes/ui/components/atoms/game_paused.tscn" id="4_ax4tw"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqses"]
+bg_color = Color(0, 0, 0, 0.46666667)
+
 [node name="Hud" type="CanvasLayer" unique_id=292531970 groups=["hud"]]
 script = ExtResource("1_as3gr")
+
+[node name="BackgroundCover" type="Panel" parent="." unique_id=2120914325]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xqses")
 
 [node name="TopBar" parent="." unique_id=97617913 instance=ExtResource("2_as3gr")]
 

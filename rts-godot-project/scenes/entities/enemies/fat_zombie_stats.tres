@@ -6,7 +6,7 @@
 script = ExtResource("1_tebqm")
 enemy_type = "FatZombie"
 max_health = 25.0
-movement_speed = 150.0
+movement_speed = 100.0
 attack_damage = 5.0
 attack_rate = 0.8
 metadata/_custom_type_script = "uid://b7enshj84dt7a"

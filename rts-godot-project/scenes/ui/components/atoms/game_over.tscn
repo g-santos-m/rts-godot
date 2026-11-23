@@ -1,5 +1,9 @@
 [gd_scene format=3 uid="uid://e600ff80hotg"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r18ws"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+
 [node name="GameOver" type="RichTextLabel" unique_id=1060200524]
 anchors_preset = 8
 anchor_left = 0.5
@@ -10,6 +14,7 @@ offset_left = -0.5
 offset_right = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r18ws")
 bbcode_enabled = true
 text = "[font_size=120][b][color=red]GAME OVER"
 fit_content = true

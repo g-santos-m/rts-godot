@@ -1,5 +1,9 @@
 [gd_scene format=3 uid="uid://cbu3pd0vbqfpm"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3tvea"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+
 [node name="GamePaused" type="RichTextLabel" unique_id=1060200524]
 anchors_preset = 8
 anchor_left = 0.5
@@ -12,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.8156863, 0.6627451, 0.3764706, 1)
 theme_override_colors/font_outline_color = Color(0.5137255, 0.4, 0.18431373, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3tvea")
 bbcode_enabled = true
 text = "[font_size=120][b][outline_size=12]GAME PAUSED"
 fit_content = true

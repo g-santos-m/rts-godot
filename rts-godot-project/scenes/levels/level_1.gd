@@ -17,9 +17,9 @@ func _on_back_to_menu() -> void:
 	queue_free()
 
 
-# TODO
 func _on_last_wave_ended() -> void:
-	pass
+	$Hud.show_game_won()
+	self.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _reset_ids() -> void:
