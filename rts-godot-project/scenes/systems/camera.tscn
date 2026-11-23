@@ -3,4 +3,6 @@
 [ext_resource type="Script" uid="uid://8vrk7d2rkird" path="res://scenes/systems/camera.gd" id="1_3tvea"]
 
 [node name="Camera" type="Camera2D" unique_id=61064408]
+process_mode = 3
 script = ExtResource("1_3tvea")
+camera_speed = 800.0

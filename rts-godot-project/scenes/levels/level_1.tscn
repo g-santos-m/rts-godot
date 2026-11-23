@@ -26,7 +26,7 @@ texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/custom_data_0 = 1.0
 1:0/0 = 0
-1:0/0/custom_data_0 = 1.2
+1:0/0/custom_data_0 = 1.3
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-26.666666, -26.666666, -16, -32, 16, -32, 26.666668, -26.666666, 32, -16, 32, 16, 26.666668, 26.666668, 16, 32, -16, 32, -26.666666, 26.666668, -32, 16, -32, -16)
 1:1/0 = 0
@@ -222,9 +222,11 @@ tile_map_data = PackedByteArray("AADk/1wAEQAAAAAAAADx/2cAEQAAAAAAAAAMAFQAEQAAAAA
 tile_set = SubResource("TileSet_k1lsw")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1888606262 groups=["navigation_region"]]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_mkypq")
 
 [node name="CollisionlessNavRegion2D" type="NavigationRegion2D" parent="." unique_id=1342577728 groups=["navigation_region"]]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_ndtll")
 navigation_layers = 2
 
@@ -377,106 +379,106 @@ position = Vector2(-63, 1628)
 time_between_waves = 0.5
 
 [node name="EnemySpawner1" parent="WaveManager" unique_id=1594341160 instance=ExtResource("8_dga24")]
-position = Vector2(-638, 1147)
+position = Vector2(-541, 1151)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([4, 6, 8])
 
 [node name="EnemySpawner2" parent="WaveManager" unique_id=88339290 instance=ExtResource("8_dga24")]
-position = Vector2(855, -576)
+position = Vector2(858, -489)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([4, 6, 8])
 
 [node name="EnemySpawner3" parent="WaveManager" unique_id=779068122 instance=ExtResource("8_dga24")]
-position = Vector2(-674, 224)
+position = Vector2(-557, 228)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([4, 6, 8])
 
 [node name="EnemySpawner4" parent="WaveManager" unique_id=945871 instance=ExtResource("8_dga24")]
-position = Vector2(-657, 1658)
+position = Vector2(-538, 1664)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([4, 6, 8])
 
 [node name="EnemySpawner5" parent="WaveManager" unique_id=1886023618 instance=ExtResource("8_dga24")]
-position = Vector2(138, 1908)
+position = Vector2(151, 1767)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([4, 6, 8])
 
 [node name="EnemySpawner6" parent="WaveManager" unique_id=1561346486 instance=ExtResource("8_dga24")]
-position = Vector2(5498, -366)
+position = Vector2(5413, -367)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 4, 6])
 
 [node name="EnemySpawner7" parent="WaveManager" unique_id=1849575263 instance=ExtResource("8_dga24")]
-position = Vector2(1773, -577)
+position = Vector2(1775, -490)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 4, 6])
 
 [node name="EnemySpawner8" parent="WaveManager" unique_id=1253322995 instance=ExtResource("8_dga24")]
-position = Vector2(2590, -605)
+position = Vector2(2592, -486)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 4, 6])
 
 [node name="EnemySpawner9" parent="WaveManager" unique_id=1586749784 instance=ExtResource("8_dga24")]
-position = Vector2(3591, 1908)
+position = Vector2(3600, 1765)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 4, 6])
 
 [node name="EnemySpawner10" parent="WaveManager" unique_id=395639209 instance=ExtResource("8_dga24")]
-position = Vector2(2707, 1930)
+position = Vector2(2724, 1770)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 0, 8])
 
 [node name="EnemySpawner11" parent="WaveManager" unique_id=1553314629 instance=ExtResource("8_dga24")]
-position = Vector2(5520, 1608)
+position = Vector2(5403, 1606)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 0, 8])
 
 [node name="EnemySpawner12" parent="WaveManager" unique_id=1515804055 instance=ExtResource("8_dga24")]
-position = Vector2(5509, 1085)
+position = Vector2(5403, 1102)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 0, 8])
 
 [node name="EnemySpawner13" parent="WaveManager" unique_id=1693824619 instance=ExtResource("8_dga24")]
-position = Vector2(5520, 373)
+position = Vector2(5417, 367)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 0, 8])
 
 [node name="EnemySpawner14" parent="WaveManager" unique_id=2092674879 instance=ExtResource("8_dga24")]
-position = Vector2(3824, -583)
+position = Vector2(3825, -481)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 0, 8])
 
 [node name="EnemySpawner15" parent="WaveManager" unique_id=1472016189 instance=ExtResource("8_dga24")]
-position = Vector2(-235, -572)
+position = Vector2(-237, -489)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 0, 8])
 
 [node name="EnemySpawner16" parent="WaveManager" unique_id=1796003313 instance=ExtResource("8_dga24")]
-position = Vector2(4647, 1880)
+position = Vector2(4651, 1767)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([0, 0, 8])
 
 [node name="EnemySpawner17" parent="WaveManager" unique_id=942140849 instance=ExtResource("8_dga24")]
-position = Vector2(-637, 1023)
+position = Vector2(-545, 1027)
 enemy_type = "FatZombie"
 enemies_per_wave = Array[int]([1, 3, 5])
 
 [node name="EnemySpawner18" parent="WaveManager" unique_id=1495197677 instance=ExtResource("8_dga24")]
-position = Vector2(2250, -579)
+position = Vector2(2248, -488)
 enemy_type = "FatZombie"
 enemies_per_wave = Array[int]([1, 3, 5])
 
 [node name="EnemySpawner19" parent="WaveManager" unique_id=948801489 instance=ExtResource("8_dga24")]
-position = Vector2(2403, 1922)
+position = Vector2(2392, 1757)
 enemy_type = "FatZombie"
 enemies_per_wave = Array[int]([1, 3, 5])
 
 [node name="EnemySpawner20" parent="WaveManager" unique_id=114786610 instance=ExtResource("8_dga24")]
-position = Vector2(-661, -66)
+position = Vector2(-561, -70)
 enemy_type = "FatZombie"
 enemies_per_wave = Array[int]([1, 3, 5])
 
 [node name="EnemySpawner21" parent="WaveManager" unique_id=1541382162 instance=ExtResource("8_dga24")]
-position = Vector2(5553, 717)
+position = Vector2(5410, 711)
 enemy_type = "FatZombie"
 enemies_per_wave = Array[int]([1, 3, 5])

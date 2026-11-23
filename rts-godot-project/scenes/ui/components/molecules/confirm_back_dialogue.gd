@@ -20,5 +20,7 @@ func _on_confirm_back() -> void:
 
 func _on_cancel() -> void:
 	get_tree().paused = false
+	var hud = get_tree().get_first_node_in_group("hud")
+	hud.set_pause_button_enabled(true)
 	_printer.cprint("cancel button pressed")
 	queue_free()

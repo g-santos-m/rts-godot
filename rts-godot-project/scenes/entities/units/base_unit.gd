@@ -43,7 +43,7 @@ func _ready() -> void:
 
 	_nav_agent.velocity_computed.connect(_on_velocity_computed)
 	_nav_agent.avoidance_priority = 0.2
-	_nav_agent.max_speed = stats.movement_speed
+	_nav_agent.max_speed = stats.movement_speed * 1.3
 	_health_comp.setup(stats.max_health, _printer)
 	_health_comp.paint_bar()
 	_health_comp.position.y = \
