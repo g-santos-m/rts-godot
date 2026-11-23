@@ -1,7 +1,6 @@
 extends Camera2D
 
 const HUD_TOP_BAR_HEIGHT = 180
-const TILE_SIZE = 64
 const MAX_ZOOM = 1.2
 const MIN_ZOOM = 0.4
 const ZOOM_STEP = 0.1
@@ -13,12 +12,12 @@ var map_size: Vector2i
 
 func _ready() -> void:
 	var base_layer = get_tree().get_first_node_in_group("base_layer")
-	map_size = base_layer.get_used_rect().size * TILE_SIZE
+	map_size = base_layer.get_used_rect().size * GlobalVariables.TILE_SIZE.x
 
-	limit_top = -HUD_TOP_BAR_HEIGHT - 400
-	limit_bottom = map_size.y + 400
-	limit_left = 0 - 400
-	limit_right = map_size.x + 400
+	limit_top = (-512) - HUD_TOP_BAR_HEIGHT - 400
+	limit_bottom = (-512) + map_size.y + 400
+	limit_left = (-576) - 400
+	limit_right = (-576) + map_size.x + 400
 
 
 func _process(delta: float) -> void:

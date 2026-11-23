@@ -12,7 +12,7 @@ func _ready() -> void:
 	_top_bar_icons.pause_button_pressed.connect(_on_pause_button_pressed)
 
 func show_game_over() -> void:
-	_top_bar_icons.disable_pause_button()
+	_top_bar_icons.set_pause_button_enabled(false)
 	var game_over_msg = load("res://scenes/ui/components/atoms/game_over.tscn").instantiate()
 	add_child(game_over_msg)
 

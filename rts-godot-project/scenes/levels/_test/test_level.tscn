@@ -227,11 +227,15 @@ navigation_polygon = SubResource("NavigationPolygon_xqses")
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_edfom")
 navigation_layers = 2
-travel_cost = 0.0
 
 [node name="BuildManager" parent="." unique_id=1772456519 groups=["build_manager"] instance=ExtResource("11_igpsl")]
 
 [node name="ResourceManager" parent="." unique_id=578601721 instance=ExtResource("9_p7vqb")]
+
+[node name="SelectionComponent" parent="." unique_id=470809335 instance=ExtResource("14_x2723")]
+
+[node name="Camera" parent="." unique_id=61064408 instance=ExtResource("16_5emos")]
+position = Vector2(960, 360)
 
 [node name="WaveManager" parent="." unique_id=311805089 instance=ExtResource("5_3bb0s")]
 time_between_waves = 0.5
@@ -240,11 +244,6 @@ time_between_waves = 0.5
 position = Vector2(481, 245)
 enemy_type = "Zombie"
 enemies_per_wave = Array[int]([1, 2, 3])
-
-[node name="SelectionComponent" parent="." unique_id=470809335 instance=ExtResource("14_x2723")]
-
-[node name="Camera" parent="." unique_id=61064408 instance=ExtResource("16_5emos")]
-position = Vector2(960, 360)
 
 [node name="Entities" type="Node2D" parent="." unique_id=976805107 groups=["entities_node", "navigation_obstacles"]]
 y_sort_enabled = true

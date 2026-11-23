@@ -2,7 +2,7 @@ extends Node2D
 
 var menu_screen_scene := preload("res://scenes/ui/views/menu_screen.tscn")
 var level_1_scene := preload("res://scenes/levels/level_1.tscn")
-var test_level_scene := preload("res://scenes/levels/_test/test_level.tscn")
+#var test_level_scene := preload("res://scenes/levels/_test/test_level.tscn")
 
 var _menu_screen: CanvasLayer
 var _level: Node2D
@@ -14,8 +14,8 @@ func _ready() -> void:
 	_on_back_to_menu()
 
 func _on_start_game() -> void:
-	#_level = level_1_scene.instantiate()
-	_level = test_level_scene.instantiate()
+	_level = level_1_scene.instantiate()
+	#_level = test_level_scene.instantiate()
 	_level.back_to_menu.connect(_on_back_to_menu)
 	add_child(_level)
 	_printer.cprint("level screen on view")

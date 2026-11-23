@@ -148,14 +148,14 @@ func _horde_units() -> void:
 	_units.add_child(archer1)
 	_units.add_child(archer2)
 
-	for i in range(20):
+	for i in range(30):
 		var zombie = Sprite2D.new()
 		if randi_range(0, 1) == 0:
 			zombie.texture = load("res://assets/textures/entities/enemies/zombie0.png")
 		else:
 			zombie.texture = load("res://assets/textures/entities/enemies/fat-zombie0.png")
-		zombie.position = _spawn_point + _CHASER_OFFSET * 1.7 * _chaser_offset_dir \
-				+ Vector2(randi_range(-60, 60), randi_range(-60, 60))
+		zombie.position = _spawn_point + _CHASER_OFFSET * 1.8 * _chaser_offset_dir \
+				+ Vector2(randi_range(-80, 80), randi_range(-70, 70))
 		_units.add_child(zombie)
 
 	_animated_units = _units.get_children()
