@@ -1,6 +1,7 @@
 extends PanelContainer
 
 signal spawn_entity(entity_name: String)
+signal mouse_hover(is_hovering: bool)
 
 @export var _build_costs: BuildCosts
 
@@ -35,6 +36,10 @@ func _ready() -> void:
 	var buttons: Array = $GridContainer.get_children()
 	for button in buttons:
 		button.update_view()
+
+	mouse_entered.connect(func(): mouse_hover.emit(true))
+	mouse_exited.connect(func(): mouse_hover.emit(false))
+
 
 func _on_button_pressed(entity_name: String) -> void:
 	spawn_entity.emit(entity_name)

@@ -10,6 +10,7 @@ bg_color = Color(0.70980394, 0.5647059, 0.2901961, 1)
 [node name="WaveInfo" type="PanelContainer" unique_id=1222134407]
 offset_right = 443.0
 offset_bottom = 86.0
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("1_2ok8q")
 script = ExtResource("1_1vet8")
 
@@ -19,6 +20,7 @@ theme_override_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1124244445]
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_i85x2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=2118015391]

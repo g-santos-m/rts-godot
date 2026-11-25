@@ -7,6 +7,7 @@
 custom_maximum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
+mouse_filter = 1
 texture_normal = ExtResource("1_icv85")
 stretch_mode = 0
 script = ExtResource("2_icv85")

@@ -31,12 +31,14 @@ theme_override_constants/separation = 8
 
 [node name="BackButton" parent="HBoxContainer" unique_id=1969232425 instance=ExtResource("1_oysaa")]
 layout_mode = 2
+mouse_filter = 1
 texture_pressed = ExtResource("3_i7cn7")
 texture_hover = ExtResource("4_wi7h6")
 
 [node name="PlayButton" parent="HBoxContainer" unique_id=2118687102 instance=ExtResource("1_oysaa")]
 visible = false
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("5_d4ey6")
 texture_pressed = ExtResource("6_i7cn7")
 texture_hover = ExtResource("7_y17yl")
@@ -44,6 +46,7 @@ icon = ExtResource("5_d4ey6")
 
 [node name="PauseButton" parent="HBoxContainer" unique_id=1531264378 instance=ExtResource("1_oysaa")]
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("5_wi7h6")
 texture_pressed = ExtResource("9_y17yl")
 texture_hover = ExtResource("7_obsq7")

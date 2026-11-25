@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ciyc06aac8k4u"]
 
 [ext_resource type="PackedScene" uid="uid://uwy3k0jg5wmo" path="res://scenes/ui/components/molecules/top_bar_icons.tscn" id="1_ic75j"]
+[ext_resource type="Script" uid="uid://c1ik7673vs6qd" path="res://scenes/ui/components/organisms/top_bar.gd" id="1_rvrsj"]
 [ext_resource type="PackedScene" uid="uid://d2vr1eqiq0y4p" path="res://scenes/ui/components/molecules/wave_info.tscn" id="2_yitrm"]
 [ext_resource type="PackedScene" uid="uid://c52057usofgy7" path="res://scenes/ui/components/molecules/resource_panel.tscn" id="3_f3w30"]
 
@@ -25,6 +26,7 @@ anchor_right = 1.0
 offset_bottom = 180.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ouqu7")
+script = ExtResource("1_rvrsj")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=591691874]
 layout_mode = 2
@@ -39,6 +41,7 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+mouse_filter = 1
 
 [node name="ResourcePanel" parent="HBoxContainer" unique_id=1319394354 instance=ExtResource("3_f3w30")]
 layout_mode = 2
