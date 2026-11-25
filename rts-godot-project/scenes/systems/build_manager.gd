@@ -22,15 +22,27 @@ const UNIT_SPAWN_OFFSET = Vector2(0, 50)
 
 var walls_in_map: Array[Wall] = []
 var _entity_being_placed_name: String
+var _mouse_hovering_build_panel: bool = false:
+	set(new_value):
+		_mouse_hovering_build_panel = new_value
 var _ghost_building: Sprite2D
+var _tower_range_visual_aid: RangeVisualAid
 var _wall_building_mode: bool = false
+var _disallow_building: bool = false:
+	set(new_value):
+		_attach_ghost_texture(new_value)
+		if _entity_being_placed_name == "tower":
+			_tower_range_visual_aid.red = new_value
+		_disallow_building = new_value
 
 var _entities_node: Node2D
+var _water_cells: Array[Vector2i]
 var _navigation_region: NavigationRegion2D
 var _base_layer: TileMapLayer
 var _selection_comp: SelectionComponent
 var _wall_building_manager: WallBuildingManager
 var _resource_manager: ResourceManager
+var _hud: CanvasLayer
 
 @onready var _level: Node2D = get_parent()
 @onready var _printer: Printer = Printer.new(name)
@@ -42,18 +54,32 @@ func _ready() -> void:
 	_base_layer = get_tree().get_first_node_in_group("base_layer")
 	_selection_comp = get_tree().get_first_node_in_group("selection_component")
 	_resource_manager = get_tree().get_first_node_in_group("resource_manager")
+	_hud = get_tree().get_first_node_in_group("hud")
 
-	get_tree().get_first_node_in_group("hud").spawn_entity.connect(_on_spawn_entity)
+	_hud.spawn_entity.connect(_on_spawn_entity)
+	_hud.mouse_hover.connect(func(is_hovering): _mouse_hovering_build_panel = is_hovering)
+
+	var used_cells = _base_layer.get_used_cells()
+	_water_cells = used_cells.filter(
+			func(cell):
+				return _base_layer.get_cell_tile_data(cell).get_custom_data("is_water")
+	)
 
 
 func _process(_delta: float) -> void:
 	if _ghost_building and not _wall_building_mode:
 		_ghost_building.global_position = get_global_mouse_position()
+		_check_building_overlap()
 
 
 func _input(event: InputEvent) -> void:
 	if _entity_being_placed_name and not _wall_building_mode:
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if (
+				not _disallow_building
+				and not _mouse_hovering_build_panel
+				and event is InputEventMouseButton
+				and event.button_index == MOUSE_BUTTON_LEFT
+		):
 			match _entity_being_placed_name:
 				"house":
 					_spawn_building(house_scene.instantiate())
@@ -89,6 +115,7 @@ func _on_spawn_entity(entity_name: String) -> void:
 				return
 
 	# Para el resto de entidades que requieren un segundo click (edificios y unidades test)
+	_clear_placing_state()
 	_entity_being_placed_name = entity_name
 	if ["castle", "house", "wall", "tower"].any(
 		func(building):
@@ -120,18 +147,17 @@ func _spawn_building(building: BaseBuilding) -> void:
 
 func _attach_building_ghost(entity_name: String) -> void:
 	_ghost_building = Sprite2D.new()
-	var atlas = AtlasTexture.new()
-	var atlas_path = "res://assets/textures/entities/buildings/" + entity_name + "_ghost.png"
-	atlas.atlas = load(atlas_path)
-	_ghost_building.texture = atlas
+	_attach_ghost_texture()
 
 	if entity_name == "tower":
-		var range_visual_aid := RangeVisualAid.new()
-		range_visual_aid.position.y = _ghost_building.get_rect().size.y / 2
-		_ghost_building.add_child(range_visual_aid)
+		_tower_range_visual_aid = RangeVisualAid.new()
+		_tower_range_visual_aid.position.y = _ghost_building.get_rect().size.y / 2
+		_ghost_building.add_child(_tower_range_visual_aid)
 		placing_tower.emit(true)
 	elif entity_name == "wall":
-		_wall_building_manager = WallBuildingManager.new(_ghost_building)
+		_wall_building_manager = WallBuildingManager.new(
+				_ghost_building, _entities_node, _water_cells
+		)
 		_wall_building_manager.spawn_walls.connect(_on_spawn_walls)
 		add_child(_wall_building_manager)
 		_wall_building_mode = true
@@ -141,11 +167,53 @@ func _attach_building_ghost(entity_name: String) -> void:
 	add_child(_ghost_building)
 
 
+func _attach_ghost_texture(red: bool = false) -> void:
+	var atlas = AtlasTexture.new()
+	var atlas_path: String
+	if red:
+		atlas_path = "res://assets/textures/entities/buildings/" \
+				+ _entity_being_placed_name + "_ghost_red.png"
+	else:
+		atlas_path = "res://assets/textures/entities/buildings/" \
+				+ _entity_being_placed_name + "_ghost.png"
+	atlas.atlas = load(atlas_path)
+	_ghost_building.texture = atlas
+
+
+func _check_building_overlap() -> void:
+	var ghost_area: Rect2 = Rect2(
+		get_global_mouse_position() - GlobalVariables.TILE_SIZE / 2,
+		GlobalVariables.TILE_SIZE
+	)
+	var obstacles: Array[Rect2]
+
+	for resource in _entities_node.get_node("Resources").get_children():
+		obstacles.append(_get_area_with_margins(resource.get_rect_global()))
+	for building in _entities_node.get_node("Buildings").get_children():
+		obstacles.append(_get_area_with_margins(building.get_rect_global()))
+	for cell in _water_cells:
+		obstacles.append(_get_area_with_margins(
+				Rect2(
+						_base_layer.map_to_local(cell) - GlobalVariables.TILE_SIZE / 2,
+						GlobalVariables.TILE_SIZE
+				)
+		))
+
+	_disallow_building = obstacles.any(func(area: Rect2) -> bool: return area.intersects(ghost_area))
+
+
+func _get_area_with_margins(area: Rect2) -> Rect2:
+	const AREA_MARGIN = Vector2(32, 32)
+
+	area.position -= AREA_MARGIN
+	area.size += AREA_MARGIN * 2
+	return area
+
+
 func _clear_placing_state() -> void:
 	if _entity_being_placed_name == "tower":
 		placing_tower.emit(false)
 	if _entity_being_placed_name == "wall":
-		_wall_building_manager.queue_free()
 		_wall_building_manager = null
 		_wall_building_mode = false
 		_selection_comp.toggle_active(true)

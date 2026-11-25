@@ -1,21 +1,28 @@
 extends CanvasLayer
 
 signal spawn_entity(entity_name: String)
+signal mouse_hover(is_hovering: bool)
 signal back_to_menu
 
 @onready var _build_panel := $BuildPanel
+@onready var _top_bar := $TopBar
 @onready var _top_bar_icons := $TopBar/HBoxContainer/TopBarIcons
+
 
 func _ready() -> void:
 	_build_panel.spawn_entity.connect(_on_build_panel_spawn_entity)
+	_build_panel.mouse_hover.connect(func(is_hovering): mouse_hover.emit(is_hovering))
+	_top_bar.mouse_hover.connect(func(is_hovering): mouse_hover.emit(is_hovering))
 	_top_bar_icons.back_button_pressed.connect(_on_back_button_pressed)
 	_top_bar_icons.pause_button_pressed.connect(_on_pause_button_pressed)
+
 
 func show_game_over() -> void:
 	_top_bar_icons.set_pause_button_enabled(false)
 	$BackgroundCover.visible = true
 	var game_over_msg = load("res://scenes/ui/components/atoms/game_over.tscn").instantiate()
 	add_child(game_over_msg)
+
 
 func show_game_won() -> void:
 	_top_bar_icons.set_pause_button_enabled(false)

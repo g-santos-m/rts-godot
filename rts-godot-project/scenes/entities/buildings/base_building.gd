@@ -46,6 +46,13 @@ func take_damage(damage: float) -> void:
 	_health_comp.take_damage(damage)
 
 
+func get_rect_global() -> Rect2:
+	var rect: Rect2 = $Sprite2D.get_rect()
+	rect.position += $Sprite2D.position
+	rect.position = to_global(rect.position)
+	return rect
+
+
 func _on_destroyed() -> void:
 	_printer.cprint("has been destroyed")
 	destroyed.emit()

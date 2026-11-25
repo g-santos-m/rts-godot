@@ -15,6 +15,7 @@ offset_right = 89.0
 offset_bottom = 158.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 theme_override_styles/normal = ExtResource("1_uawes")
 theme_override_styles/pressed = ExtResource("2_3ulup")
 theme_override_styles/hover = ExtResource("3_jd5k3")
