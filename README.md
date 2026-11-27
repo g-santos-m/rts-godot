@@ -6,11 +6,11 @@ estudio español [Numantian games](https://numantiangames.com/).
    de Godot Engine.
 2. Clonar el último *commit* de la rama **develop** de este repositorio en la máquina local.
    ```
-   git clone --branch develop --single-branch --depth 1 https://github.com/g-santos-m/rts-godot
+   git clone --branch develop --single-branch --depth 1 https://github.com/g-santos-m/they-are-hundreds
    ```
    O bien el repositorio completo.
    ```
-   git clone https://github.com/g-santos-m/rts-godot
+   git clone https://github.com/g-santos-m/they-are-hundreds
    ```
 
 3. Extraer y abrir el ejecutable de Godot Engine (no requiere instalación).
